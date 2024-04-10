@@ -1,0 +1,66 @@
+.wrapper {
+  position: relative;
+  width: 95%;
+  margin: 0 auto;
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  padding: 1% 0;
+  height: 50px;
+
+  .logo {
+    width: 200px;
+    img, span {
+      vertical-align: middle;
+    }
+
+    span {
+      font-size: 24px;
+      font-weight: 600;
+      color: navy;
+      margin-left: 1%;
+    }
+  }
+
+  nav {
+    position: relative;
+    display: flex;
+    line-height: 20px;
+    align-items: center;
+    justify-content: flex-end;
+
+    a {
+      display: inline-block;
+      padding: 0 5%;
+      white-space: nowrap;
+      color: #666;
+      font-size: 14px;
+      font-weight: 600;
+
+      img {
+        width: 30px;
+        height: 30px;
+        vertical-align: middle;
+      }
+
+      &:hover {
+        color: #000;
+        text-decoration: underline;
+      }
+    }
+  }
+
+  button {
+    background-color: #fff;
+    border-width: 1px;
+    border-radius: 10px;
+    padding: 5px 10px;
+    outline: none;
+
+    &:hover {
+      background-color: navy;
+      color: #fff;
+      border-color: navy;
+    }
+  }
+}

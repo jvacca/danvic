@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="90" height="90" viewBox="0 0 90 90">
+  <g id="Group_94932" data-name="Group 94932" transform="translate(-827 -360)">
+    <g id="Rectangle_30598" data-name="Rectangle 30598" transform="translate(827 360)" fill="#fff" stroke="#000" stroke-width="2">
+      <rect width="90" height="90" rx="16" stroke="none"/>
+      <rect x="1" y="1" width="88" height="88" rx="15" fill="none"/>
+    </g>
+    <g id="icon-subscribe" transform="translate(498.706 -1836.076)">
+      <rect id="Rectangle_26876" data-name="Rectangle 26876" width="6.859" height="6.859" transform="translate(384.011 2244.576) rotate(180)"/>
+      <rect id="Rectangle_30596" data-name="Rectangle 30596" width="6.859" height="6.859" transform="translate(390.011 2237.576) rotate(180)"/>
+      <rect id="Rectangle_30597" data-name="Rectangle 30597" width="6.859" height="6.859" transform="translate(396.869 2230.717) rotate(180)"/>
+      <rect id="Rectangle_26895" data-name="Rectangle 26895" width="6.859" height="6.859" transform="translate(349.717 2237.717)"/>
+      <rect id="Rectangle_26953" data-name="Rectangle 26953" width="6.859" height="6.859" transform="translate(356.576 2244.577)"/>
+      <rect id="Rectangle_26954" data-name="Rectangle 26954" width="6.859" height="6.859" transform="translate(370.294 2244.577)"/>
+      <rect id="Rectangle_26877" data-name="Rectangle 26877" width="6.859" height="6.859" transform="translate(370.294 2258.295) rotate(180)"/>
+    </g>
+  </g>
+</svg>

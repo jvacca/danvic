@@ -1,0 +1,9 @@
+<svg id="Open_Close" data-name="Open/Close" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+  <g id="Rectangle_30804" data-name="Rectangle 30804" transform="translate(0)" fill="none" stroke="#000" stroke-width="2">
+    <rect width="32" height="32" rx="5" stroke="none"/>
+    <rect x="1" y="1" width="30" height="30" rx="4" fill="none"/>
+  </g>
+  <g id="_-" data-name="-" transform="translate(8 16)">
+    <line id="Line_998" data-name="Line 998" x2="16" transform="translate(0)" fill="none" stroke="#000" stroke-width="2"/>
+  </g>
+</svg>

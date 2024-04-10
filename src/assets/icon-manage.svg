@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+  <g id="Group_88332" data-name="Group 88332" transform="translate(2079 14856)">
+    <rect id="Rectangle_26312" data-name="Rectangle 26312" width="24" height="24" transform="translate(-2079 -14856)" fill="#fff"/>
+    <g id="Seed_phrase_icon" data-name="Seed phrase icon" transform="translate(-2079 -14856)">
+      <path id="Path_75161" data-name="Path 75161" d="M4,23a2,2,0,0,1-2-2V5A2,2,0,0,1,4,3H8V1h8V3h4a2,2,0,0,1,2,2V21a2,2,0,0,1-2,2ZM3,5V21a1,1,0,0,0,1,1H20a1,1,0,0,0,1-1V5a1,1,0,0,0-1-1H16V5A4,4,0,1,1,8,5V4H4A1,1,0,0,0,3,5ZM9,5a3,3,0,0,0,6,0V2H9Zm2,0a1,1,0,1,1,.293.707A1,1,0,0,1,11,5Z"/>
+      <path id="Path_75162" data-name="Path 75162" d="M6,12H7.5" fill="none" stroke="#000" stroke-linecap="round" stroke-width="1"/>
+      <path id="Path_75163" data-name="Path 75163" d="M9.5,12H11" fill="none" stroke="#000" stroke-linecap="round" stroke-width="1"/>
+      <path id="Path_75164" data-name="Path 75164" d="M13,12h1.5" fill="none" stroke="#000" stroke-linecap="round" stroke-width="1"/>
+      <path id="Path_75165" data-name="Path 75165" d="M16.5,12H18" fill="none" stroke="#000" stroke-linecap="round" stroke-width="1"/>
+      <path id="Path_75166" data-name="Path 75166" d="M6,15H7.5" fill="none" stroke="#000" stroke-linecap="round" stroke-width="1"/>
+      <path id="Path_75167" data-name="Path 75167" d="M9.5,15H11" fill="none" stroke="#000" stroke-linecap="round" stroke-width="1"/>
+      <path id="Path_75168" data-name="Path 75168" d="M13,15h1.5" fill="none" stroke="#000" stroke-linecap="round" stroke-width="1"/>
+      <path id="Path_75169" data-name="Path 75169" d="M16.5,15H18" fill="none" stroke="#000" stroke-linecap="round" stroke-width="1"/>
+      <path id="Path_75170" data-name="Path 75170" d="M6,18H7.5" fill="none" stroke="#000" stroke-linecap="round" stroke-width="1"/>
+      <path id="Path_75171" data-name="Path 75171" d="M9.5,18H11" fill="none" stroke="#000" stroke-linecap="round" stroke-width="1"/>
+      <path id="Path_75172" data-name="Path 75172" d="M13,18h1.5" fill="none" stroke="#000" stroke-linecap="round" stroke-width="1"/>
+      <path id="Path_75173" data-name="Path 75173" d="M16.5,18H18" fill="none" stroke="#000" stroke-linecap="round" stroke-width="1"/>
+    </g>
+  </g>
+</svg>
