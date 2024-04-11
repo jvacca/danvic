@@ -6,7 +6,7 @@
   width: 95%;
   margin: 0 auto;
 
-  .intro {
+  .intro, .signup {
     width: 75%;
     margin: 6% auto;
     h3 {
@@ -27,6 +27,13 @@
       width: 75%;
       margin: 0 auto;
       text-align: center;
+    }
+
+    > a {
+      display: block;
+      text-align: center;
+      text-decoration: underline;
+      margin-top: 3%;
     }
   }
   

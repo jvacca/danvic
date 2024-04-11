@@ -1,0 +1,333 @@
+@import '@/styles/_fonts.scss';
+@import '@/styles/_variables.scss';
+@import '@/styles/_mixins.scss';
+
+.registerPageFrame {
+  width: 100%;
+  position: relative;
+  background-color: #fff;
+  margin-top: -50px;
+  min-height: calc(100vh - 50px);
+  z-index: 20;
+
+  @include mq(mobile) {
+    margin: -50px 0;
+  }
+
+  h2 {
+    font-family: $macysbold;
+    font-size: 36px;
+    margin-bottom: 38px;
+
+    @include mq(mobile) {
+      margin-bottom: 9%;
+    }
+  }
+
+  h3 {
+    font-family: $macysbold;
+    font-size: 24px;
+    margin-bottom: 25px;
+
+    @include mq(mobile) {
+      width: 95%;
+      font-size: 5.5vw;
+      margin-bottom: 6%;
+    }
+  }
+
+  p {
+    font-family: $macys;
+    font-size: 14px;
+    line-height: 1.25;
+  }
+
+  .closeBtn {
+    position: absolute;
+    top: 20px;
+    right: 10%;
+  }
+  
+  .note {
+    display: inline-block;
+    font-size: 14px;
+    vertical-align: middle;
+    max-width: 590px;
+    margin-bottom: 0;
+
+    @include mq(mobile) {
+      max-width: 80%;
+    }
+  }
+
+  .registerPageInner {
+    max-width: 660px;
+    width: 90%;
+    margin: 77px auto 0;
+
+    @include mq(mobile) {
+      margin: 11% auto 15%;
+    }
+
+    hr {
+      margin: 0;
+      border: none;
+      height: 1px;
+      background-image: linear-gradient(to right, #0076FF 33%, rgba(255,255,255,0) 0%);
+      background-position: bottom;
+      background-size: 5px 1px;
+      background-repeat: repeat-x;
+    }
+
+    .spacer,
+    .warning {
+      padding-top: 50px;
+    }
+
+    .orderPanelContainer1,
+    .orderPanelContainer {
+      width: 100%;
+      margin-top: -65px;
+
+      @include mq(mobile) {
+        .inner {
+          a {
+            max-width: 100%;
+            width: 100%;
+          }
+        }
+      }
+      
+      .icon {
+        display: inline-block;
+        vertical-align: middle;
+        margin-right: 10px;
+      }    
+
+      .productPanel,
+      .reviewPanel {
+        padding: 30px 0;
+      }
+
+      .productPanel {
+        width: 100%;
+
+        .copy {
+          display: inline-block;
+          vertical-align: top;
+          width: 55%;
+          padding-right: 5%;
+
+          p b {
+            font-family: $macysbold !important;
+          }
+
+          @include mq(mobile) {
+            display: block;
+            width: 100%;
+
+            > p {
+              margin-bottom: 6%;
+            }
+          }
+        }
+        .image {
+          width: 45%;
+          display: inline-block;
+          vertical-align: top;
+
+          @include mq(mobile) {
+            display: block;
+            width: 100%;
+          }
+        }
+      }
+
+      button {
+        @include mq(mobile) {
+          max-width: 100%;
+          width: 100%;
+        }
+      }
+
+      .reviewPanel {
+        .section {
+          position: relative;
+          width: 100%;
+          border: 1px solid #000;
+          border-radius: 8px;
+          padding: 22px;
+          margin-bottom: 30px;
+
+          .heading {
+            font-family: $macysbold;
+            margin-bottom: 20px;
+          }
+
+          a {
+            width: auto;
+            position: absolute;
+            top: 22px;
+            right: 22px;
+            font-size: 14px;
+            text-decoration: underline;
+            cursor: pointer;
+          }
+        }
+      }
+    }
+
+    .orderPanelContainer1 {
+      margin-top: 77px;
+
+      @include mq(mobile) {
+        margin-top: 12%;
+      }
+    }
+
+    .registerFormContainer {
+      width: 100%;
+      margin-top: -65px;
+
+      .inner {
+        padding-bottom: 90px;
+
+        @include mq(mobile) {
+          padding-bottom: 0;
+        }
+
+        h2 {
+          margin-bottom: 42px;
+
+          /*@include mq(mobile) {
+            margin-top: 12%;
+          }*/
+        }
+        > p {
+          font-size: 18px;
+          margin-bottom: 35px;
+        }
+
+        .errorMsg {
+          color: #FF0000;
+          padding-top: 10px;
+        }
+
+        .noteContainer {
+          padding-bottom: 90px;
+
+          @include mq(mobile) {
+            padding-bottom: 10%;
+          }
+
+          .icon {
+            display: inline-block;
+            vertical-align: middle;
+            margin-right: 10px;
+          }
+
+          
+        }
+
+        hr:nth-child(2) {
+          margin-top: 90px;
+        }
+
+        .register {
+          margin-top: 5%;
+
+          @include mq(mobile) {
+            max-width: 100%;
+            width: 100%;
+          }
+        }
+
+        .formSection {
+          padding: 30px 0;
+          
+          .row {
+            padding: 14px 0 4px;
+
+            .label {
+              margin-bottom: 15px;
+
+              sup {
+                vertical-align: baseline;
+                font-size: 18px;
+              }
+            }
+
+            .errorMsg {
+              color: #FF0000;
+              padding-top: 10px;
+            }
+
+            select,
+            input {
+              font-family: $macysmedium;
+              font-size: 14px;
+              border-radius: 4px;
+              border-width: 1px;
+              border-style:solid;
+              line-height: 45px;
+              padding: 0 0 0 18px;
+              width: 100%;
+            }
+
+            select.error,
+            input.error {
+              border-color: #FF0000;
+            }
+
+            select {
+              height: 45px;
+              padding: 0 18px;
+            }
+
+            #firstname,
+            #lastname,
+            #zip,
+            #state {
+              display: inline-block;
+              vertical-align: top;
+              max-width: 264px;
+              width: 100%;
+              margin-right: 16px;
+
+              @include mq(mobile) {
+                max-width: 100%;
+              }
+            }
+
+            @include mq(mobile) {
+              #firstname,
+              #zip {
+                padding-bottom: 5%;
+              }
+            }
+          }
+
+          .row:first-child {
+            padding-top: 0;
+          }
+          
+          
+        }
+      }
+    }
+    .mcomAddress {
+      border: 1px solid #000000;
+      border-radius: 10px;
+      padding: 1em;
+      margin-bottom: 1em;
+
+      div {
+        margin-bottom: 5px;
+      }
+
+      button {
+        margin-top: 5px;
+      }
+    }
+  }
+}
