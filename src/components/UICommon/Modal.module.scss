@@ -1,0 +1,39 @@
+@import '@/styles/fonts';
+@import '@/styles/variables';
+@import '@/styles/mixins';
+
+.modalMaskOuter {
+  position: fixed;
+  height: 100%;
+  z-index: 100000;
+  width: 100%;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0,0,0,.8);
+}
+
+.modalMaskInner {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  max-width: 370px;
+  width: 33%;
+  /* min-height: 400px; */
+  padding: 2%;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  z-index: 2;
+}
+
+.btnClose {
+  border: none;
+  background-color: transparent;
+  position: absolute;
+  right: 2%;
+  top: 3%;
+  cursor: pointer;
+}

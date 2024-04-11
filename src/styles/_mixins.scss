@@ -1,0 +1,75 @@
+@mixin mq($point) {
+  @if $point == mobile {
+    @media (max-width: 750px) { @content; }
+  }
+  @if $point == tab {
+    @media (min-width: 750px) and (max-width: 768px) { @content; }
+  }
+  @if $point == desk-sm {
+    @media (min-width: 751px) { @content; }
+  }
+  @else if $point == desk-lg {
+    @media (min-width: 1024px) { @content; }
+  }
+  @else if $point == max-content {
+    @media (min-width: 1369px) {
+      @content;
+    }
+  }
+  @else if $point == max {
+    @media (min-width: 1600px) { @content; }
+  }
+
+  @if $point == max-width-1600 {
+    @media (max-width: 1600px) { @content; }
+  }
+  
+  @if $point == max-width-desktop {
+    @media (max-width: 1400px) { @content; }
+  }
+  
+  @if $point == brand-shrink {
+    @media (max-width: 1368px) { @content; }
+  }
+  
+  @if $point == brand-max {
+    @media (min-width: 1369px) { @content; }
+  }
+}
+
+// ******* ####### CONVERTING PX TO VW ####### ******* //
+// USAGE EXAMPLE:
+
+// IF YOU WANT TO GET THE VW VALUE OF A FONT SIZE OF 26PX AS IT SCALES DOWN FROM DESKTOP:
+// font-size: get-vw(26px, $desktop)
+// THIS WILL RETURN A FONT SIZE VALUE OF 1.625vw
+
+// IF YOU WANT TO GET THE VW VALUE OF A FONT SIZE OF 50PX AS IT SCALES DOWN FROM MOBILE COMPS (750PX):
+// font-size: get-vw(50px, $mobile)
+// THIS WORKS WITH CONVERTING ANY PX VALUE TO VW, NOT JUST FOR FONT-SIZES
+
+@function get-vw($px, $vp-width) {
+  $vw-context: $vp-width * 0.01 * 1px;
+  @return $px / $vw-context * 1vw;
+  @return $px;
+}
+
+@function get-vh($px, $vp-height) {
+  $vh-context: $vp-height * 0.01 * 1px;
+  @return $px / $vh-context * 1vh;
+}
+
+@mixin vertical-center {
+  top: 50%;
+  transform: translateY(-50%);
+}
+@mixin horizontal-center {
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+// Mixin to convert Adobe XD character spacing to CSS letter-spacing
+@mixin xd-spacing($font-size, $character-spacing) {
+  $converted-spacing: ($character-spacing / 1000) * $font-size;
+  letter-spacing: #{$converted-spacing}px;
+}

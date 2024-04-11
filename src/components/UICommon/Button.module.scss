@@ -1,0 +1,24 @@
+@import '@/styles/fonts';
+@import '@/styles/variables';
+@import '@/styles/mixins';
+
+.container {
+  background-color: #fff;
+  border-width: 1px;
+  border-radius: 10px;
+  padding: 5px 10px;
+  outline: none;
+  cursor: pointer;
+
+  &:hover {
+    background-color: navy;
+    color: #fff;
+    border-color: navy;
+  }
+
+  &:disabled:hover {
+    background-color: rgba(255, 255, 255);
+    color: rgba(16, 16, 16, 0.3);
+    border-color: rgba(195, 195, 195, 0.3);
+  }
+}

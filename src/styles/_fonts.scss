@@ -1,0 +1,82 @@
+$macysSansPath: "https://storage.googleapis.com/digital-media-fonts/macys-sans";
+
+@font-face {
+    font-family: "Macys SansLt";
+    font-display: swap;
+    src: url("#{$macysSansPath}/MacysSansLt.eot?#iefix");
+    src: url("#{$macysSansPath}/MacysSansLt.eot?#iefix") format("eot"),
+    url("#{$macysSansPath}/MacysSansLt.woff2") format("woff2"),
+    url("#{$macysSansPath}/MacysSansLt.woff") format("woff")
+}
+@font-face{
+	font-family:"Macys Sans Regular";
+	src:url("#{$macysSansPath}/MacysSans.eot?#iefix");
+	src:url("#{$macysSansPath}/MacysSans.eot?#iefix") format("eot"),
+	url("#{$macysSansPath}/MacysSans.woff2") format("woff2"),
+	url("#{$macysSansPath}/MacysSans.woff") format("woff");
+}
+@font-face{
+	font-family:"Macys Sans Medium";
+	src:url("#{$macysSansPath}/MacysSansMd.eot?#iefix");
+	src:url("#{$macysSansPath}/MacysSansMd.eot?#iefix") format("eot"),
+	url("#{$macysSansPath}/MacysSansMd.woff2") format("woff2"),
+	url("#{$macysSansPath}/MacysSansMd.woff") format("woff");
+}
+@font-face{
+	font-family:"Macys Sans Bold";
+	src:url("#{$macysSansPath}/MacysSansBd.eot?#iefix");
+	src:url("#{$macysSansPath}/MacysSansBd.eot?#iefix") format("eot"),
+	url("#{$macysSansPath}/MacysSansBd.woff2") format("woff2"),
+	url("#{$macysSansPath}/MacysSansBd.woff") format("woff");
+}
+@font-face{
+	font-family:"Macys Sans XBold";
+	src:url("#{$macysSansPath}/MacysSansXBd.eot?#iefix");
+	src:url("#{$macysSansPath}/MacysSansXBd.eot?#iefix") format("eot"),
+	url("#{$macysSansPath}/MacysSansXBd.woff2") format("woff2"),
+	url("#{$macysSansPath}/MacysSansXBd.woff") format("woff");
+}
+
+
+@font-face{
+  font-family:"Ramillas Regular";
+      src: url("//storage.googleapis.com/digital-media-fonts/tt-ramillas/TTRamillasRegular.eot?#iefix");
+      src: url("//storage.googleapis.com/digital-media-fonts/tt-ramillas/TTRamillasRegular.eot?#iefix") format("eot"),
+      url("//storage.googleapis.com/digital-media-fonts/tt-ramillas/TTRamillasRegular.woff2") format("woff2"),
+      url("//storage.googleapis.com/digital-media-fonts/tt-ramillas/TTRamillasRegular.woff") format("woff");
+}
+@font-face{
+    font-family:"TT Ramillas ExtraLight";
+        src: url("//storage.googleapis.com/digital-media-fonts/tt-ramillas/TTRamillasExtraLight.eot?#iefix");
+        src: url("//storage.googleapis.com/digital-media-fonts/tt-ramillas/TTRamillasExtraLight.eot?#iefix") format("eot"),
+        url("//storage.googleapis.com/digital-media-fonts/tt-ramillas/TTRamillasExtraLight.woff2") format("woff2"),
+        url("//storage.googleapis.com/digital-media-fonts/tt-ramillas/TTRamillasExtraLight.woff") format("woff");
+}
+@font-face{
+    font-family:"TT Ramillas ExtraLight Italic";
+        src: url("//storage.googleapis.com/digital-media-fonts/tt-ramillas/TTRamillasExtraLightItalic.eot?#iefix");
+        src: url("//storage.googleapis.com/digital-media-fonts/tt-ramillas/TTRamillasExtraLightItalic.eot?#iefix") format("eot"),
+        url("//storage.googleapis.com/digital-media-fonts/tt-ramillas/TTRamillasExtraLightItalic.woff2") format("woff2"),
+        url("//storage.googleapis.com/digital-media-fonts/tt-ramillas/TTRamillasExtraLightItalic.woff") format("woff");
+}
+@font-face{
+    font-family:"TT Ramillas Bold";
+        src: url("//storage.googleapis.com/digital-media-fonts/tt-ramillas/TTRamillasBold.eot?#iefix");
+        src: url("//storage.googleapis.com/digital-media-fonts/tt-ramillas/TTRamillasBold.eot?#iefix") format("eot"),
+        url("//storage.googleapis.com/digital-media-fonts/tt-ramillas/TTRamillasBold.woff2") format("woff2"),
+        url("//storage.googleapis.com/digital-media-fonts/tt-ramillas/TTRamillasBold.woff") format("woff");
+}
+
+@font-face {
+    font-family: "Lulo One Bold";
+    src: url("//storage.googleapis.com/digital-media-fonts/lulo/LuloCleanOneBold%203.otf") format("otf");
+    src: url("//storage.googleapis.com/digital-media-fonts/lulo/LuloCleanOneBold-webfont.woff") format("woff");
+}
+
+$macys: 'Macys Sans Regular', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+$macyslight: 'Macys SansLt', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+$macysbold: 'Macys Sans Bold', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+$macysmedium: 'Macys Sans Medium', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+$macysxbold: "Macys Sans XBold", 'Arial Black', Arial, sans-serif;
+$ramillas: "Ramillas Regular", Georgia,Times,serif;
+$lulobold: "Lulo One Bold", 'Arial Black';
