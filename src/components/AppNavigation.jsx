@@ -1,7 +1,10 @@
 import React, {useState, useRef} from 'react'
 import Image from 'next/image';
 import Link from "next/link";
-
+import { useSelector, useDispatch } from "react-redux";
+import {
+  updateIsLoggedIn
+} from "../reducers/ApplicationSlice";
 import Button from './UICommon/Button'
 import Modal from './UICommon/Modal'
 import Signin from './Signin/Signin'
@@ -18,13 +21,13 @@ import logoSrc from '../../public/images/icons8-card-wallet-94.png'
 import styles from './AppNavigation.module.scss'
 
 export default function AppNavigation() {
-  //const isLoggedIn = useSelector((state) => state.application.isLoggedIn);
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const isLoggedIn = useSelector((state) => state.application.isLoggedIn)
   const modal = useRef()
   const dropdown = useRef()
+  const dispatch = useDispatch()
 
   const onLogout = () => {
-    setIsLoggedIn(false)
+     dispatch(updateIsLoggedIn(false))
   }
 
   const options = [
@@ -32,21 +35,28 @@ export default function AppNavigation() {
         id: 0,
         type: 'link',
         icon: <Image src={IconProfileSrc} alt="profle" />,
-        label: 'profile',
-        route: '/profile'
+        label: 'Dashboard',
+        route: '/my-dashboard'
+      },
+      {
+        id: 0,
+        type: 'link',
+        icon: <Image src={IconProfileSrc} alt="profle" />,
+        label: 'Wallets',
+        route: '/my-wallets'
       },
       {
         id: 1,
         type: 'link',
         icon: <IconSettings />,
-        label: 'settings',
+        label: 'Settings',
         route: '/settings'
       },
       {
         id: 2,
         type: 'button',
         icon: <IconLogOut />,
-        label: 'logout',
+        label: 'Log out',
         onclick: onLogout
       }
     ]
@@ -56,7 +66,7 @@ export default function AppNavigation() {
   }
 
   const onLoggedIn = () => {
-    setIsLoggedIn(true)
+    dispatch(updateIsLoggedIn(true))
     modal.current.closeModal()
   }
 
@@ -75,8 +85,8 @@ export default function AppNavigation() {
           
         {isLoggedIn?
           <nav>
-            <Link href="/dashboard">Dashboard</Link> |
-            <Link href="/wallets">Wallets</Link> |
+            <Link href="/faqs">FAQs</Link> |
+            <Link href="/about">About</Link> |
             <DropDown ref={dropdown} data={options} triggerIcon={ProfilePicSrc} />
           </nav>
           :

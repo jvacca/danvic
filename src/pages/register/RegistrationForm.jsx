@@ -50,6 +50,13 @@ export default function RegistrationForm({profileInfo, usingAddressValidation, s
     postal_code_suffix: 'zip suffix'
   }
 
+  // exclusions list contains an array of fields that are not required and therefore not counted
+  // when validating all fields before submitting
+  const exclusions = ["address2"]
+  if (!usingAddressValidation) {
+    exclusions.push("address1", "zip", "state", "city")
+  }
+
   const handleNameValidation = (e) => {
     console.log("RegistrationForm: validating names ", e.target.name, e.target.value);
 
@@ -232,7 +239,8 @@ export default function RegistrationForm({profileInfo, usingAddressValidation, s
     let invalidFields = [];
     let complete = true;
     for (let field in currentFormData) {
-      if ((currentFormData[field] === '' && field !== 'address2') || errorMessages[field] !== '') {
+      var isNotExcluded = (typeof exclusions.find((f) => f === field) === "undefined")
+      if ((currentFormData[field] === '' && isNotExcluded) || errorMessages[field] !== '') {
         complete = false;
         invalidFields.push(field);
       }
@@ -271,7 +279,7 @@ export default function RegistrationForm({profileInfo, usingAddressValidation, s
           }
         })
       } else {
-        console.log("Form has been validated: ", currentFormData);
+        console.log("Form has been validated and verified: ", currentFormData);
         submitData(currentFormData)
       }
     } else {
@@ -346,7 +354,7 @@ export default function RegistrationForm({profileInfo, usingAddressValidation, s
                   id="firstname" 
                   label="Real Name"
                   maxLength="20"
-                  isRequired={false} 
+                  isRequired={true} 
                   validator={handleNameValidation}
                   validator2={handleNameValidation}
                   errorMsg={errorMessages.firstname}
@@ -459,7 +467,7 @@ export default function RegistrationForm({profileInfo, usingAddressValidation, s
                   isRequired={true}
                   validator={handlePasswordValidationOnChange}
                   validator2={handlePasswordValidation}
-                  errorMsg={errorMessages.confirm_email}
+                  errorMsg={errorMessages.password}
                   value={(currentFormData)? currentFormData.password : ''}
                   inputMode={''}
                 />
@@ -473,7 +481,7 @@ export default function RegistrationForm({profileInfo, usingAddressValidation, s
                   isRequired={true}
                   validator={handlePasswordValidationOnChange}
                   validator2={handleConfirmPasswordValidation}
-                  errorMsg={errorMessages.confirm_email}
+                  errorMsg={errorMessages.confirm_password}
                   value={(currentFormData)? currentFormData.confirm_password : ''}
                   inputMode={''}
                 />

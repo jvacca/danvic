@@ -8,7 +8,6 @@
   background-color: #fff;
   margin-top: -50px;
   min-height: calc(100vh - 50px);
-  z-index: 20;
 
   @include mq(mobile) {
     margin: -50px 0;
