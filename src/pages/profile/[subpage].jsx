@@ -44,7 +44,7 @@ export default function Profile({subpage}) {
         return (<ProfileWallets />);
       case "settings":
         return (<ProfileSettings profileData={profileData} saveUserData={saveUserData} />);
-      case "Dashboard":
+      case "dashboard":
         return (<Dashboard profileData={profileData} saveUserData={saveUserData} />);
       default:
         return (<ProfileSettings profileData={profileData} saveUserData={saveUserData} />);
@@ -76,9 +76,9 @@ export default function Profile({subpage}) {
           <div className={styles.profileInner}>
             <div className={styles.sidebar}>
               <ul>
-                <li><Link href="/profile/wallet" className={`${router.query.subpage === 'wallet' ? styles.active : ""}`}>Digital Address</Link></li>
-                <li><Link href="/profile/settings" className={`${router.query.subpage === 'settings' ? styles.active : ""}`}>Profile</Link></li>
-                <li><Link href="/profile/notifications" className={`${router.query.subpage === 'notifications' ? styles.active : ""}`}>Notifications</Link></li>
+                <li><Link href="/profile/wallet" className={`${router.query.subpage === 'wallet' ? styles.active : ""}`}>Wallets</Link></li>
+                <li><Link href="/profile/settings" className={`${router.query.subpage === 'settings' ? styles.active : ""}`}>Settings</Link></li>
+                <li><Link href="/profile/dashboard" className={`${router.query.subpage === 'dashboard' ? styles.active : ""}`}>Dashboard</Link></li>
               </ul>              
             </div>
 

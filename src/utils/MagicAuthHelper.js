@@ -1,6 +1,3 @@
-// import useAsyncLoad from "../hooks/useAsyncLoad";
-// const saveUserData = useAsyncLoad();
-// const loadUserData = useAsyncLoad();
 const { Magic,  RPCError, RPCErrorCode } = require('magic-sdk');
 
 let otpLogin = null;
