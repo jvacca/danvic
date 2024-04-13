@@ -1,4 +1,5 @@
 import React, {useState, forwardRef, useImperativeHandle} from 'react'
+import Button from '../UICommon/Button'
 import IconClose from '@/assets/icon-close-black.svg'
 import styles from './Modal.module.scss'
 
@@ -35,9 +36,9 @@ const Modal = forwardRef(({children}, ref) => {
     isOpen && <div className={styles.modalMaskOuter} onClick={(e) => onCloseModalFromOutside(e)}>
       <div className={styles.modalMaskInner}>
         {children}
-        <button className={styles.btnClose} onClick={(e) => onCloseModal(e)}>
+        <Button className={styles.btnClose} onClick={(e) => onCloseModal(e)}>
           <IconClose />
-        </button>
+        </Button>
       </div>
       
     </div>

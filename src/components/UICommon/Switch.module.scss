@@ -1,0 +1,14 @@
+.switchContainer {
+  button {
+    // position: absolute;
+    // top: 5%;
+    // right: 15%;
+    display: inline-block;
+    width: 60px;
+    vertical-align: middle;
+    
+    svg {
+      max-width: 60px !important;
+    }
+  }
+}

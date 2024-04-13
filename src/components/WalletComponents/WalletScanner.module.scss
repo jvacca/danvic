@@ -1,0 +1,81 @@
+@import '../../styles/_fonts.scss';
+@import '../../styles/_variables.scss';
+@import '../../styles/_mixins.scss';
+
+.walletScannerFrame {
+  position: relative;
+  width: 40%;
+  padding: 2%;
+  border: 1px solid #666;
+  border-radius: 10px;
+
+  @include mq(mobile) {
+    width: 95%;
+    margin: 0 auto;
+  }
+
+  svg {
+    max-width: 40px;
+  }
+
+  h3 {
+    display: inline-block;
+    font-family: $macysbold;
+    font-size: 16px;
+  }
+
+  p {
+    display: inline-block;
+    font-size: 14px;;
+  }
+
+  .walletName {
+    position: absolute;
+    left: 5%;
+
+    p {
+      font-family: $macysbold;
+      font-size: 12px;
+    }
+
+    svg {
+      max-width: 25px;
+    }
+  }
+
+  .walletAddress {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .walletChain {
+    position: absolute;
+    top: 35%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .walletBalance {
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .walletStatus {
+    position: absolute;
+    right: 5%;
+  }
+
+
+
+  .collection {
+    margin-top: 20%;
+    padding-bottom: 5%;
+  }
+}
+
+.walletSelector {
+  margin-bottom: 2%;
+}

@@ -1,0 +1,16 @@
+@import '../../styles/_fonts.scss';
+@import '../../styles/_variables.scss';
+@import '../../styles/_mixins.scss';
+
+.lineDivider {
+    display: block;
+    position: relative;
+    // border-right: 1px solid #E074E1;
+    span {
+        position: absolute;
+        right: 32px;
+        top: 50%;
+        font-size: 8px;
+        transform: translateY(-50%);
+    }
+}

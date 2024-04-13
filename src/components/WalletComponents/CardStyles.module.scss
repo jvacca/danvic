@@ -1,0 +1,238 @@
+@import '../../styles/fonts';
+@import '../../styles/variables';
+@import '../../styles/mixins';
+
+@import '../../styles/_fonts.scss';
+@import '../../styles/_variables.scss';
+@import '../../styles/_mixins.scss';
+
+.walletManager {
+  p {
+    width: 100%;
+    display: inline-block;
+    vertical-align: bottom;
+    margin-left: 2%;
+  }
+
+  ul {
+    @include mq(mobile) {
+      //display: none;
+    }
+
+    li {
+      position: relative;
+      margin: 0;
+      border-top: 1px solid #ccc;
+      padding: 3% 0;
+      @include mq(mobile) {
+        padding: 28px 0;
+      }
+
+      .row {
+        position: absolute;
+        width: 30%;
+        font-family: $macysmedium;
+        font-size: 18px;
+        left: 8%;
+        top: 50%;
+        transform: translateY(-50%);
+        margin-bottom: 0;
+        @include mq(mobile) {
+          left: 14%;
+          font-size: 16px;
+          top: 15%;
+          width: 100%;
+          transform: none;
+        }
+        span {
+          font-size: 14px;
+          color: #666;
+          line-height: 2;
+        }
+
+        ul li {
+          border: none;
+          padding: 0;
+        }
+
+        .accounts {
+          li {
+            border: none;
+          }
+        }
+      }
+
+      .error {
+        position: static;
+        display: block;
+        color: #ff0000;
+        line-height: 1;
+        margin-top: 2%;
+      }
+
+      .default {
+        position: absolute;
+        background-color: #eee;
+        width: 180px;
+        padding: 0 1%;
+        font-size: 14px;
+        line-height: 2;
+        text-align: center;
+        color: #666;
+        left: 38%;
+        top: 35%;
+        border-radius: 20px;
+        border-color: transparent;
+        @include mq(mobile) {
+          position: relative;
+          left: 4%;
+          margin-top: 50px;
+        }
+
+        select {
+          background-color: transparent;
+          border: none;
+        }
+      }
+
+      .status {
+        position: absolute;
+        width: 120px;
+        font-size: 14px;
+        left: auto;
+        right: 23%;
+        color: #666;
+        top: 40%;
+        @include mq(mobile) {
+          top: 15%;
+          right: 55px;
+        }
+      }
+
+      button.copyBtn {
+        cursor: pointer;
+        border: none;
+        padding: 0 0 0 10px;
+        @include mq(mobile) {
+          display: none;
+          top: 14%;
+          transform: translateY(-25px); 
+        }
+      }
+
+      img {
+        position: relative;
+        max-width: 50px;
+        vertical-align: middle;
+      }
+      svg {
+        max-width: 40px;
+        margin-left: 2%;
+        
+        @include mq(mobile) {
+          max-width: 24px;
+          vertical-align: top;
+        }
+      }
+
+      button {
+        // position: absolute;
+        background-color: transparent;
+        // color: #000;
+        // right: 15%;
+        // max-width: 90px;
+        // line-height: 2;
+        // width: 100%;
+        // border-radius: 20px;
+        border-color: transparent;
+        // cursor: pointer;
+        // text-decoration: underline;
+        // top: 50%;
+        // transform: translateY(-50%);
+
+        @include mq(mobile) {
+          svg {
+            max-width: 12px;
+          }
+        }
+      }
+
+      button.contextMenu {
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        position: absolute;
+        cursor: pointer;
+        @include mq(mobile) {
+          transform: none;
+          top: 20%;
+        }
+        svg {
+          vertical-align: middle;
+          max-width: 36px;
+        }
+      }
+      .connectionSwitch {
+        display: block;
+        top: 50%;
+        transform: translateY(-50%);
+        position: absolute;
+        right: 10%;
+        @include mq(mobile) {
+          top: auto;
+          bottom: 12%;
+          right: 2%;
+          transform: none;
+        }
+        button {
+          top: auto;
+          right: auto;
+        }
+      }
+    }
+
+    li .cardError {
+        line-height: 14px;
+        color: red;
+        font-size: 12px !important;
+        
+        a{
+          display: inline !important;
+          font-size: 12px !important;
+        }
+    }
+
+    li:last-child {
+      border-bottom: 1px solid #ccc;
+    }
+  }
+  
+  .mobileMode {
+    p {
+      margin-top: 5%;
+    }
+  }
+
+  .contextMenuContainer2 {
+    position: relative;
+
+  }
+
+  button.contextMenu {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    
+    cursor: pointer;
+    @include mq(mobile) {
+      transform: none;
+      top: 20%;
+    }
+    svg {
+      vertical-align: middle;
+      max-width: 36px;
+    }
+  }
+
+}
