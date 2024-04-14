@@ -17,9 +17,9 @@ export default function Home() {
             <h1>Welcome back {profileName? profileName : '[User Name]'} </h1>
             <h3>Menu:</h3>
             <p>Dashboard: Checkout what NFTs are in your wallet</p>
-            <Link href='/my-dashboard'>Check out My Dashboard</Link>
+            <Link href='/profile/dashboard'>Check out My Dashboard</Link>
             <p>Wallets: Checkout what wallets are connected or start adding wallets</p>
-            <Link href='/my-wallets'>Check out My Wallets</Link>
+            <Link href='/profile/wallet'>Check out My Wallets</Link>
           </div>
         :
         <>

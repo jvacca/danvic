@@ -1,0 +1,17 @@
+{
+  "wallets": [
+      {
+          "address": "0xacc44e9619dc66c361a57e3cedc12ab10b2fc798",
+          "wallet_name": "metamask"
+      },
+      {
+          "address": "0xbfaeef00211500961b850554c9e63cbf51d15960",
+          "wallet_name": "coinbase"
+      },
+      {
+          "address": "0x8aFb2a6595cB5Bd686076bAD9e88E029bE658697",
+          "chain": "0x1",
+          "wallet_name": "magic"
+      }
+  ]
+}

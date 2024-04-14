@@ -156,6 +156,11 @@
           }
         }
       }
+      
+      button:hover {
+        background-color: transparent;
+        border-color: transparent;
+      }
 
       button.contextMenu {
         right: 0;
@@ -233,6 +238,10 @@
       vertical-align: middle;
       max-width: 36px;
     }
+  }
+
+  .addWallet {
+    margin-top: 4%;
   }
 
 }

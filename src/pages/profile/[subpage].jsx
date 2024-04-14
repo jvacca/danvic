@@ -25,7 +25,7 @@ export default function Profile({subpage}) {
 
   useEffect(() => {
     const {subpage} = router.query;
-      if (subpage === 'wallet' || subpage === 'settings' || subpage === 'notifications' || subpage === 'dev') {
+      if (subpage === 'wallet' || subpage === 'settings' || subpage === 'dashboard') {
         //("Profile: detected a subpage ", subpage)
         setRoutename(subpage);
       }
@@ -67,7 +67,7 @@ export default function Profile({subpage}) {
     <div className={styles.profileFrame}>
       
       <div className={styles.profileContent}>
-        <h2>Profile Settings</h2>
+        <h2>User Settings</h2>
         <div className={styles.profileSummary}>
           
         </div>
@@ -77,7 +77,7 @@ export default function Profile({subpage}) {
             <div className={styles.sidebar}>
               <ul>
                 <li><Link href="/profile/wallet" className={`${router.query.subpage === 'wallet' ? styles.active : ""}`}>Wallets</Link></li>
-                <li><Link href="/profile/settings" className={`${router.query.subpage === 'settings' ? styles.active : ""}`}>Settings</Link></li>
+                <li><Link href="/profile/settings" className={`${router.query.subpage === 'settings' ? styles.active : ""}`}>Profile</Link></li>
                 <li><Link href="/profile/dashboard" className={`${router.query.subpage === 'dashboard' ? styles.active : ""}`}>Dashboard</Link></li>
               </ul>              
             </div>

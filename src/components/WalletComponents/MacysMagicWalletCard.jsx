@@ -224,7 +224,7 @@ const MacysMagicWalletCard = forwardRef(({account, show, onStatusChange, onRemov
           `}</style>
         </>
       </>}
-        <Button className={styles.contextMenu} onClick={(e) => onToggleContextMenu(e, account)}><IConContextMenu /></Button>
+        <button className={styles.contextMenu} onClick={(e) => onToggleContextMenu(e, account)}><IConContextMenu /></button>
     </li>
     :
     null

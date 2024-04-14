@@ -173,7 +173,7 @@ const CoinbaseWalletCard = forwardRef(({account, show, onStatusChange, onRemoveW
         provider={provider}
         onConnectDisconnect={onConnectDisconnect}
       />
-      <Button className={styles.contextMenu} onClick={(e) => onToggleContextMenu(e, account)}><IConContextMenu /></Button>
+      <button className={styles.contextMenu} onClick={(e) => onToggleContextMenu(e, account)}><IConContextMenu /></button>
     </li>
     :
     null

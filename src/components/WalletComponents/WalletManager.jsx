@@ -9,10 +9,9 @@ import MagicConnectWalletCard from "../WalletComponents/MagicConnectWalletCard"
 import WalletConnectCard from "../WalletComponents/WalletConnectCard"
 import ConnectWalletModal from '../UICommon/ConnectWalletModal'
 import MobileWalletManager from './MobileWalletManager'
-import GenericModal from '../UICommon/GenericModal'
+import Modal from '../UICommon/Modal'
 import useWalletStateSync from '../../hooks/useWalletStateSync'
 import styles from '../WalletComponents/CardStyles.module.scss'
-
 import {addWallet} from '../../reducers/AccountSlice'
 
 const options = {
@@ -30,8 +29,7 @@ const WalletManager = forwardRef(({show}, ref) => {
   const wallets = useSelector((state) => state.account.wallets)
   const [mobileMode, setMobileMode] = useState(false)
   const [mode, setMode] = useState('')
-  const [modalState, setModalState] = useState(false)
-  const [genericModal, setGenericModal] = useState(false)
+
   const [error, setError] = useState(false)
   const {handleWalletStatusChange, handleRemoveWallet, setDefaultWallet, getCurrentWalletProvider} = useWalletStateSync(wallets)
   const macysMagicCard = useRef()
@@ -39,7 +37,8 @@ const WalletManager = forwardRef(({show}, ref) => {
   const coinbaseCard = useRef()
   const magicConnectCard = useRef()
   const walletConnectCard = useRef()
-
+  const modal = useRef()
+  const walletModal = useRef()
   const searchParams = useSearchParams()
   const dispatch = useDispatch()
 
@@ -71,15 +70,17 @@ const WalletManager = forwardRef(({show}, ref) => {
 
   const onAddWallet = () => {
     setError(false)
-    setModalState(true)
+
+    walletModal.current.openModal()
+  }
+
+  const handleOpenModal = () => {
+    modal.current.openModal()
   }
 
   const onClose = () => {
-    setModalState(false)
-  }
 
-  const onCloseMacysModal = (e) => {
-    setGenericModal(false)
+    walletModal.current.closeModal()
   }
 
   useImperativeHandle(ref, () => {
@@ -87,7 +88,7 @@ const WalletManager = forwardRef(({show}, ref) => {
 
       openConnectWalletModal() {
         console.log("WalletManager:~~~~~~~~~~~opening connect wallet modal via ref~~~~~~~~~~~~ ")
-        setModalState(true)
+        modal.current.openModal()
       }
     }
   })
@@ -118,7 +119,7 @@ const WalletManager = forwardRef(({show}, ref) => {
     setError({id: id, error: error})
     if (error.name === 'NoMetaMaskError') {
       console.log("There's been an error ", error);
-      setGenericModal(true)
+      handleOpenModal()
     }
   }
 
@@ -218,19 +219,19 @@ const WalletManager = forwardRef(({show}, ref) => {
               </p>
             }
 
-          {!mode && <Button onClick={onAddWallet}>Link Additional Digital Addresses</Button>}
+          {!mode && <Button classname={styles.addWallet} onclickHandler={onAddWallet}>Link More Wallets</Button>}
 
-          <ConnectWalletModal 
-            onConnectWallet={handleConnectWallet} 
-            onCloseModal={onClose} 
-            showModal={modalState} 
-            onError={error}
-          />
-          <GenericModal 
-            onCloseModal={onCloseMacysModal} 
-            showModal={genericModal} 
-            copy={noMMCopy} 
-          />  
+          <Modal ref={walletModal}>
+            <ConnectWalletModal 
+              onConnectWallet={handleConnectWallet} 
+              onCloseModal={onClose} 
+              onError={error}
+            />
+          </Modal>
+          <Modal ref={modal}>
+            <h2>{noMMCopy.title}</h2>
+            <p>{noMMCopy.body}</p>
+          </Modal>
         </OptionsContext.Provider>
        
     </div>

@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 // React imports
 import React, { useState, useEffect } from "react";
 import { useSelector } from 'react-redux';
@@ -6,7 +7,7 @@ import Button from '../UICommon/Button'
 import styles from '../../pages/profile/profile.module.scss';
 import {copyToClipBoard, textEllipsisMid} from '../../utils/GlobalUtilities';
 import DataProvider from "../../utils/DataProvider";
-import IConCopy from '@/assets/icon-copy.svg';
+import RegistrationForm from '../../pages/register/RegistrationForm'
 
 export default function ProfileSettings ({profileData, saveUserData}) {
   const [profileName, setProfileName] = useState("");
@@ -61,6 +62,10 @@ export default function ProfileSettings ({profileData, saveUserData}) {
     }
   }
 
+  const submitData = (e) => {
+    setIsRegistered(true)
+  }
+
   const getMacysWallet = () => {
     const found = wallets.find(wallet => wallet.wallet_name === 'macys');
     if (found) {
@@ -82,36 +87,10 @@ export default function ProfileSettings ({profileData, saveUserData}) {
     : null}*/}
 
     <div className={styles.settingsPanel}>
-      <h2>mstylelab account details</h2>
+      <h2>Account Profile Details</h2>
 
       <div className={styles.formContainer}>
-      {(profileData && !profileData.message) &&
-        <div>
-          <div className={styles.halfBlock}>
-            <div className={styles.label}><p>Username</p></div>
-            <p>{profileData.username}</p>
-          </div>
-          <div className={styles.halfBlock}>
-            <div className={styles.label}><p>Macy's digital address</p></div>
-            <p>{textEllipsisMid(getMacysWallet())}</p><Button onClick={() => onCopy(getMacysWallet())} className={styles.copyBtn}><IConCopy /></Button>
-          </div>
-
-          <h2>Macy's account details</h2>
-
-          <div className={styles.halfBlock}>
-            <div className={styles.label}><p>Email<sup>*</sup></p></div>
-            <p>{profileData.userid}</p>
-                <p className={styles.small}><sup>*</sup>Heads up! Changing your macys.com account email address will result in your mstylelab account and digital address being deleted, so choose an email address you are likely to have for a long time.</p>
-          </div>
-
-          <div className={styles.halfBlock}>
-            <div className={styles.label}><p>Password</p></div>
-            <p>********</p>
-          </div>
-
-        </div>
-        }
-        <a className={`${styles.editButton}`} href="https://www.macys.com" target="_blank">Edit Settings On macys.com</a>
+        <RegistrationForm useAddressValidation={false} submitData={submitData} />
       </div>
     </div>
     </>

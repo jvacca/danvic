@@ -11,15 +11,14 @@ export default function Switch({id, isActive, toggleSwitchHandler, disable}) {
 
   const onToggleSwitch = (e, id, isActive) => {
     e.stopPropagation();
-
     if (!disable) toggleSwitchHandler(e, id, !isActive);
   }
 
   return (
     <div className={styles.switchContainer}>
-      <Button onClick={(e) => onToggleSwitch(e, id, isActive)}>
+      <button onClick={(e) => onToggleSwitch(e, id, isActive)}>
         {(isActive === 'true' || isActive === true)?<IConSwitchOn /> : <IConSwitchOff />}
-      </Button>
+      </button>
     </div>
   )
 }

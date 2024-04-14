@@ -51,14 +51,12 @@ export default function ConnectWalletModal({showModal, onConnectWallet, onCloseM
 
   return (
     <>
-    {(showModal) &&
-    <div className={styles.modalmask} onClick={handleClickOutside}>
-      <div className={styles.modalmaskOuter}>
-        <div className={styles.modalmaskInner}>
+
+
           <div className={styles.modalContainer} onClick={(e) => e.stopPropagation()}>
           {!isMobile?
             <div className={styles.content}>
-              <h2>Link more digital addresses</h2>
+              <h2>Link more wallets</h2>
               {onError && <p className={styles.errorAlerts}>{onError? getError(onError?.error) : '' }</p>}
               <ul>
                   <li onClick={(e) => onConnectWallet(e, 'metamask')}>
@@ -102,7 +100,7 @@ export default function ConnectWalletModal({showModal, onConnectWallet, onCloseM
                     </div>
                   </li>
               </ul>
-              <p>Your mstylelab digital address is the default digital address linked to your account, and cannot currently be used to send or receive other digital assets.</p>
+              <p>Choose a type of wallet from above.</p>
             </div>
             :
             <div className={styles.mobileContent}>
@@ -143,15 +141,10 @@ export default function ConnectWalletModal({showModal, onConnectWallet, onCloseM
                   <p><a href="https://go.cb-w.com/dapp?cb_url=184f-96-232-36-48.ngrok-free.app/social/mstylelab/profile/wallet?mode=cb">Click here to connect via coinbase mobile app</a></p>
               </div>
             </div>}
-            <Button className={styles.btnClose} onClick={onCloseModal}>
-              <IconClose />
-            </Button>
           </div>
           
-        </div>
-      </div>
-    </div>
-    }
+
+    
     </>
   )
 }

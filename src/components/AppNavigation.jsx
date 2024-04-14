@@ -36,21 +36,21 @@ export default function AppNavigation() {
         type: 'link',
         icon: <Image src={IconProfileSrc} alt="profle" />,
         label: 'Dashboard',
-        route: '/my-dashboard'
+        route: '/profile/dashboard'
       },
       {
         id: 0,
         type: 'link',
         icon: <Image src={IconProfileSrc} alt="profle" />,
         label: 'Wallets',
-        route: '/my-wallets'
+        route: '/profile/wallet'
       },
       {
         id: 1,
         type: 'link',
         icon: <IconSettings />,
         label: 'Settings',
-        route: '/settings'
+        route: '/profile/settings'
       },
       {
         id: 2,
@@ -83,15 +83,18 @@ export default function AppNavigation() {
             <span>Web3 Wallets</span>
           </Link>
           
+        <nav>
+          <Link href="/faqs">FAQs</Link> |
+          <Link href="/about">About</Link> |
+
         {isLoggedIn?
-          <nav>
-            <Link href="/faqs">FAQs</Link> |
-            <Link href="/about">About</Link> |
-            <DropDown ref={dropdown} data={options} triggerIcon={ProfilePicSrc} />
-          </nav>
+          <DropDown ref={dropdown} data={options} triggerIcon={ProfilePicSrc} />
           :
-          <Button onclickHandler={handleSignin}>Sign in</Button>
-        }
+          <>
+            
+            <Button classname={styles.signin} onclickHandler={handleSignin}>Sign in</Button>
+          </>}
+          </nav>
         </div>
       </div>
       

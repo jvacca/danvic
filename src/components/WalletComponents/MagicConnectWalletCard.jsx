@@ -23,7 +23,7 @@ if (typeof window !== "undefined") {
   }
 
   magicconnect = new Magic("pk_live_E12E097E5958B057", {
-    network: polygonMumbai
+    network: polygonMainnet
   });
 }
 
@@ -274,7 +274,7 @@ const MagicConnectWalletCard = forwardRef(({account, show, onStatusChange, onRem
         provider={provider}
         onConnectDisconnect={onConnectDisconnect}
       />
-      <Button className={styles.contextMenu} onClick={(e) => onToggleContextMenu(e, account)}><IConContextMenu /></Button>
+      <button className={styles.contextMenu} onClick={(e) => onToggleContextMenu(e, account)}><IConContextMenu /></button>
     </li>
     :
     null

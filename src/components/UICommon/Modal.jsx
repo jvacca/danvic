@@ -36,9 +36,9 @@ const Modal = forwardRef(({children}, ref) => {
     isOpen && <div className={styles.modalMaskOuter} onClick={(e) => onCloseModalFromOutside(e)}>
       <div className={styles.modalMaskInner}>
         {children}
-        <Button className={styles.btnClose} onClick={(e) => onCloseModal(e)}>
+        <button className={styles.btnClose} onClick={(e) => onCloseModal(e)}>
           <IconClose />
-        </Button>
+        </button>
       </div>
       
     </div>

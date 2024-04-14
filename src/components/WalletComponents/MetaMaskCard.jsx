@@ -198,7 +198,7 @@ const MetaMaskCard = forwardRef(({account, show, onStatusChange, onRemoveWallet,
           provider={provider}
           onConnectDisconnect={onConnectDisconnect}
         />
-        <Button className={styles.contextMenu} onClick={(e) => onToggleContextMenu(e, account)}><IConContextMenu /></Button>
+        <button className={styles.contextMenu} onClick={(e) => onToggleContextMenu(e, account)}><IConContextMenu /></button>
       </li>
     :
     null

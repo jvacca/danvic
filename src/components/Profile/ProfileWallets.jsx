@@ -1,39 +1,44 @@
 // React imports
-import React, { useEffect, useState, useRef } from "react";
-import Link from "next/link";
-import { useSelector } from 'react-redux';
+import React, { useEffect, useState, useRef } from "react"
+import Link from "next/link"
+import { useDispatch } from 'react-redux'
+import {updateWallets} from '../../reducers/AccountSlice'
 
-import GenericModal from '../UICommon/Modal';
-import WalletManager from '../WalletComponents/WalletManager';
-import styles from '../../pages/profile/profile.module.scss';
+import Modal from '../UICommon/Modal'
+import WalletManager from '../WalletComponents/WalletManager'
+import styles from '../../pages/profile/profile.module.scss'
+import data from '@/mockdata/wallets.json'
 
 export default function ProfileWallets () { 
-  const [genericModalState, setGenericModalState] = useState(false);
-  const walletManager = useRef();
+  const walletManager = useRef()
+  const modal = useRef()
+  const dispatch = useDispatch()
 
-  const macysWalletModalCopy = {
-    title: "Digital address",
-    body: "A digital address is a safe, secure app created to store and manage virtual assets. Yours is operated and managed by Magic, a third-party wallet provider. Please note: your mstylelab digital address is specifically designed for Macy’s Collectibles and Macy’s mstylelab digital creations, and it does not currently support sending or receiving other digital assets. <br/><br/> Questions? Need support? Email hello@magic.link or review Magic’s <a href='https://magic.link/legal/terms-of-service' target='_blank'>Terms and Conditions.</a>"
+  const WalletModalCopy = {
+    title: "Wallets",
+    body: "A wallet is a safe, secure app created to store and manage virtual assets."
+  }
+  const handleOpenModal = () => {
+    modal.current.openModal()
   }
 
-  const onShowMacysModal = (e) => {
-    setGenericModalState(true);
-  }
-
-  const onCloseMacysModal = (e) => {
-    setGenericModalState(false);
-  }
+  useEffect(() => {
+    dispatch(updateWallets(data.wallets))
+  }, [])
 
   return (
     <>
       <div className={styles.walletsPanel}>
         <div className={styles.desktop}>
-          <h2>Manage digital address</h2>
-          <p>mstylelab is automatically set as your default <a onClick={onShowMacysModal}>digital address</a>. Link additional digital addresses to showcase all your Macy’s collectibles in one place.</p>
-            <h3>Linked digital addresses</h3>
+          <h2>Manage Wallets</h2>
+          <p>Link additional <a onClick={handleOpenModal}>wallets</a> to showcase all your NFTs in one place.</p>
+            <h3>Linked Wallets</h3>
             <WalletManager ref={walletManager} show={true} />
         </div>
-        <GenericModal onCloseModal={onCloseMacysModal} showModal={genericModalState} copy={macysWalletModalCopy} />
+        <Modal ref={modal}>
+          <h2>{WalletModalCopy.title}</h2>
+          <p>{WalletModalCopy.body}</p>
+        </Modal>
         {/*<WalletScanner isDisplay={true} />*/}
       </div>
       <div className={styles.mobile}>

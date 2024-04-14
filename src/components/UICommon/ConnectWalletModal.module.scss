@@ -2,52 +2,14 @@
 @import '../../styles/_variables.scss';
 @import '../../styles/_mixins.scss';
 
-.modalmask{
-  position: fixed!important;
-  height: 100%;
-  z-index: 100000;
-  width: 100%!important;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  background-color: rgba(0,0,0,.8);
-}
-.modalmaskOuter {
-  display: table;
-  vertical-align: middle;
-  height: 100%;
-  width: 100%;
-}
-.modalmaskInner {
-  display: table-cell;
-  vertical-align: middle;
-  text-align: center;
-  position:relative;
-}
+
 
 .modalContainer {
-  position: absolute;
-  top: 40%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: #fff;
-  max-width: 352px;
-  width: 33%;
-  min-height: 400px;
-  padding: 16px;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  z-index: 2;
-
-  @include mq(mobile) {
-    width: 90%;
-    max-width: 90%;
-    padding: 4%;
-  }
-
-  p {
-    margin-bottom: 5%;
+  .content {
+    max-width: 352px;
+    width: 100%;
+    min-height: 400px;
+    padding: 16px;
   }
 }
 

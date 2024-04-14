@@ -77,6 +77,19 @@ export const accountSlice = createSlice({
           wallets: updatedWallets
       }
     },
+    updateWalletData: (state, action) => {
+      const updatedWallets = state.wallets.map(item => {
+        if (item.wallet_name === action.payload.which) {
+          return action.payload.value
+        } else {
+          return item
+        }
+      })
+      return {
+          ...state,
+          wallets: updatedWallets
+      }
+    }
   }
 });
 
@@ -88,7 +101,8 @@ export const {
   updateWallets,
   updateWalletStatus,
   addWallet,
-  removeWallet
+  removeWallet,
+  updateWalletData
 } = accountSlice.actions;
 
 export default accountSlice.reducer;
