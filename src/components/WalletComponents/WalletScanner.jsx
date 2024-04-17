@@ -2,7 +2,7 @@ import React, {useEffect, useState, useRef, useContext} from "react";
 import {useSelector, useDispatch} from 'react-redux';
 import {Alchemy, Network} from "alchemy-sdk";
 import { ethers } from "ethers";
-import {textEllipsisMid} from '../../utils/GlobalUtilities';
+import {textEllipsisMid} from '../../services/GlobalUtilities';
 import { CHAINS } from '../WalletConnectors/chains'
 
 import {WalletProvidersContext} from '../../pages/_app'

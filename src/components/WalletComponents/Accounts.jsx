@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { ethers } from "ethers";
-import {copyToClipBoard, textEllipsisMid} from '../../utils/GlobalUtilities';
+import {copyToClipBoard, textEllipsisMid} from '../../services/GlobalUtilities';
 import Button from '../UICommon/Button'
 import IConCopy from '../../assets/icon-copy.svg';
 import styles from '../../pages/profile/profile.module.scss';

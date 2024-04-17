@@ -8,9 +8,9 @@ import IConMacys from '@/assets/icon-macys.svg';
 import IConCopy from '@/assets/icon-copy.svg';
 import ContextMenu from '../UICommon/ContextMenu';
 import IConContextMenu from '@/assets/icon-contextmenu.svg'
-import MagicAuthHelper from '../../utils/MagicAuthHelper'
+import MagicAuthHelper from '../../services/MagicAuthHelper'
 
-import {copyToClipBoard, textEllipsisMid} from '../../utils/GlobalUtilities'
+import {copyToClipBoard, textEllipsisMid} from '../../services/GlobalUtilities'
 import styles from './CardStyles.module.scss'
 import {ethers} from 'ethers'
 const { Magic } = require('magic-sdk')

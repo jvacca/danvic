@@ -2,6 +2,9 @@
 import Config from '../config';
 export default function useAddressValidation(service_id, params) {
 
+  /*
+  custom hook to validate any forms that needs google's address validation
+  */
   
   const validate = async (addressObj) => {
     const url = 'https://addressvalidation.googleapis.com/v1:validateAddress';

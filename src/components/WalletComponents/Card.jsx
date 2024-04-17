@@ -12,7 +12,7 @@ import IConCoinbase from '@/assets/icon-coinbase.svg';
 import IConWalletconnect from '@/assets/icon-wallet-connect.svg';
 import styles from './CardStyles.module.scss';
 
-import {copyToClipBoard, textEllipsisMid} from '../../utils/GlobalUtilities'
+import {copyToClipBoard, textEllipsisMid} from '../../services/GlobalUtilities'
 import { CHAINS } from '../WalletConnectors/chains'
 import {OptionsContext} from './WalletManager'
 

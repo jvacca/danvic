@@ -70,6 +70,10 @@ export default function AppNavigation() {
     modal.current.closeModal()
   }
 
+  const onClose = () => {
+    modal.current.closeModal()
+  }
+
   return (
     <>
       <div className={styles.wrapper}>
@@ -84,6 +88,7 @@ export default function AppNavigation() {
           </Link>
           
         <nav>
+          <Link href="/">Home</Link> |
           <Link href="/faqs">FAQs</Link> |
           <Link href="/about">About</Link> |
 
@@ -99,7 +104,7 @@ export default function AppNavigation() {
       </div>
       
       <Modal ref={modal}>
-        <Signin onAuthenticated={onLoggedIn} />
+        <Signin onAuthenticated={onLoggedIn} onClose={onClose} />
       </Modal>
     </>
   )

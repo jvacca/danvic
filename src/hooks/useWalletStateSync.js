@@ -7,6 +7,12 @@ import { coinbaseWallet } from '../components/WalletConnectors/coinbaseWallet'
 import { metaMask } from '../components/WalletConnectors/metaMask'
 import useAsyncLoad from "../hooks/useAsyncLoad";
 
+/*
+This hook is used to separate concerns and encapsulate all wallet related logic that has to do
+with global state maintainance and CRUD database operations. Also, it was designed to be reused
+in any wallet management related components should the need arise.
+*/
+
 export default function useWalletStateSync() {
   const currentAccount = useSelector((state) => state.account.currentAccount);
   const wallets = useSelector((state) => state.account.wallets);

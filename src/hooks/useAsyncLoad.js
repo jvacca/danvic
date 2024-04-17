@@ -1,5 +1,10 @@
 //import React from "react";
 
+/*
+    custom hook for all API calls that also need validation and error handling
+    TODO: expose error and loading states as well
+*/
+
 export default function useAsyncLoad(service_id, params) {
 
   function validateData(data) {

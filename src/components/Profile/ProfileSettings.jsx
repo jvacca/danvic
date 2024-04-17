@@ -5,8 +5,8 @@ import { useSelector } from 'react-redux';
 import Button from '../UICommon/Button'
 // Assets imports
 import styles from '../../pages/profile/profile.module.scss';
-import {copyToClipBoard, textEllipsisMid} from '../../utils/GlobalUtilities';
-import DataProvider from "../../utils/DataProvider";
+import {copyToClipBoard, textEllipsisMid} from '../../services/GlobalUtilities';
+import DataProvider from "../../services/DataProvider";
 import RegistrationForm from '../../pages/register/RegistrationForm'
 
 export default function ProfileSettings ({profileData, saveUserData}) {
