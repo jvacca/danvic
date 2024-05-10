@@ -43,7 +43,7 @@
       padding: 0 20px;
     }
     @include mq(desk-sm) {
-      padding: 0 16px;
+      padding: 0 4%;
     }
     // @media screen and (max-width: 1398px) {
     //   // padding: 0 30px;
@@ -158,25 +158,6 @@
           }
         }
       }
-      .copyContainer {
-        // p {
-        //   // margin: 0 0 4%;
-        //   font-size: 14px;
-        //   /*line-height: calc(28/18);*/
-        //   line-height: 1.5;
-        //   @include mq(mobile) {
-        //     font-size: 14px;
-        //     margin: 0 0 4%;
-        //   }
-        // }
-        // .error {
-        //   color: #FF0000;
-        //   font-family: $macysmedium, sans-serif;
-        //   margin-top: -1em;
-        //   margin-bottom: 1em;
-        // }
-      }
-
 
       .copyContainer {
         width: 100%;
@@ -354,6 +335,23 @@
           }
           .detailsContent {
             padding: 0;
+
+            .gradientBackground {
+              &::after {
+                  content: "";
+                  width: 100%;
+                  display: block;
+                  height: inherit;
+                  position: absolute;
+                  top: 0;
+                  bottom: 0;
+                  left: 0;
+                  right: 0;
+                  background: linear-gradient(to right, #7167B0, #E11A2B 50%, #E11A2B 60%, #ED7A43);
+                  z-index: 0;
+                  // border-radius: 25px;
+                }
+            }
           }
         }
 

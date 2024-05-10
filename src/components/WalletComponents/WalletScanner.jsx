@@ -1,6 +1,7 @@
 import React, {useEffect, useState, useRef, useContext} from "react";
 import {useSelector, useDispatch} from 'react-redux';
 import Link from "next/link"
+import Image from "next/image"
 import {Alchemy, Network} from "alchemy-sdk";
 import axios from 'axios';
 import { ethers } from "ethers";
@@ -123,8 +124,8 @@ export default function WalletScanner() {
       } else if (NFTData && NFTData.media[0]) {
         return (
           NFTData.media[0].raw
-          ? <img src={ipfs(NFTData.media[0].raw)}/>
-          : <img src={ipfs(NFTData.media[0].thumbnail)}/>
+            ? <Image src={ipfs(NFTData.media[0].raw)} alt={"NFT media"}/>
+          : <Image src={ipfs(NFTData.media[0].thumbnail)} alt={"NFT media"}/>
         )
       } else {
         console.log("Warning: not getting any media for this NFT ")
@@ -216,7 +217,7 @@ export default function WalletScanner() {
           {nfts && nfts.map(nft => (
             <li className={styles.allNFTSItem} key={nft.title}>
               <div className={styles.inner}>
-                <Link href={`/mynfts/${nft.contract.address}/${nft.tokenId}`}>
+                <Link href={`/mynfts/${nft.contract.address}/${nft.tokenId}?network=${currentAccount.network}${(nft?.tokenType)? '&type=' + nft?.tokenType : ''}`}>
                   {getMedia(nft)}
                   <p>{nft.title}</p>
                 </Link>
