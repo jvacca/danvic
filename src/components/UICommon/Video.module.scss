@@ -1,0 +1,18 @@
+@import '../../styles/_fonts.scss';
+@import '../../styles/_variables.scss';
+@import '../../styles/_mixins.scss';
+
+.videoControls {
+    position: absolute;
+    bottom: 25px;
+    left: 25px;
+    background: transparent;
+    z-index: 9;
+    outline: 0;
+    border: 0;
+    cursor: pointer;
+    @include mq(mobile) {
+        bottom: 20px;
+        left: 20px;
+    }
+}

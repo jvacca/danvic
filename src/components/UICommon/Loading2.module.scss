@@ -1,0 +1,57 @@
+.loader {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: var(--violet);
+  width: 100%;
+  height: 100%;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 2s ease;
+  pointer-events: none;
+  svg {
+    width: 40px;
+    margin: 10px;
+    transform: scale(0);
+    transition: opacity 1s ease;
+    opacity: 0;
+    animation: stars-pulse 1s ease-in-out infinite;
+    margin-left: 0;
+  }
+
+
+
+  .star2 {
+    animation-delay: 0.2s;
+  }
+
+  .star3 {
+    animation-delay: 0.4s;
+  }
+}
+
+body.loaded .loader {
+  opacity: 0;
+
+  .loader-star {
+    opacity: 0;
+    animation: none;
+  }
+}
+
+@keyframes stars-pulse {
+  0%,
+  100% {
+    -webkit-transform: scale(0);
+    transform: scale(0);
+    opacity: 0;
+  }
+
+  20% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    opacity: 1;
+  }
+}

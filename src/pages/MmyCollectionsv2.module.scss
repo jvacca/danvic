@@ -1,6 +1,6 @@
-@import '@/styles/_fonts.scss';
-@import '@/styles/_variables.scss';
-@import '@/styles/_mixins.scss';
+@import '../styles/_fonts.scss';
+@import '../styles/_variables.scss';
+@import '../styles/_mixins.scss';
 
 .collectionsFrame {
   width: 100%;
@@ -64,12 +64,6 @@
         background-position: bottom;
         background-size: 5px 1px;
         background-repeat: repeat-x;
-      }
-
-      .profileImage {
-        display: inline-block;
-        width: 30%;
-        margin-right: 5%;
       }
 
       .collection {

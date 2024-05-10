@@ -1,0 +1,122 @@
+@import '../styles/_fonts.scss';
+@import '../styles/_variables.scss';
+@import '../styles/_mixins.scss';
+
+.faqFrame {
+  width: 100%;
+  overflow: hidden;
+  padding-bottom: 60px;
+
+  @include mq(mobile) {
+    padding-bottom: 15%;
+  }
+  .inner {
+    position: relative;
+    max-width: 1045px;
+    width: 90%;
+    margin: 0 auto;
+
+    h2 {
+      font-family: $macysmedium;
+      font-size: 48px;
+      text-align: center;
+      margin: 75px 0;
+
+      @include mq(mobile) {
+        font-size: 9vw;
+        margin: 3% 0 12%;
+      }
+    }
+
+    > svg {
+      position: absolute;
+      top: 130px;
+      right: -160px;
+      @include mq(mobile) {
+        position: static;
+        display: block;
+        margin: 5% auto 0;
+        transform: scale(0.5);
+        text-align: center;
+      }
+    }
+
+    ul {
+      margin: 0;
+      width: 100%;
+
+      li {
+        margin: 30px 0;
+        position: relative;
+
+        .faqElement {
+          display: block;
+          position: relative;
+          width: 100%;
+          min-height: 68px;
+          max-width: 1045px;
+          margin: 0 auto;
+          .faqContent {
+            position: relative;
+            width: 100%;
+            min-height: 68px;
+            background-color: #fff;
+            border: 2px solid #000;
+            border-radius: 10px;
+            padding: 20px;
+            cursor: pointer;
+            z-index: 1;
+
+            @include mq(mobile) {
+              padding-left: 10px;
+            }
+
+            .btnExpandCollapse {
+              position: absolute;
+              width: 32px;
+              height: 32px;
+              top: 17px;
+              right: 22px;
+              
+              @include mq(mobile) {
+                right: 10px;
+              }
+            }
+
+            h3 {
+              font-family: $macys;
+              width: 90%;
+              font-size: 24px;
+              margin: 0;
+              @include mq(mobile) {
+                width: 85%;
+                font-size: 18px;
+              }
+            }
+
+            p{
+              max-width: 800px;
+              font-family: $macys;
+              font-size: 18px;
+              line-height: 1.2;
+              margin-top: 23px;
+              a {
+                text-decoration: underline;
+              }
+
+              @include mq(mobile) {
+                font-size: 14px;
+              }
+            }
+          }
+          
+          .faqContent:hover {
+            background-color: #FDF6FE;
+          }
+          
+        }
+        
+      }
+    }
+  }
+}

@@ -1,6 +1,8 @@
 import React, {useEffect, useState, useRef, useContext} from "react";
 import {useSelector, useDispatch} from 'react-redux';
+import Link from "next/link"
 import {Alchemy, Network} from "alchemy-sdk";
+import axios from 'axios';
 import { ethers } from "ethers";
 import {textEllipsisMid} from '../../services/GlobalUtilities';
 import { CHAINS } from '../WalletConnectors/chains'
@@ -12,7 +14,7 @@ import IConMagic from '@/assets/icon-magic-wallet.svg';
 import IConCoinbase from '@/assets/icon-coinbase.svg';
 import IConWalletconnect from '@/assets/icon-wallet-connect.svg';
 import styles from './WalletScanner.module.scss';
-
+import VideoPlay from '../../components/UICommon/VideoPlay'
 import WalletManager from "../WalletComponents/WalletManager.jsx";
 
 
@@ -24,7 +26,7 @@ export default function WalletScanner() {
     const walletProviders = useContext(WalletProvidersContext)
     const [currentAccount, setCurrentAccount] = useState(null)
     const connectedWallets = useSelector((state) => state.account.wallets);
-    const [selectedWallet, setSelectedWallet] = useState('metmask')
+    const [selectedWallet, setSelectedWallet] = useState('macys')
 
     const keyswap = [
       'zAkXe4ui1WtGY0jkmTee1IrJ3zI1pewx',
@@ -97,7 +99,38 @@ export default function WalletScanner() {
         console.log("Error getting nfts ", error)
       }
     }
-     
+    
+    const ipfs = function (img) {
+      if (img) {
+          return img.replace('ipfs://', "https://ipfs.io/ipfs/")
+      } else {
+          return img;
+      }
+    }
+    
+    const getMedia = (NFTData) => {
+      console.log("NFTListAlchemy: ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~> check media ", NFTData.title)
+      console.log("image? ", (NFTData.media[0].raw || NFTData.media[0].thumbnail))
+      console.log("video? ", NFTData.rawMetadata.animation_url)
+  
+      if (NFTData && NFTData.rawMetadata && NFTData.rawMetadata.animation_url) {
+        let poster = ipfs((NFTData.media[0].raw)? NFTData.media[0].raw : NFTData.media[0].thumbnail);
+        let videopath = ipfs(NFTData.rawMetadata.animation_url);
+  
+        return (
+          <VideoPlay videopath={videopath} poster={poster} />
+        )
+      } else if (NFTData && NFTData.media[0]) {
+        return (
+          NFTData.media[0].raw
+          ? <img src={ipfs(NFTData.media[0].raw)}/>
+          : <img src={ipfs(NFTData.media[0].thumbnail)}/>
+        )
+      } else {
+        console.log("Warning: not getting any media for this NFT ")
+        return null
+      }      
+    }
 
     useEffect(() => {
       // grab the current wallet's provider when it's available
@@ -115,7 +148,7 @@ export default function WalletScanner() {
           getNFTs(walletObj.address, walletObj.network).then((data) => {
             console.log("GOT NFTS!!!! ", data)
             
-            if (data.ownedNfts.length > 0) {
+            if (data?.ownedNfts?.length > 0) {
               const collection = []
               data.ownedNfts.map((nft) => {
                 collection.push(nft)
@@ -148,8 +181,9 @@ export default function WalletScanner() {
 
     return (
       <>
+      <div className={styles.walletScannerFrame}>
         {connectedWallets && 
-        <div>
+        <div className={styles.currentWallet}>
           <p>Select a wallet:</p>
           <select
             className={styles.walletSelector}
@@ -164,7 +198,7 @@ export default function WalletScanner() {
           </select>
         </div>}
         {(currentProvider && currentAccount) && 
-        <div className={styles.walletScannerFrame}>
+        <div className={styles.currentWallet}>
             <div className={styles.walletName}>{getWalletIcon(currentAccount.wallet_name)} <p>{getWalletName(currentAccount.wallet_name)}</p></div>
             {currentAccount.isConnected ? (
               <div className={styles.walletStatus}>🟢</div>
@@ -172,18 +206,27 @@ export default function WalletScanner() {
               <div className={styles.walletStatus}>⚪️</div>)}
             <div className={styles.walletAddress}><h3>{textEllipsisMid(currentAccount.address)}</h3></div>
             <div className={styles.walletChain}><p>{CHAINS[currentAccount.network].name}</p></div>
-            {balance && <div className={styles.walletBalance}><p>{balance} ETH</p></div>}
-
-            <div className={styles.collection}>
-              {nfts &&<div className={styles.walletNFTs}><h3>NFTs:</h3> <p>{nfts.length}</p></div>}
-              <ul>
-              {nfts && nfts.map(nft => (
-                <li>{nft.title}</li>
-              ))}
-              </ul>
-            </div>
+            {balance && <div className={styles.walletBalance}><p>Balance: {balance} ETH</p></div>}
         </div>}
-        <WalletManager ref={walletManager} show={false} />
+      </div>
+      <div className={styles.collection}>
+        <h3>Collection:</h3>
+        {nfts &&<div className={styles.digitalItems}><p>NFTs: {nfts.length}</p>
+          <ul>
+          {nfts && nfts.map(nft => (
+            <li className={styles.allNFTSItem} key={nft.title}>
+              <div className={styles.inner}>
+                <Link href={`/mynfts/${nft.contract.address}/${nft.tokenId}`}>
+                  {getMedia(nft)}
+                  <p>{nft.title}</p>
+                </Link>
+              </div>
+            </li>
+          ))}
+          </ul>
+        </div>}
+      </div>
+      <WalletManager ref={walletManager} show={false} />
       </>
     )
 }

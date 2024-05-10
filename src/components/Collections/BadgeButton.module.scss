@@ -1,0 +1,28 @@
+@import '../../styles/_fonts.scss';
+@import '../../styles/_variables.scss';
+@import '../../styles/_mixins.scss';
+
+.badges {
+  display: flex;
+  align-items: center;
+  // min-width: none;
+  padding: 0 15px;
+  background: #EFEFEF;
+  border: 0;
+  color: $black;
+  font-size: 12px;
+  border-radius: 4px;
+  position: relative;
+  font-family: $macys;
+  span {
+    font-size: 12px;
+    line-height: 1;
+    padding: 9% 0
+  }
+
+  // controls opacity & border-radius of pseudo element containing gradient - gradient lives in sitewide
+  &::after {
+    opacity: 20%;
+    border-radius: 25px;
+  }
+}

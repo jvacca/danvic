@@ -90,7 +90,6 @@ export default function AppNavigation() {
         <nav>
           <Link href="/">Home</Link> |
           <Link href="/faqs">FAQs</Link> |
-          <Link href="/about">About</Link> |
 
         {isLoggedIn?
           <DropDown ref={dropdown} data={options} triggerIcon={ProfilePicSrc} />

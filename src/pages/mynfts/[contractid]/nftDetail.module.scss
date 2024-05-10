@@ -1,0 +1,917 @@
+@import '../../../styles/_fonts.scss';
+@import '../../../styles/_variables.scss';
+@import '../../../styles/_mixins.scss';
+
+
+.detailsFrame {
+  width: 100%;
+  padding-top: 60px;
+  min-height: calc(100vh - 100px);
+  position: relative;
+  overflow: hidden;
+  @include mq(mobile) {
+    padding-top: 7%;
+    min-height: calc(100dvh - 50px);
+    padding-bottom: 12%;
+  }
+
+  .desktop {
+    @include mq(mobile) {
+      display: none;
+    }
+  }
+
+  .popupWindowLoading {
+    left: calc(50% - 200px);
+    top: calc(50% - 90px);
+    @include mq(mobile) {
+      left: 44%;
+      top: 30%;
+      transform: translate(-50%, -50%) !important;
+      transform: scale(0.9) !important;
+    }
+  }
+  
+  .detailsWrap {
+    width: 100%;
+    max-width: 1336px;
+    color: #000;
+    margin: 0 auto;
+    // padding: 0 50px;
+    @include mq(mobile) {
+      // width: 90%;
+      padding: 0 20px;
+    }
+    @include mq(desk-sm) {
+      padding: 0 16px;
+    }
+    // @media screen and (max-width: 1398px) {
+    //   // padding: 0 30px;
+    // }
+    @include mq(max) {
+      padding: 0;
+    }
+
+    a {
+      display: block;
+      font-size: 14px;
+      margin-bottom: 40px;
+      text-decoration: underline;
+      @include mq(mobile) {
+        margin-bottom: 10%;
+      }
+    }
+
+    .content {
+      display: flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      // .imageBorderGradient {
+      //   display: flex;
+      //   align-items: center;
+      //   justify-content: center;
+      //   width: 530px;
+      //   height: 530px;
+      //   background: linear-gradient(to top right, #C62C4B 30%, #5B76CA 70%);
+      //   border-radius: 8%;
+      // }
+      @include mq(mobile) {
+        display: block
+      }
+
+      .imageContainer {
+        max-width: 688px;
+        width: 50%;
+        height: 50%;
+        overflow: hidden;
+        @include mq(mobile) {
+          width: 100%;
+        }
+        img {
+          width: 100%;
+          border: 1px solid $black;
+        }
+        video {
+          width: 100%;
+          height: auto;
+          object-fit: cover;
+        }
+      }
+
+      .contentLeft {
+        @include mq(desk-sm) {
+            width: 50%;
+          }
+        
+          @include mq(max) {
+            max-width: 688px;
+          }
+      }
+
+      .imageContainerCollectibles {
+        position: relative;
+        width: 100%;
+        #sticker2 {
+          position: absolute;
+          width: 120px;
+          top: -5%;
+          right: -5%;
+        }
+      }
+
+      #username-frame {
+        background-color: #EEE2EE;
+        position: relative;
+        width: auto;
+        height: 50%;
+        iframe {
+          overflow: hidden;
+          @include mq(mobile) {
+            width: 100%;
+            height: 100%;
+          }
+        }
+        @include mq(mobile) {
+          height: calc(100vw - 40px);
+          width: calc(100vw - 40px)
+        }
+      }
+
+      h2 {
+        font-family: $macysbold;
+        font-size: 32px;
+        margin-bottom: 30px;
+        @include mq(desk-sm) {
+          font-size: 20px;
+        }
+        @include mq(desk-lg) {
+          font-size: 28px;
+        }
+        @include mq(max) {
+          font-size: 36px;
+        }
+        @include mq(mobile) {
+          font-size: 8.5vw;
+
+          sup {
+            font-size: 10px;
+          }
+        }
+      }
+      .copyContainer {
+        // p {
+        //   // margin: 0 0 4%;
+        //   font-size: 14px;
+        //   /*line-height: calc(28/18);*/
+        //   line-height: 1.5;
+        //   @include mq(mobile) {
+        //     font-size: 14px;
+        //     margin: 0 0 4%;
+        //   }
+        // }
+        // .error {
+        //   color: #FF0000;
+        //   font-family: $macysmedium, sans-serif;
+        //   margin-top: -1em;
+        //   margin-bottom: 1em;
+        // }
+      }
+
+
+      .copyContainer {
+        width: 100%;
+        padding: 0;
+        margin: 10% 0 0;
+
+        @include mq(desk-sm) {
+          margin: 0 0 4% 6%;
+          width: 50%;
+        }
+        @include mq(desk-lg) {
+          margin: 0 0 4% 8%;
+        }
+        @include mq(max) {
+          margin: 0 0 4% 132px;
+        }
+
+        p {
+          // margin: 0 0 4%;
+          font-size: 14px;
+          /*line-height: calc(28/18);*/
+          line-height: 1.5;
+          @include mq(mobile) {
+            font-size: 14px;
+            margin: 0 0 4%;
+          }
+          // @include mq(max) {
+          //   padding-rig
+          // }
+        }
+        .error {
+          color: #FF0000;
+          font-family: $macysmedium, sans-serif;
+          margin-top: -1em;
+          margin-bottom: 1em;
+        }
+
+
+        .category {
+          margin: 0 0 0;
+          font-family: $macys;
+          // font-size: 20px;
+          @include mq(desk-sm) {
+            font-size: 16px;
+          }
+          @include mq(desk-lg) {
+            font-size: 18px;
+          }
+          @include mq(mobile) {
+            font-size: 14px;
+            font-family: $macysmedium;
+          }
+
+          svg {
+            transform: scale(0.8);
+            margin-left: -10px;
+          }
+        }
+        .owner {
+          margin: -4% 0 7%;
+        }
+        .utilityWrapper {
+          margin-top: 10%;
+        }
+        .legal {
+          margin: 15px 0;
+          font-size: 12px;
+          a {
+            display: inline;
+            font-size: 12px;
+            margin: 0;
+          }
+        }
+        .lineDivider {
+          width: 100%;
+          border-bottom: 1px solid rgb(145,145,145);
+
+        }
+        .buttonsHolder {
+          display: flex;
+          flex-wrap: wrap;
+          margin-bottom: 32px;
+        }
+        button {
+          padding: 0 20px;
+          line-height: 3;
+          font-size: 14px;
+          margin-right: 1.5%;
+          margin-bottom: 12px;
+          border-radius: 4px;
+          min-width: 120px;
+          font-family: $macys;
+          @include mq(mobile) {
+            width: auto;
+            min-width: auto;
+            font-size: 12px;
+            padding: 0 20px;
+            // height: 32px;
+            line-height: 2;
+          }
+          img {
+            margin-right: 10px;
+          }
+        }
+        .sendShareButtons button {
+          max-width: 128px;
+          // background: #fff;
+          color: #000;
+          // background: $green;
+          &:nth-of-type(2) {
+            display: none; // hide send for now?
+          }
+          @include mq(mobile) {
+            font-size: 14px;
+            margin: 8% 0 6%;
+          }
+        }
+        .editBtn {
+          max-width: 190px;
+          background-color: #C1C1C1;
+          border: none;
+          height:  48px;
+          color: #000;
+          @include mq(mobile) {
+            width: 50%;
+          }
+        }
+        .editBtnComingSoon {
+          max-width: 272px;
+          background-color: #C1C1C1;
+          border: none;
+          height:  48px;
+          color: #000;
+          @include mq(mobile) {
+            width: 70%;
+          }
+        }
+
+        .utilityContainer,
+        .detailsContainer {
+          display: block;
+          position: relative;
+          margin:32px 0 24px;
+          h3 {
+            font-family: $macysbold;
+            font-size: 16px;
+            margin-bottom: 24px;
+          }
+          .plusMinusContainer {
+            position: absolute;
+            right: 0;
+            top: 0;
+            display: block;
+            width: 100%;
+            height: 16px;
+            cursor: pointer;
+          }
+          .utilityCopy {
+            font-size: 14px;
+          }
+          .utilityType {
+            font-family: $macysbold;
+            margin-top: 32px;
+            font-size: 16px;
+            &:first-of-type {
+              margin-top: 24px;
+            }
+          }
+          .utilityCopy {
+            line-height: 1.4;
+
+            ul li {
+              margin: 12px 0;
+            }
+          }
+          .detailsContent {
+            padding: 0;
+          }
+        }
+
+
+        .specs {
+          margin-bottom: 50px;
+          ul {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+          }
+          li {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            width: 160px;
+            height: 64px;
+            // padding: 3%;
+            margin: 2% 0;
+            //background-color: #000;
+            background-color: #EFEFEF;
+            color: #000;
+            font-size: 16px;
+            text-align: center;
+            position: relative;
+            font-family: $macysmedium;
+            border-radius: 4px;
+            &::after {
+              //opacity: 15%;
+              opacity: 0;
+              border-radius: 5%;
+            }
+            span {
+              font-size: 12px;
+              margin-bottom: 4px;
+              line-height: 1;
+              display: block;
+              font-family: $macys;
+            }
+          }
+        }
+        .utilityType {
+          font-family: $macys;
+          margin: 0;
+        }
+        .utilityCopy {
+          margin: 0;
+          p {
+            font-size: 14px;
+            margin: 9px 0;
+          }
+        }
+
+        .historyItem {
+          padding-bottom: 48px;
+          display: flex;
+          border-left: 2px dotted black;
+          padding-left: 20px;
+          margin-left: 1.4%;
+          &:last-of-type {
+            border: 0;
+          }
+          @include mq(mobile) {
+            font-size: 14px;
+          }
+        }
+        .historyBullet {
+          width: 16px;
+          height: 16px;
+          background-color: #919191;
+          border-radius: 50%;
+          position: absolute;
+          left: 0;
+        }
+      }
+    }
+  }
+  .coolcatsSection {
+    background-color: #DBEBFB;
+    width: 100%;
+    margin-top: 6%;
+    position: relative;
+
+    @include mq(mobile) {
+      margin-top: 18%;
+    }
+
+    .inner {
+      position: relative;
+      // max-width: 1600px;
+      margin: 0 auto;
+
+      #cloud1 {
+        position: absolute;
+        max-width: 280px;
+        top: -3%;
+        left: 7%;
+        z-index: 1;
+      }
+
+      #cloud2 {
+        position: absolute;
+        max-width: 480px;
+        top: 50%;
+        left: -5%;
+        z-index: 2;
+      }
+
+      #cloud3 {
+        position: absolute;
+        max-width: 700px;
+        top: 70%;
+        right: -20%;
+        z-index: 3;
+      }
+      
+      .coolcatsContent {
+        position: relative;
+        background-image: url('https://storage.googleapis.com/imp-projects-c/nft/assets2/images/coolcats/backgroundDottedLine.png');
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: 60% 0;
+        // max-width: 1060px;
+        margin: 0 auto;
+        padding-top: 5%;
+        z-index: 5;
+
+        .subtitle {
+          text-align: center;
+          font-size: 24px;
+          margin-bottom: 15px;
+        }
+
+        h2 {
+          text-align: center;
+          font-family: $macysbold;
+          font-size: 56px;
+          margin-bottom: 20px;
+        }
+
+        .blocks {
+          width: 100%;
+          .copyRight,
+          .copyLeft {
+            width: 100%;
+            .copyBlock {
+              width: 55%;
+              display: inline-block;
+              vertical-align: middle;
+
+              .number {
+                display: inline-block;
+                background-color: #fff;
+                vertical-align: top;
+                font-family: $macysbold;
+                font-size: 32px;
+                text-align: center;
+                border: 1px solid #FFC614;
+                border-radius: 50%;
+                width: 56px;
+                height: 56px;
+                margin-right: 15px;
+              }
+              .copy {
+                display: inline-block;
+                max-width: 85%;
+                vertical-align: top;
+
+                h3 {
+                  font-family: $macysbold;
+                  font-size: 30px;
+                  margin-bottom: 15px;
+                }
+                p {
+                  font-size: 21px;
+                  line-height: 1.2;
+                }
+              }
+            }
+            .imageBlock {
+              width: 45%;
+              display: inline-block;
+              vertical-align: middle;
+
+              img {
+                margin-left: 10%;
+                max-width: 440px;
+              }
+            }
+          }
+          .copyRight {
+            .copyBlock {
+              width: 52%;
+            }
+            .imageBlock {
+              width: 48%;
+            }
+          }
+        }
+        
+      }
+    }
+    #pawprints2 {
+      position: absolute;
+      width: 113px;
+      bottom: 1%;
+      left: 19%;
+    }
+  }
+
+  .coolcatsSectionTrophy {
+    background-color: #DBEBFB;
+    width: 100%;
+    margin-top: 6%;
+
+    @include mq(mobile) {
+      margin-top: 25%;
+    }
+
+    .inner {
+      position: relative;
+      max-width: 1600px;
+      margin: 0 auto;
+      /*
+      @media (max-width: 1600px) { 
+        overflow: hidden;
+      }*/
+
+      @include mq(mobile) {
+        padding-top: 163px;
+      }
+
+      #sticker {
+        position: absolute;
+        width: 120px;
+        top: -6%;
+        left: 20%;
+
+        @include mq(mobile) {
+          top: 40%;
+          right: auto;
+          left: 50%;
+          transform: translateX(-50%);
+        }
+      }
+
+      #pawprints {
+        position: absolute;
+        width: 113px;
+        bottom: -5%;
+        left: -15%;
+      }
+
+      #cloud1 {
+        position: absolute;
+        max-width: 280px;
+        top: -10%;
+        right: 7%;
+        z-index: 1;
+
+        @include mq(mobile) {
+          right: auto;
+          left: -30%;
+        }
+      }
+
+      #cloud2 {
+        position: absolute;
+        max-width: 460px;
+        top: 30%;
+        left: -16%;
+        z-index: 2;
+
+        @include mq(mobile) {
+          display: none;
+        }
+      }
+
+      #cloud3 {
+        position: absolute;
+        max-width: 485px;
+        top: 80%;
+        right: -20%;
+        z-index: 6;
+
+        @include mq(mobile) {
+          display: none;
+        }
+      }
+
+      .coolcatsContent {
+        position: relative;
+        background-image: none;
+        max-width: 1060px;
+        margin: 0 auto;
+        padding-top: 42px;
+        z-index: 5;
+
+        .subtitle {
+          text-align: center;
+          font-size: 24px;
+          margin-bottom: 8px;
+          font-family: $macysmedium;
+          @include mq(mobile) {
+            font-size: 5.5vw;
+          }
+        }
+
+        .stickerContainer {
+          display: block;
+          position: absolute;
+          width: 128px;
+          right: 20px;
+          top: -180px;
+          @include mq(desk-sm) {
+            top: -63px;
+            left: 5%;
+            right: auto;
+          }
+          @include mq(desk-lg) {
+            left: 20%;
+          }
+        }
+
+        h2 {
+          text-align: center;
+          font-family: $macysbold;
+          font-size: 56px;
+          margin-bottom: 16px;
+
+          @include mq(mobile) {
+            font-size: 11.75vw;
+          }
+        }
+
+        .trophyCopy {
+          max-width: 592px;
+          margin: 0 auto;
+          font-size: 20px;
+          line-height: 1.5;
+          text-align: center;
+
+          @include mq(mobile) {
+            width: 80%;
+            font-size: 18px;
+          }
+
+          a {
+            text-decoration: underline;
+          }
+        }
+
+        .trophyImage {
+          max-width: 740px;
+          margin: 0 auto;
+          position: relative;
+          margin-top: 40px;
+          font-size: 0;
+
+          @include mq(mobile) {
+            margin-top: 98px;
+          }
+        }
+      }
+    }
+  }
+
+
+  .specialReward {
+    position: relative;
+    background-color: #DBEBFB;
+    padding: 54px 0;
+    margin-top: -60px;
+    margin-bottom: 6%;
+
+    @include mq(mobile) {
+      padding: 50px 20px;
+      margin-top: -7%;
+      margin-bottom: 8%;
+    }
+
+    h2 {
+      font-family: $macysbold;
+      font-size: 36px;
+      margin-bottom: 24px;
+      text-align: center;
+
+      @include mq(mobile) {
+        font-size: 28px;
+        margin-bottom: 16px;
+      }
+    }
+
+    p {
+      max-width: 484px;
+      margin: 0 auto;
+      font-size: 18px;
+      text-align: center;
+      line-height: 1.5;
+      @include mq(mobile) {
+        font-size: 4.75vw;
+        font-size: 18px;
+      }
+    }
+
+    #cloud4 {
+      position: absolute;
+      width: 238px;
+      bottom: -20%;
+      right: -2%;
+
+      @include mq(mobile) {
+        display: none;
+      }
+    }
+  }
+
+  .paradeGameBanner {
+    @include mq(max) {
+      text-align: center;
+    }
+    .bannerContent {
+      .copy {
+        display: inline-block;
+        width: 50%;
+        max-width: 800px;
+        vertical-align: middle;
+
+        @include mq(mobile) {
+          width: 100%;
+          padding: 0 20px;
+        }
+
+        .inner {
+          // width: 80%;
+          margin: 0 auto;
+          // padding: 0 20px;
+          @include mq(desk-sm) {
+            padding-left: 20px;
+            padding-right: 18%;
+            text-align: left;
+            margin-left: 0;
+          }
+          @media screen and (min-width: 1380px) {
+            margin-left: auto;
+            max-width: 536px;
+            padding: 0;
+          }
+          @include mq(max) {
+            padding: 0;
+            // width: 67%;
+          }
+          h2 {
+            font-family: $macysbold;
+            font-size: 72px;
+            margin-bottom: 2%;
+
+            @include mq(brand-shrink) {
+              font-size: 5.25vw;
+            }
+
+            @include mq(mobile) {
+              font-size: 11.5vw;
+            }
+          }
+          p {
+            font-size: 24px;
+            @include mq(max-content) {
+
+            }
+            @include mq(brand-shrink) {
+              font-size: 1.75vw;
+            }
+
+            @include mq(mobile) {
+              font-size: 4.75vw;
+             line-height: 1.4;
+            }
+          }
+
+          a {
+            @include mq(mobile) {
+              margin-bottom: 18%;
+            }
+            &.disabled-link {
+              cursor: default;
+              background-color: #A3A3A3;
+              border-color: #A3A3A3;
+              pointer-events: none;
+            }
+          }
+        }
+      }
+      .image {
+        display: inline-block;
+        width: 50%;
+        max-width: 800px;
+        vertical-align: middle;
+
+        @include mq(mobile) {
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+
+
+.window :global(.PopupWindow .window) {
+  width: 200px;
+}
+
+.supriseanddelight {
+  text-align: center;
+  width: 100%;
+  margin-top: -4em;
+  background-color: #DBEBFB;
+  padding: 3em 0;
+  h3 {
+    font-size: 36px;
+    font-family: $macysbold, sans-serif;
+  }
+}
+
+.contbuttons {
+  margin-bottom: 20px;
+  .claim {
+    display: flex;
+    @include mq(mobile) {
+      flex-wrap: wrap;
+    }
+
+    > * {
+      margin: 20px 10px 0 0 !important;
+      button {
+        margin: 0 !important;
+      }
+    }
+
+    > button {
+      @include mq(mobile) {
+        width: 70% !important;
+        margin-right: 5% !important;
+      }
+    }
+
+  }
+  .claimerror {
+    margin-top: 8px !important;
+  }
+  .legal {
+    margin: 15px 0;
+    font-size: 12px;
+    a {
+      display: inline;
+      font-size: 12px;
+      margin: 0;
+    }
+  }
+}

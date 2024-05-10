@@ -1,14 +1,13 @@
+/* eslint-disable react/no-unescaped-entities */
 // React imports
 import React, { useState, useEffect } from "react";
 import { useSelector } from 'react-redux';
-import Image from 'next/image';
+import Button from '../UICommon/Button'
 // Assets imports
 import styles from '../../pages/profile/profile.module.scss';
-import Button from '../UICommon/Button'
 import {copyToClipBoard, textEllipsisMid} from '../../services/GlobalUtilities';
 import DataProvider from "../../services/DataProvider";
-import IConCopy from '../../assets/icon-copy.svg';
-import ProfilePicSrc from '../../../public/images/profilePic.png'
+import RegistrationForm from '../../pages/register/RegistrationForm'
 
 export default function ProfileSettings ({profileData, saveUserData}) {
   const [profileName, setProfileName] = useState("");
@@ -63,60 +62,35 @@ export default function ProfileSettings ({profileData, saveUserData}) {
     }
   }
 
+  const submitData = (e) => {
+    setIsRegistered(true)
+  }
+
   const getMacysWallet = () => {
-    /*
     const found = wallets.find(wallet => wallet.wallet_name === 'macys');
     if (found) {
       return found.address;
     } else {
       return null;
-    }*/
-    return profileData?.default_wallet?.address 
+    }
+    
   }
 
   const onCopy = (address) => {
     copyToClipBoard(address);
   }
 
-  const handleClick = () => {
-
-  }
-
   return (
     <>
+    {/*profileData ?
+        <iframe src={ `https://storage.googleapis.com/imp-web3/nft/final-prototype2/index.html?hideTool&name=${profileData.username}&density=${attributes.density}&palette=${attributes.palette}`  } frameBorder={'none'} width="512" height="512"/>
+    : null}*/}
+
     <div className={styles.settingsPanel}>
-      <h2>Profile Details</h2>
+      <h2>Account Profile Details</h2>
 
       <div className={styles.formContainer}>
-      {(profileData && !profileData.message) &&
-        <div>
-          <div>
-            <Image src={ProfilePicSrc} alt="trigger icon" />
-          </div>
-          <div className={styles.halfBlock}>
-            <div className={styles.label}><p>Username</p></div>
-            <p>{profileData.username}</p>
-          </div>
-          <div className={styles.halfBlock}>
-            <div className={styles.label}><p>Default digital address</p></div>
-            <p>{textEllipsisMid(getMacysWallet())}</p><button onClick={() => onCopy(getMacysWallet())} className={styles.copyBtn}><IConCopy /></button>
-          </div>
-
-          <h2>Account Details</h2>
-
-          <div className={styles.halfBlock}>
-            <div className={styles.label}><p>Email<sup>*</sup></p></div>
-            <p>{profileData.userid}</p>
-          </div>
-
-          <div className={styles.halfBlock}>
-            <div className={styles.label}><p>Password</p></div>
-            <p>********</p>
-          </div>
-
-        </div>
-        }
-        <Button onclickHandler={handleClick} target="_blank">Change password</Button>
+        <RegistrationForm useAddressValidation={false} submitData={submitData} />
       </div>
     </div>
     </>

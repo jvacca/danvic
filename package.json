@@ -16,6 +16,7 @@
     "@web3-react/metamask": "^8.2.3",
     "@web3modal/ethers5": "^4.0.0",
     "alchemy-sdk": "^2.9.1",
+    "axios": "^1.6.8",
     "ethers": "^5.7.2",
     "html-react-parser": "^4.2.1",
     "magic-sdk": "^19.3.1",

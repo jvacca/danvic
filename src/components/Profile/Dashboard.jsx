@@ -1,10 +1,11 @@
 import React, {useEffect, useState, useRef} from "react";
 import {useSelector, useDispatch} from 'react-redux';
-import Picture from '../UICommon/Picture';
+import Image from 'next/image';
 import WalletScanner from '../WalletComponents/WalletScanner.jsx'
 import styles from './profile.module.scss';
+import ProfilePicSrc from '../../../public/images/profilePic.png'
 
-export default function Dashboard() {
+export default function Dashboard({profileData}) {
   const walletManager = useRef();
 
   const profileName = useSelector((state) => state.account.profileName);
@@ -24,11 +25,11 @@ export default function Dashboard() {
       <div className={styles.collectionsFrame}>
         <div className={styles.collectionsPanels}>
           <div className={styles.collectionsContent}>
-            <h2>User Dashboard</h2>
-              <div>
-                  <p></p>
+            <h2>Profile Name: {profileData.username}</h2>
+              <div className={styles.profileImage}>
+                <Image src={ProfilePicSrc} alt="trigger icon" />
               </div>
-            <WalletScanner />
+              <WalletScanner />
           </div>
         </div>
       </div>

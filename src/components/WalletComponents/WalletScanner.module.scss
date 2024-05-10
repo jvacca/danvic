@@ -3,15 +3,22 @@
 @import '../../styles/_mixins.scss';
 
 .walletScannerFrame {
+  display: inline-block;
   position: relative;
-  width: 40%;
+  width: 60%;
+  height: 250px;
   padding: 2%;
   border: 1px solid #666;
   border-radius: 10px;
+  vertical-align: top;
 
   @include mq(mobile) {
     width: 95%;
     margin: 0 auto;
+  }
+
+  img, video {
+    width: 100%;
   }
 
   svg {
@@ -51,14 +58,14 @@
 
   .walletChain {
     position: absolute;
-    top: 35%;
+    top: 32%;
     left: 50%;
     transform: translateX(-50%);
   }
 
   .walletBalance {
     position: absolute;
-    top: 55%;
+    top: 40%;
     left: 50%;
     transform: translateX(-50%);
   }
@@ -67,12 +74,84 @@
     position: absolute;
     right: 5%;
   }
+}
 
+.collection {
+  margin-top: 2%;
+  padding-bottom: 5%;
+  .digitalItems {
+    margin-top: 2%;
+    ul {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      align-content: center;
 
+      @include mq(mobile) {
+        display: block
+      }
+      .allNFTSItem {
+        max-width: 412px;
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 2%;
+        @include mq(desk-sm) {
+          /*width: get-vw(432px, 1344);*/
+        }
+        @include mq(max) {
+          width: 432px;
+          /*max-width: 33%;*/
+          margin-right: 24px;
+          > div {
+            width: 100%;
+          }
+          &:nth-of-type(3n) {
+            margin-right: 0;
+          }
+        }
 
-  .collection {
-    margin-top: 20%;
-    padding-bottom: 5%;
+        @include mq(mobile) {
+          max-width: 247px;
+        }
+    
+        .inner {
+          height: auto;
+          display: flex;
+          flex-direction: column;
+          align-content: center;
+          justify-content: center;
+          //border: 1px solid #333;
+          //border-radius: 10px;
+          overflow: hidden;
+          // padding: 2%;
+          margin: 2% 0;
+    
+          button {
+            border: none;
+            padding: 0;
+            margin: 0;
+            cursor: pointer;
+          }
+
+          img, video {
+            width: 100%;
+          }
+        }
+      }
+      .allNFTSItem:first-child {
+        padding-left: 0;
+      }
+      @media only screen and (max-width: 1024px) {
+        .allNFTSItem {
+          width: calc(50% - 2px);
+        }
+      }
+      @media only screen and (max-width: 767px) {
+        .allNFTSItem {
+          width: 100%;
+        }
+      }
+    }
   }
 }
 

@@ -9,6 +9,7 @@ import ProfileSettings from '../../components/Profile/ProfileSettings';
 import ProfileWallets from '../../components/Profile/ProfileWallets';
 import Dashboard from '../../components/Profile/Dashboard';
 //import ProfileDevMode from '../../components/Profile/ProfileDevMode';
+import profileData from '../../../data/profile.json'
 
 //library imports
 import useAsyncLoad from "../../hooks/useAsyncLoad";
@@ -17,7 +18,7 @@ import styles from './profile.module.scss';
 
 export default function Profile({subpage}) {
   //const params = useParams();
-  const profileData = useSelector((state) => state.account.profileData);
+  //const profileData = useSelector((state) => state.account.profileData);
   const [routename, setRoutename] = useState(null);
   const dispatch = useDispatch();
   const router = useRouter();
@@ -40,10 +41,10 @@ export default function Profile({subpage}) {
   const getPanelByName = (panelname) => {
     //console.log('Profile name check: ************', panelname)
     switch(panelname) {
-      case "wallet":
-        return (<ProfileWallets />);
       case "settings":
         return (<ProfileSettings profileData={profileData} saveUserData={saveUserData} />);
+      case "wallet":
+          return (<ProfileWallets />);
       case "dashboard":
         return (<Dashboard profileData={profileData} saveUserData={saveUserData} />);
       default:
@@ -76,8 +77,8 @@ export default function Profile({subpage}) {
           <div className={styles.profileInner}>
             <div className={styles.sidebar}>
               <ul>
-                <li><Link href="/profile/wallet" className={`${router.query.subpage === 'wallet' ? styles.active : ""}`}>Wallets</Link></li>
                 <li><Link href="/profile/settings" className={`${router.query.subpage === 'settings' ? styles.active : ""}`}>Profile</Link></li>
+                <li><Link href="/profile/wallet" className={`${router.query.subpage === 'wallet' ? styles.active : ""}`}>Wallets</Link></li>
                 <li><Link href="/profile/dashboard" className={`${router.query.subpage === 'dashboard' ? styles.active : ""}`}>Dashboard</Link></li>
               </ul>              
             </div>

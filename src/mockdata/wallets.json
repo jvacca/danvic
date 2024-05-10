@@ -1,5 +1,9 @@
 {
   "wallets": [
+        {
+            "address": "0x62b3012e34f4d8edce700018ee48f1e270242699",
+            "wallet_name": "macys"
+        },
       {
           "address": "0xacc44e9619dc66c361a57e3cedc12ab10b2fc798",
           "wallet_name": "metamask"

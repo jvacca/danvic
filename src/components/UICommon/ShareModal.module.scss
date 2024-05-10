@@ -1,0 +1,212 @@
+@import '../../styles/_fonts.scss';
+@import '../../styles/_variables.scss';
+@import '../../styles/_mixins.scss';
+@import '../../styles/animations.scss';
+
+.modalmask{
+  position: fixed!important;
+  height: 100%;
+  z-index: 100000;
+  width: 100%!important;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0,0,0,.8);
+}
+.modalmaskOuter {
+  display: table;
+  vertical-align: middle;
+  height: 100%;
+  width: 100%;
+}
+.modalmaskInner {
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+  position:relative;
+}
+
+.modalContainer {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  max-width: 352px;
+  width: 33%;
+  min-height: 400px;
+  padding: 16px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  z-index: 2;
+
+  @include mq(mobile) {
+    width: 90%;
+    max-width: 90%;
+    padding: 4%;
+  }
+
+  p {
+    margin-bottom: 5%;
+  }
+}
+
+.modalContainer .content > h2 {
+  font-family: Macys Sans Regular !important;
+  font-size: 24px !important;
+  text-align: left;
+  margin: 27px 0 20px !important;
+}
+
+.modalContainer button {
+  background: #000;
+  height: 35px;
+  border: 0;
+  width: 100%;
+  padding-left: 20px;
+  padding-right: 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: bold;
+  color: #fff;
+}
+
+.modalContainer button.white {
+  background: #fff;
+  color: #000;
+  border: 1px solid #000;
+}
+
+.modalContainer .divider {
+  text-align: center;
+}
+
+.modalContainer .content {
+  display: block;
+  text-align: left;
+
+  h2 {
+    text-align: center;
+  }
+
+  p {
+    margin-top: 7px;
+    color: #666;
+  }
+}
+
+.modalContainer .content ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items:flex-start;
+}
+
+.modalContainer .content ul li {
+  width: 100%;
+  padding: 2px;
+  margin: 0 0 15px !important;
+  padding: 0 0 0 8px !important;
+  line-height: 45px;
+  border: 2px solid #000 !important;
+  border-radius: 3px;
+  svg {
+    display: inline-block;
+    width: 24px;
+    
+    vertical-align: middle;
+    margin-right: 10px;
+  }
+
+  a {
+    display: block;
+    width: 100%;
+  }
+
+  span {
+    vertical-align: middle;
+    
+  }
+  &.dropdownActive,
+  &:hover,
+  &:focus,
+  &:active {
+    background-color: #B0FD00;
+  }
+}
+
+.modalContainer .content ul li:first-child svg {
+  width: 28px !important;
+}
+
+.modalContainer .content .links {
+  margin-top: 2%;
+  text-align: center;
+}
+
+.modalContainer .content .links a {
+  padding: 0 1%;
+  text-decoration: underline;
+}
+
+.modalContainer h2 {
+  width: 100%;
+  margin-bottom: 10%;
+}
+
+.modalContainer ul li {
+  margin: 4%;
+  padding: 1%;
+  font-weight: bold;
+  border: 1px solid #999;
+  border-radius: 10px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.modalContainer ul li img {
+  position: relative;
+  max-width: 50px;
+  vertical-align: middle;
+}
+
+.modalContainer .message {
+  width: 100%;
+  text-align: center;
+  margin: 8% 0 15%;
+}
+
+.modalContainer .message p {
+  line-height: 1;
+}
+
+.modalContainer input {
+  line-height: 2;
+  width: 100%;
+  margin-bottom: 2%;
+}
+
+.modalmask .btnClose {
+  background: none;
+  display: block;
+  position: absolute;
+  top: 1%;
+  right: -7%;
+  width: 100px;
+  color: #000;
+  border: none;
+  cursor: pointer;
+
+  svg {
+    width: 12px;
+  }
+
+}
+.ulwrap {
+  display: block;
+}
+.disabled {
+  pointer-events: none;
+}
