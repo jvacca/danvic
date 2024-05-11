@@ -1,6 +1,7 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState, forwardRef, useRef, useImperativeHandle, useContext } from "react";
 
 import Switch from '../UICommon/Switch';
+import FlyoutMenu from '../UICommon/FlyoutMenu'
 import ChainSelect from './ChainSelect'
 import Accounts from './Accounts';
 import Button from '../UICommon/Button'
@@ -10,13 +11,19 @@ import IConMacys from '@/assets/icon-macys.svg';
 import IConMagic from '@/assets/icon-magic-wallet.svg';
 import IConCoinbase from '@/assets/icon-coinbase.svg';
 import IConWalletconnect from '@/assets/icon-wallet-connect.svg';
-import styles from './CardStyles.module.scss';
 
+import IConHeart from '@/assets/icon-heart.svg';
+import IConTrash from '@/assets/icon-trash.svg';
+import IConLinkout from '@/assets/icon-linkout.svg';
+
+import styles from './CardStyles.module.scss';
+import useWalletStateSync from '../../hooks/useWalletStateSync'
 import {copyToClipBoard, textEllipsisMid} from '../../services/GlobalUtilities'
 import { CHAINS } from '../WalletConnectors/chains'
 import {OptionsContext} from './WalletManager'
 
-export default function Card({
+// eslint-disable-next-line react/display-name
+const Card = forwardRef(({
   id,
   connector,
   activeChainId,
@@ -27,11 +34,14 @@ export default function Card({
   accounts,
   provider,
   onConnectDisconnect,
-  disable
-}) {
+  disable,
+  onRemoveWallet
+}, ref) => {
 
   const options = useContext(OptionsContext);
-  
+  const flyoutMenu = useRef();
+  const {handleRemoveWallet, setDefaultWallet} = useWalletStateSync()
+
   const getWalletIcon = (name) => {
     switch(name) {
       case 'macys':
@@ -66,6 +76,14 @@ export default function Card({
     }
   }
 
+  useImperativeHandle(ref, () => {
+    return {
+      closeFlyout() {
+        flyoutMenu.current.closeMenu()
+      }
+    }
+  })
+
   const getChainName = (chainId) => {
     return chainId ? CHAINS[chainId]?.name : undefined
   }
@@ -73,6 +91,27 @@ export default function Card({
   const onCopy = (address) => {
     copyToClipBoard(address);
   }
+
+  const handleClickOutside = (e) => {
+    console.log("resetting display of context menu");
+    flyoutMenu.current.closeMenu()
+  }
+
+  const onLinkout = (e) => {
+    flyoutMenu.current.closeMenu()
+  }
+
+  const removeWallet = (accounts) => {
+    handleRemoveWallet(accounts[0])
+    onRemoveWallet(accounts[0])
+  }
+
+  useEffect(() => {
+    document.addEventListener('click', handleClickOutside);
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
+    }
+  }, [])
 
   return (
     <>
@@ -114,6 +153,17 @@ export default function Card({
         )}
       </p>}
       {error && <p className={styles.error}>{error.message ? `Error : ${error.message}` : ''}</p>}
+
+      <FlyoutMenu ref={flyoutMenu}>
+        <FlyoutMenu.Toggle id={id} />
+        <FlyoutMenu.List>
+          <li><IConHeart /><a onClick={() => setDefaultWallet(accounts)}>Set default wallet</a></li>
+          <li><IConLinkout /><a href={`https://etherscan.io/address/${accounts}`} target="_blank" onClick={(e) => onLinkout()}>View on explorer</a></li>
+          <li><IConTrash /><a onClick={() => removeWallet(accounts)}>Remove from list</a></li>
+        </FlyoutMenu.List>
+      </FlyoutMenu>
     </>
   )
-}
+})
+
+export default Card

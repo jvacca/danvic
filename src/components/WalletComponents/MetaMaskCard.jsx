@@ -10,7 +10,7 @@ import styles from './CardStyles.module.scss';
 
 
 // eslint-disable-next-line react/display-name
-const MetaMaskCard = forwardRef(({account, show, onStatusChange, onRemoveWallet, onSetDefaultWallet, onError, onContextMenuOpen}, ref) => {
+const MetaMaskCard = forwardRef(({account, show, onStatusChange, onError}, ref) => {
   const defaultWallet = useSelector((state) => state.account.defaultWallet);
   const { useChainId, useAccounts, useIsActivating, useIsActive, useProvider } = hooks
   const chainId = useChainId()
@@ -18,10 +18,9 @@ const MetaMaskCard = forwardRef(({account, show, onStatusChange, onRemoveWallet,
   const isActivating = useIsActivating()
   const isActive = useIsActive()
   const provider = useProvider()
-  const prevAddressClicked = useRef(null);
   const prevIsActive = useRef(null);
   const [error, setError] = useState(undefined)
-  const [addressClicked, setAddressClicked] = useState(null);
+  const cardRef = useRef()
 
   // attempt to connect eagerly on mount
   useEffect(() => {
@@ -37,12 +36,6 @@ const MetaMaskCard = forwardRef(({account, show, onStatusChange, onRemoveWallet,
       setTimeout(() => {
         metaMask.activate().catch(setError)
       }, 2000)
-    }
-
-    document.addEventListener('click', handleClickOutside);
-    return () => {
-      document.removeEventListener('click', handleClickOutside);
-      //document.removeEventListener('mousemove', handleMouseMove);
     }
   }, []);
 
@@ -80,10 +73,8 @@ const MetaMaskCard = forwardRef(({account, show, onStatusChange, onRemoveWallet,
   }, [accounts, chainId])
 
   useEffect(() => {
-    //if (addressClicked) console.log('just checking ------------------_____>', addressClicked)
-    prevAddressClicked.current = addressClicked;
     prevIsActive.current = isActive;
-  }, [addressClicked, isActive])  
+  }, [isActive])  
 
   const getErrorMsg = (error) => {
     console.log("Getting error message: ", error.name)
@@ -104,7 +95,7 @@ const MetaMaskCard = forwardRef(({account, show, onStatusChange, onRemoveWallet,
         onConnectDisconnect(e, 'metmask', true)
       },
       closeContextMenu() {
-        setAddressClicked(null);
+        cardRef.current.closeFlyout()
       }
     }
   })
@@ -139,36 +130,15 @@ const MetaMaskCard = forwardRef(({account, show, onStatusChange, onRemoveWallet,
     }
   }
 
-  const handleClickOutside = (e) => {
-    //console.log("resetting display of context menu");
-    setAddressClicked(null);
-  }
-
-  const onToggleContextMenu = (e, address) => {
-    e.stopPropagation();
-    if (!prevAddressClicked.current) {
-      setAddressClicked(address);
-      onContextMenuOpen('metamask')
-    } else {
-      setAddressClicked(null);
-    }
-  }
-
   const handleRemoveWallet = (walletAddress) => {
     // remving reset because this does nothing to Metmask extension
     //metaMask.resetState()
 
     // remove only if user disconnected from the extension
-    if (!isActive) {
-      onRemoveWallet(walletAddress);
-    } else {
+    if (isActive) {
       // send error state to ask user to deactivate from extension
       setError({name:'not allowed', message:'Must disconnect from within the extension before removing'})
     }
-  }
-
-  const onHideContextMenu = (e, address) => {
-    setAddressClicked(null);
   }
 
   const getDefaultWallet = (address) => {
@@ -177,16 +147,8 @@ const MetaMaskCard = forwardRef(({account, show, onStatusChange, onRemoveWallet,
 
   return (
     (show && account)? <li>
-        <div className={styles.contextMenuContainer2}>
-          <ContextMenu
-            walletAddress={addressClicked}
-            onRemoveWallet={handleRemoveWallet} 
-            onSetDefaultWallet={onSetDefaultWallet}
-            onHideContextMenu={onHideContextMenu}
-            onAlternate={getDefaultWallet(addressClicked)}
-          />
-        </div>
         <Card
+          ref={cardRef}
           id={'metamask'}
           connector={metaMask}
           activeChainId={chainId}
@@ -197,8 +159,8 @@ const MetaMaskCard = forwardRef(({account, show, onStatusChange, onRemoveWallet,
           accounts={accounts}
           provider={provider}
           onConnectDisconnect={onConnectDisconnect}
+          onRemoveWallet={handleRemoveWallet}
         />
-        <button className={styles.contextMenu} onClick={(e) => onToggleContextMenu(e, account)}><IConContextMenu /></button>
       </li>
     :
     null

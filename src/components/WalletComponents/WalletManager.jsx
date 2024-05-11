@@ -10,9 +10,9 @@ import WalletConnectCard from "../WalletComponents/WalletConnectCard"
 import ConnectWalletModal from '../UICommon/ConnectWalletModal'
 import MobileWalletManager from './MobileWalletManager'
 import Modal from '../UICommon/Modal'
-import useWalletStateSync from '../../hooks/useWalletStateSync'
 import styles from '../WalletComponents/CardStyles.module.scss'
 import {addWallet} from '../../reducers/AccountSlice'
+import useWalletStateSync from '../../hooks/useWalletStateSync'
 
 const options = {
   showSwitch: true,
@@ -23,15 +23,14 @@ const options = {
 }
 
 export const OptionsContext = createContext();
+export const FlyoutContext = createContext();
 
 // eslint-disable-next-line react/display-name
 const WalletManager = forwardRef(({show}, ref) => {
   const wallets = useSelector((state) => state.account.wallets)
   const [mobileMode, setMobileMode] = useState(false)
   const [mode, setMode] = useState('')
-
   const [error, setError] = useState(false)
-  const {handleWalletStatusChange, handleRemoveWallet, setDefaultWallet, getCurrentWalletProvider} = useWalletStateSync(wallets)
   const macysMagicCard = useRef()
   const metaMaskCard = useRef()
   const coinbaseCard = useRef()
@@ -41,7 +40,8 @@ const WalletManager = forwardRef(({show}, ref) => {
   const walletModal = useRef()
   const searchParams = useSearchParams()
   const dispatch = useDispatch()
-
+  const {handleWalletStatusChange} = useWalletStateSync()
+  
   let isMobile = false
 
   if (typeof window !== "undefined") {
@@ -79,7 +79,6 @@ const WalletManager = forwardRef(({show}, ref) => {
   }
 
   const onClose = () => {
-
     walletModal.current.closeModal()
   }
 
@@ -124,6 +123,7 @@ const WalletManager = forwardRef(({show}, ref) => {
   }
 
   const onContextMenuOpen = (which) => {
+    console.log("Closing a contextmenu!!!! ", which)
     if (which !== 'macys') macysMagicCard?.current?.closeContextMenu()
     if (which !== 'metamask') metaMaskCard?.current?.closeContextMenu()
     if (which !== 'coinbase') coinbaseCard?.current?.closeContextMenu()
@@ -133,7 +133,7 @@ const WalletManager = forwardRef(({show}, ref) => {
 
   return (
     <div className={styles.walletManager}>
-
+      <FlyoutContext.Provider value={onContextMenuOpen}>
         <OptionsContext.Provider value={options}>
           {(wallets && wallets.length > 0) && 
             <ul>
@@ -147,8 +147,6 @@ const WalletManager = forwardRef(({show}, ref) => {
                               show={show}
                               account={wallet.address} 
                               onStatusChange={handleWalletStatusChange} 
-                              onRemoveWallet={handleRemoveWallet} 
-                              onSetDefaultWallet={setDefaultWallet}
                               onError={handleErrors}
                               onContextMenuOpen = {onContextMenuOpen}
                             />
@@ -159,8 +157,6 @@ const WalletManager = forwardRef(({show}, ref) => {
                               show={show}
                               account={wallet.address} 
                               onStatusChange={handleWalletStatusChange} 
-                              onRemoveWallet={handleRemoveWallet} 
-                              onSetDefaultWallet={setDefaultWallet}
                               onError={handleErrors}
                               onContextMenuOpen = {onContextMenuOpen}
                             />
@@ -171,8 +167,6 @@ const WalletManager = forwardRef(({show}, ref) => {
                               show={show}
                               account={wallet.address} 
                               onStatusChange={handleWalletStatusChange} 
-                              onRemoveWallet={handleRemoveWallet} 
-                              onSetDefaultWallet={setDefaultWallet}
                               onError={handleErrors}
                               onContextMenuOpen = {onContextMenuOpen}
                             />
@@ -183,8 +177,6 @@ const WalletManager = forwardRef(({show}, ref) => {
                               show={show}
                               account={wallet.address} 
                               onStatusChange={handleWalletStatusChange} 
-                              onRemoveWallet={handleRemoveWallet} 
-                              onSetDefaultWallet={setDefaultWallet}
                               onError={handleErrors}
                               onContextMenuOpen = {onContextMenuOpen}
                             />
@@ -195,8 +187,6 @@ const WalletManager = forwardRef(({show}, ref) => {
                               show={show}
                               account={wallet.address} 
                               onStatusChange={handleWalletStatusChange} 
-                              onRemoveWallet={handleRemoveWallet} 
-                              onSetDefaultWallet={setDefaultWallet}
                               onError={handleErrors}
                               onContextMenuOpen = {onContextMenuOpen}
                             />
@@ -233,7 +223,7 @@ const WalletManager = forwardRef(({show}, ref) => {
             <p>{noMMCopy.body}</p>
           </Modal>
         </OptionsContext.Provider>
-       
+      </FlyoutContext.Provider>
     </div>
   )
 })

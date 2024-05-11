@@ -1,16 +1,10 @@
 import React, { useEffect, useState, forwardRef, useRef, useImperativeHandle } from 'react'
 import { useSelector } from 'react-redux';
 import { coinbaseWallet, hooks } from '../WalletConnectors/coinbaseWallet'
-import ContextMenu from '../UICommon/ContextMenu';
-import IConContextMenu from '@/assets/icon-contextmenu.svg';
-import Button from '../UICommon/Button'
 import Card from './Card'
-import parse from 'html-react-parser';
-import styles from './CardStyles.module.scss';
-
 
 // eslint-disable-next-line react/display-name
-const CoinbaseWalletCard = forwardRef(({account, show, onStatusChange, onRemoveWallet, onSetDefaultWallet, onError, onContextMenuOpen}, ref) => {
+const CoinbaseWalletCard = forwardRef(({account, show, onStatusChange, onError}, ref) => {
   const defaultWallet = useSelector((state) => state.account.defaultWallet);
   const { useChainId, useAccounts, useIsActivating, useIsActive, useProvider } = hooks
   const chainId = useChainId()
@@ -18,10 +12,9 @@ const CoinbaseWalletCard = forwardRef(({account, show, onStatusChange, onRemoveW
   const isActivating = useIsActivating()
   const isActive = useIsActive()
   const provider = useProvider()
-  const prevAddressClicked = useRef(null);
   const prevIsActive = useRef(null);
   const [error, setError] = useState(undefined)
-  const [addressClicked, setAddressClicked] = useState(null);
+  const cardRef = useRef()
 
   // attempt to connect eagerly on mount
   useEffect(() => {
@@ -36,12 +29,6 @@ const CoinbaseWalletCard = forwardRef(({account, show, onStatusChange, onRemoveW
       setTimeout(() => {
         coinbaseWallet.activate().catch(setError)
       }, 2000)
-    }
-
-    document.addEventListener('click', handleClickOutside);
-    return () => {
-      document.removeEventListener('click', handleClickOutside);
-      //document.removeEventListener('mousemove', handleMouseMove);
     }
   },[]);
 
@@ -78,10 +65,8 @@ const CoinbaseWalletCard = forwardRef(({account, show, onStatusChange, onRemoveW
   }, [accounts, chainId])
 
   useEffect(() => {
-    //if (addressClicked) console.log('just checking ------------------_____>', addressClicked)
-    prevAddressClicked.current = addressClicked;
     prevIsActive.current = isActive;
-  }, [addressClicked, isActive])
+  }, [isActive])
 
   useImperativeHandle(ref, () => {
     return {
@@ -90,7 +75,7 @@ const CoinbaseWalletCard = forwardRef(({account, show, onStatusChange, onRemoveW
         onConnectDisconnect(e, 'coinbase', true)
       },
       closeContextMenu() {
-        setAddressClicked(null);
+        cardRef.current.closeFlyout()
       }
     }
   })
@@ -122,28 +107,11 @@ const CoinbaseWalletCard = forwardRef(({account, show, onStatusChange, onRemoveW
     }
   }
 
-  const handleClickOutside = (e) => {
-    //console.log("resetting display of context menu");
-    setAddressClicked(null);
-  }
-
-  const onToggleContextMenu = (e, address) => {    
-    e.stopPropagation();
-    if (!prevAddressClicked.current) {
-      setAddressClicked(address);
-      onContextMenuOpen('coinbase')
-    } else {
-      setAddressClicked(null);
-    }
-  }
+  
 
   const handleRemoveWallet = (walletAddress) => {
     coinbaseWallet.deactivate();
-    onRemoveWallet(walletAddress);
-  }
-
-  const onHideContextMenu = (e, address) => {
-    setAddressClicked(null);
+    //onRemoveWallet(walletAddress);
   }
 
   const getDefaultWallet = (address) => {
@@ -152,16 +120,8 @@ const CoinbaseWalletCard = forwardRef(({account, show, onStatusChange, onRemoveW
 
   return (
     (show && account)? <li>
-      <div className={styles.contextMenuContainer2}>
-        <ContextMenu
-          walletAddress={addressClicked}
-          onRemoveWallet={handleRemoveWallet} 
-          onSetDefaultWallet={onSetDefaultWallet}
-          onHideContextMenu={onHideContextMenu}
-          onAlternate={getDefaultWallet(addressClicked)}
-        />
-      </div>
       <Card
+        ref={cardRef}
         id={'coinbase'}
         connector={coinbaseWallet}
         activeChainId={chainId}
@@ -172,8 +132,8 @@ const CoinbaseWalletCard = forwardRef(({account, show, onStatusChange, onRemoveW
         accounts={accounts}
         provider={provider}
         onConnectDisconnect={onConnectDisconnect}
+        onRemoveWallet={handleRemoveWallet}
       />
-      <button className={styles.contextMenu} onClick={(e) => onToggleContextMenu(e, account)}><IConContextMenu /></button>
     </li>
     :
     null

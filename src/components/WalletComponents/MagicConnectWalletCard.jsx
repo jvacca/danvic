@@ -2,7 +2,6 @@ import React, { useEffect, useState, forwardRef, useRef, useImperativeHandle } f
 import { useSelector } from 'react-redux';
 import Button from '../UICommon/Button'
 import Card from './Card'
-import ContextMenu from '../UICommon/ContextMenu';
 import IConContextMenu from '@/assets/icon-contextmenu.svg';
 import styles from './CardStyles.module.scss';
 import {ethers} from 'ethers'
@@ -28,17 +27,16 @@ if (typeof window !== "undefined") {
 }
 
 // eslint-disable-next-line react/display-name
-const MagicConnectWalletCard = forwardRef(({account, show, onStatusChange, onRemoveWallet, onSetDefaultWallet, onError, onContextMenuOpen}, ref) => {
+const MagicConnectWalletCard = forwardRef(({account, show, onStatusChange, onError}, ref) => {
   const defaultWallet = useSelector((state) => state.account.defaultWallet);
   const [chainId, setChainId] = useState(null)
   const [accounts, setAccounts] = useState(null)
   const [isActivating, setIsActivating] = useState(false)
   const [isActive, setIsActive] = useState(false)
   const [provider, setProvider] = useState()
-  const prevAddressClicked = useRef(null);
   const prevIsActive = useRef(null);
   const [error, setError] = useState(undefined)
-  const [addressClicked, setAddressClicked] = useState(null);
+  const cardRef = useRef()
 
   const polygonMumbai = {
     rpcUrl: 'https://polygon-mumbai.infura.io/v3/0e1b42741af54fa0b3ed7766b492ee83', // Polygon mumbai RPC URL
@@ -76,12 +74,6 @@ const MagicConnectWalletCard = forwardRef(({account, show, onStatusChange, onRem
         }
       })
     }
-
-    document.addEventListener('click', handleClickOutside);
-    return () => {
-      document.removeEventListener('click', handleClickOutside);
-      //document.removeEventListener('mousemove', handleMouseMove);
-    }
   }, []);
 
   useEffect(() => {
@@ -117,10 +109,8 @@ const MagicConnectWalletCard = forwardRef(({account, show, onStatusChange, onRem
   }, [accounts, chainId])
 
   useEffect(() => {
-    //if (addressClicked) console.log('just checking ------------------_____>', addressClicked)
-    prevAddressClicked.current = addressClicked;
     prevIsActive.current = isActive;
-  }, [addressClicked, isActive])  
+  }, [isActive])  
 
   useImperativeHandle(ref, () => {
     return {
@@ -129,7 +119,7 @@ const MagicConnectWalletCard = forwardRef(({account, show, onStatusChange, onRem
         onConnectDisconnect(e, 'magic', true)
       },
       closeContextMenu() {
-        setAddressClicked(null);
+        cardRef.current.closeFlyout()
       }
     }
   })
@@ -203,21 +193,6 @@ const MagicConnectWalletCard = forwardRef(({account, show, onStatusChange, onRem
     }
   }
 
-  const handleClickOutside = (e) => {
-    //console.log("resetting display of context menu");
-    setAddressClicked(null);
-  }
-
-  const onToggleContextMenu = (e, address) => {    
-    e.stopPropagation();
-    if (!prevAddressClicked.current) {
-      setAddressClicked(address);
-      onContextMenuOpen('magic')
-    } else {
-      setAddressClicked(null);
-    }
-  }
-
   const handleRemoveWallet = (walletAddress) => {
     logoutMagicConnect().then(data => {
       setAccounts('')
@@ -226,11 +201,7 @@ const MagicConnectWalletCard = forwardRef(({account, show, onStatusChange, onRem
       setIsActivating(false)
       localStorage.setItem('m3magic', false)
     });
-    onRemoveWallet(walletAddress);
-  }
-
-  const onHideContextMenu = (e, address) => {
-    setAddressClicked(null);
+    //onRemoveWallet(walletAddress);
   }
 
   const getDefaultWallet = (address) => {
@@ -253,16 +224,8 @@ const MagicConnectWalletCard = forwardRef(({account, show, onStatusChange, onRem
 
   return (
     (show && account)? <li>
-      <div className={styles.contextMenuContainer2}>
-        <ContextMenu
-          walletAddress={addressClicked}
-          onRemoveWallet={handleRemoveWallet} 
-          onSetDefaultWallet={onSetDefaultWallet}
-          onHideContextMenu={onHideContextMenu}
-          onAlternate={getDefaultWallet(addressClicked)}
-        />
-      </div>
       <Card
+        ref={cardRef}
         id={'magic'}
         connector={handleNetworkChange}
         activeChainId={chainId}
@@ -273,8 +236,8 @@ const MagicConnectWalletCard = forwardRef(({account, show, onStatusChange, onRem
         accounts={accounts}
         provider={provider}
         onConnectDisconnect={onConnectDisconnect}
+        onRemoveWallet={handleRemoveWallet}
       />
-      <button className={styles.contextMenu} onClick={(e) => onToggleContextMenu(e, account)}><IConContextMenu /></button>
     </li>
     :
     null

@@ -1,0 +1,66 @@
+.FlyoutMenu {
+  position: absolute;
+  top: 40%;
+  right: 0;
+
+  .FlyoutMenuToggle {
+    position: absolute;
+    right: 0;
+  }
+  
+  .FlyoutMenuList {
+    width: 275px;
+    margin-top: 10%;
+    z-index: 10;
+    .note {
+      font-size: 14px !important;
+    }
+    .inner {
+      position: relative;
+      width: 100%;
+      background: #fff;
+      padding: 5%;
+      z-index: 5;
+      border: 2px solid #000;
+      border-radius: 5px;
+      
+      ul.cmList {
+        > li {
+          font-size: 14px;
+          line-height: 2;
+          border-top: none !important;
+          border-bottom: 1px solid #ccc;
+          padding: 5% 0 !important;
+          
+          a {
+            display: inline-block;
+            cursor: pointer;
+            text-decoration: none !important;
+          }
+
+          p {
+            position: static !important;
+            line-height: 1;
+            margin-top: 20%;
+          }
+
+          svg {
+            display: inline-block;
+            width: 25px;
+            margin-right: 3%;
+            vertical-align: middle;
+          }
+        }
+        > li:first-child {
+          border-bottom: 1px solid #ccc !important;
+          border-radius: 0 !important;
+          margin: 0 !important;
+          color: #ccc;
+        }
+        li:last-child {
+          border-bottom: none !important;
+        }
+      }
+    }
+  }
+}

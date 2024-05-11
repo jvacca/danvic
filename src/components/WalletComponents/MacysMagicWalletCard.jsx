@@ -16,24 +16,22 @@ import {ethers} from 'ethers'
 const { Magic } = require('magic-sdk')
 
 // eslint-disable-next-line react/display-name
-const MacysMagicWalletCard = forwardRef(({account, show, onStatusChange, onRemoveWallet, onSetDefaultWallet, onError, onContextMenuOpen}, ref) => {
+const MacysMagicWalletCard = forwardRef(({account, show, onStatusChange, onError}, ref) => {
   const defaultWallet = useSelector((state) => state.account.defaultWallet);
   const [chainId, setChainId] = useState(null)
   const [accounts, setAccounts] = useState(null)
   const [isActivating, setIsActivating] = useState(false)
   const [isActive, setIsActive] = useState(false)
   const [provider, setProvider] = useState()
-  const prevAddressClicked = useRef(null);
   const prevIsActive = useRef(null);
   const [error, setError] = useState(undefined)
-  const [addressClicked, setAddressClicked] = useState(null);
-
   const [showTooltip, setShowTooltip] = useState(false);
   const [tool, setTool] = useState({
     x: 0,
     y: 0
   });
   const prevState = useRef(null);
+  const cardRef = useRef()
   const devMode = true;
   
   const toolTipCopy = "This mstylelab digital address is linked to your account and cannot be disconnected or removed.";
@@ -70,13 +68,6 @@ const MacysMagicWalletCard = forwardRef(({account, show, onStatusChange, onRemov
       setIsActive(true);
       setIsActivating(false);
     })
-    
-    document.addEventListener('click', handleClickOutside);
-    return () => {
-      document.removeEventListener('click', handleClickOutside);
-      //document.removeEventListener('mousemove', handleMouseMove);
-      
-    }
   }, []);
 
   useEffect(() => {
@@ -111,13 +102,6 @@ const MacysMagicWalletCard = forwardRef(({account, show, onStatusChange, onRemov
     }
   }, [accounts, chainId])
 
-
-  useEffect(() => {
-    //if (addressClicked) console.log('just checking ------------------_____>', addressClicked)
-    prevAddressClicked.current = addressClicked;
-    prevIsActive.current = addressClicked
-  }, [addressClicked, isActive])
-
   useImperativeHandle(ref, () => {
     return {
       // connectWallet() {
@@ -125,7 +109,7 @@ const MacysMagicWalletCard = forwardRef(({account, show, onStatusChange, onRemov
       //   onConnectDisconnect(e, 'coinbase', true)
       // },
       closeContextMenu() {
-        setAddressClicked(null);
+        cardRef.current.closeFlyout()
       }
     }
   })
@@ -140,25 +124,6 @@ const MacysMagicWalletCard = forwardRef(({account, show, onStatusChange, onRemov
     setShowTooltip(false);
   }
 
-  const handleClickOutside = (e) => {
-    //console.log("resetting display of context menu");
-    setAddressClicked(null);
-  }
-
-  const onToggleContextMenu = (e, address) => {
-    e.stopPropagation();
-    if (!prevState.current) {
-      setAddressClicked(address);
-      onContextMenuOpen('macys')
-    } else {
-      setAddressClicked(null);
-    }
-  }
-
-  const onHideContextMenu = (e, address) => {
-    setAddressClicked(null);
-  }
-
   const onCloseTooltip = (e) => {
     setShowTooltip(false);
   }
@@ -169,17 +134,9 @@ const MacysMagicWalletCard = forwardRef(({account, show, onStatusChange, onRemov
 
   return (
     (show && account)? <li>
-      <div className={styles.contextMenuContainer2}>
-        <ContextMenu
-          walletAddress={addressClicked}
-          onRemoveWallet={''} 
-          onSetDefaultWallet={''}
-          onHideContextMenu={onHideContextMenu}
-          onAlternate={getDefaultWallet(addressClicked)}
-        />
-      </div>
       {devMode? 
       <Card
+        ref={cardRef}
         id={'macys'}
         activeChainId={chainId}
         isActivating={false}
@@ -224,7 +181,6 @@ const MacysMagicWalletCard = forwardRef(({account, show, onStatusChange, onRemov
           `}</style>
         </>
       </>}
-        <button className={styles.contextMenu} onClick={(e) => onToggleContextMenu(e, account)}><IConContextMenu /></button>
     </li>
     :
     null

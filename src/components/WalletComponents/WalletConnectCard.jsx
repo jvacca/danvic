@@ -36,7 +36,7 @@ createWeb3Modal({
 });
 
 // eslint-disable-next-line react/display-name
-const WalletConnectCard = forwardRef(({account, show, onStatusChange, onRemoveWallet, onSetDefaultWallet, onError, onContextMenuOpen}, ref) => {
+const WalletConnectCard = forwardRef(({account, show, onStatusChange, onError}, ref) => {
   const defaultWallet = useSelector((state) => state.account.defaultWallet);
   const { setThemeMode } = useWeb3ModalTheme()
   const { address, chainId, isConnected } = useWeb3ModalAccount()
@@ -44,11 +44,10 @@ const WalletConnectCard = forwardRef(({account, show, onStatusChange, onRemoveWa
   const [isActivating, setIsActivating] = useState(false)
   const { disconnect } = useDisconnect();
   const { walletProvider } = useWeb3ModalProvider()
-  const prevAddressClicked = useRef(null);
   const prevIsActive = useRef(null);
   const [error, setError] = useState(undefined)
   //const { error } = useWeb3ModalError()
-  const [addressClicked, setAddressClicked] = useState(null);
+  const cardRef = useRef()
 
   let isMobile = false
 
@@ -65,11 +64,6 @@ const WalletConnectCard = forwardRef(({account, show, onStatusChange, onRemoveWa
       setThemeMode('light')
       open()
       setIsActivating(true)
-    }
-
-    document.addEventListener('click', handleClickOutside);
-    return () => {
-      document.removeEventListener('click', handleClickOutside);
     }
   }, []);
 
@@ -116,10 +110,8 @@ const WalletConnectCard = forwardRef(({account, show, onStatusChange, onRemoveWa
   }, [address, chainId, walletProvider])
 
   useEffect(() => {
-    //if (addressClicked) console.log('just checking ------------------_____>', addressClicked)
-    prevAddressClicked.current = addressClicked;
     prevIsActive.current = isConnected;
-  }, [addressClicked, isConnected])  
+  }, [isConnected])  
 
   const getErrorMsg = (error) => {
     console.log("Getting error message: ", error.name)
@@ -140,7 +132,7 @@ const WalletConnectCard = forwardRef(({account, show, onStatusChange, onRemoveWa
         onConnectDisconnect(e, 'walletconnect', true)
       },
       closeContextMenu() {
-        setAddressClicked(null);
+        cardRef.current.closeFlyout()
       }
     }
   })
@@ -187,21 +179,6 @@ const WalletConnectCard = forwardRef(({account, show, onStatusChange, onRemoveWa
     }
   }
 
-  const handleClickOutside = (e) => {
-    //console.log("resetting display of context menu");
-    setAddressClicked(null);
-  }
-
-  const onToggleContextMenu = (e, address) => {
-    e.stopPropagation();
-    if (!prevAddressClicked.current) {
-      setAddressClicked(address);
-      onContextMenuOpen('walletconnect')
-    } else {
-      setAddressClicked(null);
-    }
-  }
-
   const handleRemoveWallet = (walletAddress) => {
     // remving reset because this does nothing to Metmask extension
     if (isConnected && isMobile) {
@@ -213,7 +190,7 @@ const WalletConnectCard = forwardRef(({account, show, onStatusChange, onRemoveWa
         //setError(getErrorMsg(error))
       }
     } else if (!isConnected && isMobile) {
-      onRemoveWallet(walletAddress);
+      //onRemoveWallet(walletAddress);
     }
       
     if (!isMobile) {
@@ -225,26 +202,14 @@ const WalletConnectCard = forwardRef(({account, show, onStatusChange, onRemoveWa
     }
   }
 
-  const onHideContextMenu = (e, address) => {
-    setAddressClicked(null);
-  }
-
   const getDefaultWallet = (address) => {
     return (address === defaultWallet.address)
   }
 
   return (
     (show && account)? <li>
-        <div className={styles.contextMenuContainer2}>
-          <ContextMenu
-            walletAddress={addressClicked}
-            onRemoveWallet={handleRemoveWallet} 
-            onSetDefaultWallet={onSetDefaultWallet}
-            onHideContextMenu={onHideContextMenu}
-            onAlternate={getDefaultWallet(addressClicked)}
-          />
-        </div>
         <Card
+          ref={cardRef}
           id={'walletconnect'}
           connector={handleNetworkChange}
           activeChainId={chainId}
@@ -255,8 +220,8 @@ const WalletConnectCard = forwardRef(({account, show, onStatusChange, onRemoveWa
           accounts={[address]}
           provider={walletProvider}
           onConnectDisconnect={onConnectDisconnect}
+          onRemoveWallet={handleRemoveWallet}
         />
-        <button className={styles.contextMenu} onClick={(e) => onToggleContextMenu(e, account)}><IConContextMenu /></button>
       </li>
     :
     null
