@@ -6,8 +6,6 @@ import Button from '../UICommon/Button'
 import Card from './Card'
 import IConMacys from '@/assets/icon-macys.svg';
 import IConCopy from '@/assets/icon-copy.svg';
-import ContextMenu from '../UICommon/ContextMenu';
-import IConContextMenu from '@/assets/icon-contextmenu.svg'
 import MagicAuthHelper from '../../services/MagicAuthHelper'
 
 import {copyToClipBoard, textEllipsisMid} from '../../services/GlobalUtilities'

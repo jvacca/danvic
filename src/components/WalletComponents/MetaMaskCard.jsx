@@ -1,8 +1,6 @@
 import React, { useEffect, useState, forwardRef, useRef, useImperativeHandle } from 'react'
 import { useSelector } from 'react-redux';
 import { hooks, metaMask } from '../WalletConnectors/metaMask'
-import ContextMenu from '../UICommon/ContextMenu';
-import IConContextMenu from '@/assets/icon-contextmenu.svg';
 import Button from '../UICommon/Button'
 import Card from './Card'
 import parse from 'html-react-parser';

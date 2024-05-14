@@ -4,8 +4,6 @@ import { useSelector } from 'react-redux';
 import { createWeb3Modal, defaultConfig, useWeb3Modal, useWeb3ModalState, useWeb3ModalAccount, useWeb3ModalProvider, useWeb3ModalError, useDisconnect, useWeb3ModalTheme } from '@web3modal/ethers5/react'
 import {ethers} from 'ethers'
 import Button from '../UICommon/Button'
-import ContextMenu from '../UICommon/ContextMenu';
-import IConContextMenu from '@/assets/icon-contextmenu.svg';
 import Card from './Card'
 import parse from 'html-react-parser';
 import styles from './CardStyles.module.scss';
