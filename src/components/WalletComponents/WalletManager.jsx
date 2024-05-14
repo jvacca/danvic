@@ -7,7 +7,7 @@ import CoinbaseWalletCard from "../WalletComponents/CoinbaseWalletCard"
 import MetaMaskCard from "../WalletComponents/MetaMaskCard"
 import MagicConnectWalletCard from "../WalletComponents/MagicConnectWalletCard"
 import WalletConnectCard from "../WalletComponents/WalletConnectCard"
-import ConnectWalletModal from '../UICommon/ConnectWalletModal'
+import ConnectWalletModal from './ConnectWalletModal'
 import MobileWalletManager from './MobileWalletManager'
 import Modal from '../UICommon/Modal'
 import styles from '../WalletComponents/CardStyles.module.scss'
