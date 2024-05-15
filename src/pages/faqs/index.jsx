@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import Head from '../components/Head';
-import FaqList from '../components/Faq/FaqList'; // Assuming FaqList is in the same directory
-import faqsData from '../../data/FAQ.json';
-import styles from './faq.module.scss';
+import Head from '@/components/Head';
+import FaqList from './FaqList'; // Assuming FaqList is in the same directory
+import faqsData from '../../../data/FAQ.json';
+import styles from './Faq.module.scss';
 import { useDispatch } from "react-redux";
-import { setNavItemActive } from "../reducers/ApplicationSlice";
+import { setNavItemActive } from "@/reducers/ApplicationSlice";
 
 export default function Faqs() {
   const paradeIsLive = true;

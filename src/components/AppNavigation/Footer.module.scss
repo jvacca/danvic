@@ -3,7 +3,7 @@
 @import '@/styles/mixins';
 
 .wrapper {
-  position: absolute;
+  position: sticky;
   background-color: #ccc;
   width: 100%;
   height: 50px;

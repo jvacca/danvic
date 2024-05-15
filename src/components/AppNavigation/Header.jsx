@@ -4,21 +4,21 @@ import Link from "next/link";
 import { useSelector, useDispatch } from "react-redux";
 import {
   updateIsLoggedIn
-} from "../reducers/ApplicationSlice";
-import Button from './UICommon/Button'
-import Modal from './UICommon/Modal'
-import Signin from './Signin/Signin'
-import DropDown from './UICommon/DropDown'
+} from "../../reducers/ApplicationSlice";
+import Button from '../UICommon/Button'
+import Modal from '../UICommon/Modal'
+import Signin from '../Signin/Signin'
+import DropDown from '../UICommon/DropDown'
 
-import IconLogiIn from '../assets/icon-signin.svg'
-import IconLogOut from '../assets/icon-logout.svg';
-import IconSettings from '../assets/icon-settings-black.svg'
-import IconProfileSrc from '../../public/images/icon-profile.png'
+import IconLogiIn from '@/assets/icon-signin.svg'
+import IconLogOut from '@/assets/icon-logout.svg';
+import IconSettings from '@/assets/icon-settings-black.svg'
+import IconProfileSrc from '../../../public/images/icon-profile.png'
 
-import ProfilePicSrc from '../../public/images/profilePic.png'
-import logoSrc from '../../public/images/icons8-card-wallet-94.png'
+import ProfilePicSrc from '../../../public/images/profilePic.png'
+import logoSrc from '../../../public/images/icons8-card-wallet-94.png'
 
-import styles from './AppNavigation.module.scss'
+import styles from './Header.module.scss'
 
 export default function AppNavigation() {
   const isLoggedIn = useSelector((state) => state.application.isLoggedIn)
@@ -39,21 +39,21 @@ export default function AppNavigation() {
         route: '/profile/dashboard'
       },
       {
-        id: 0,
+        id: 1,
         type: 'link',
         icon: <Image src={IconProfileSrc} alt="profle" />,
         label: 'Wallets',
         route: '/profile/wallet'
       },
       {
-        id: 1,
+        id: 2,
         type: 'link',
         icon: <IconSettings />,
         label: 'Settings',
         route: '/profile/settings'
       },
       {
-        id: 2,
+        id: 3,
         type: 'button',
         icon: <IconLogOut />,
         label: 'Log out',

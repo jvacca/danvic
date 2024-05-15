@@ -1,13 +1,16 @@
 import React from 'react'
 import Head from './Head'
-import AppNavigation from '@/components/AppNavigation'
-import Footer from '@/components/Footer'
+import Header from '@/components/AppNavigation/Header'
+import Footer from '@/components/AppNavigation/Footer'
+import styles from './Layout.module.scss'
 
 export default function Layout({children}) {
   return (
     <>
-      <AppNavigation />
-        {children}
+      <Header />
+        <div className={styles.frame}>
+          {children}
+        </div>
       <Footer />
     </>
   )

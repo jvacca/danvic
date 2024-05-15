@@ -124,8 +124,8 @@ export default function WalletScanner() {
       } else if (NFTData && NFTData.media[0]) {
         return (
           NFTData.media[0].raw
-            ? <Image src={ipfs(NFTData.media[0].raw)} alt={"NFT media"}/>
-          : <Image src={ipfs(NFTData.media[0].thumbnail)} alt={"NFT media"}/>
+            ? <img src={ipfs(NFTData.media[0].raw)} alt={"NFT media"}/>
+          : <img src={ipfs(NFTData.media[0].thumbnail)} alt={"NFT media"}/>
         )
       } else {
         console.log("Warning: not getting any media for this NFT ")

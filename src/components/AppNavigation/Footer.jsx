@@ -1,6 +1,6 @@
 import React from 'react'
 import Image from 'next/image'
-import githubSrc from '../../public/images/icons8-github-logo-24.png'
+import githubSrc from '../../../public/images/icons8-github-logo-24.png'
 import styles from './Footer.module.scss'
 
 export default function Footer() {

@@ -1,17 +1,17 @@
 // React imports
-import React, {useEffect, useState, useRef} from "react";
-import {useSelector} from 'react-redux';
+import React, { useEffect, useState, useRef } from "react";
+import { useSelector } from 'react-redux';
 import Link from "next/link"
 import Image from "next/image"
 import { useSearchParams } from 'next/navigation'
 import Head from '../../../components/Head';
 import axios from 'axios';
 import web3 from 'web3'
-import {Alchemy, Network} from "alchemy-sdk";
+import { Alchemy, Network } from "alchemy-sdk";
 import styles from './nftDetail.module.scss';
-import {textEllipsisMid} from '@/services/GlobalUtilities';
+import { textEllipsisMid } from '@/services/GlobalUtilities';
 
-export default function NFTDetail({contractid, tokenid}) {
+export default function NFTDetail({ contractid, tokenid }) {
     const [NFTData, setNFTData] = useState(null);
     const profileName = useSelector((state) => state.account.profileName);
     const [acquired, setAcquired] = useState([]);
@@ -25,60 +25,60 @@ export default function NFTDetail({contractid, tokenid}) {
         'vAMzsga-DEPYHrECGcrp0EdpgSh-YMcv',
         "ZfRh6v4NvnEdmXTWp0F8xl3Fzmnn1NEp"
     ]
-    
 
-  const getNetwork = (id) => {
-    switch(id) {
-      case '1':
-        return Network.ETH_MAINNET
-      case '5':
-        return Network.ETH_GOERLI
-      case '137':
-        return Network.MATIC_MAINNET
-      case '80001':
-        return Network.MATIC_MUMBAI
-      default:
-          return ''
+
+    const getNetwork = (id) => {
+        switch (id) {
+            case '1':
+                return Network.ETH_MAINNET
+            case '5':
+                return Network.ETH_GOERLI
+            case '137':
+                return Network.MATIC_MAINNET
+            case '80001':
+                return Network.MATIC_MUMBAI
+            default:
+                return ''
+        }
     }
-  }
 
-  function getNFT() {
-    return new Promise(function (resolve, reject) {
-        const apiKey = keyswap[Math.floor(Math.random() * keyswap.length)]
-        const network = (querystrings.get('network'))? getNetwork(querystrings.get('network')) : Network.ETH_MAINNET
-        const tokenType = (querystrings.get('type'))? querystrings.get('type') : 'ERC721'
-        const baseurl = `https://${network}.g.alchemy.com/nft/v3/${apiKey}/getNFTMetadata`
+    function getNFT() {
+        return new Promise(function (resolve, reject) {
+            const apiKey = keyswap[Math.floor(Math.random() * keyswap.length)]
+            const network = (querystrings.get('network')) ? getNetwork(querystrings.get('network')) : Network.ETH_MAINNET
+            const tokenType = (querystrings.get('type')) ? querystrings.get('type') : 'ERC721'
+            const baseurl = `https://${network}.g.alchemy.com/nft/v3/${apiKey}/getNFTMetadata`
 
-        var params = {
-            contractAddress:contractid,
-            tokenId:tokenid,
-            refreshCache:false,
-            tokenType: tokenType
-        }
+            var params = {
+                contractAddress: contractid,
+                tokenId: tokenid,
+                refreshCache: false,
+                tokenType: tokenType
+            }
 
-        const config = {
-            method: 'get',
-            url: baseurl,
-            params: params
-        };
-        
-        console.log("Getting NFTs with ", params)
-        try {
-            axios(config)
-            .then((response) => {
-                resolve(response.data)
-            })
-            .catch(function (error) {
-                console.log('error', error);
-                resolve([]);
-            });
-        } catch(error) {
-            console.log("Error getting nfts ", error)
-        }
-    })
-  }
+            const config = {
+                method: 'get',
+                url: baseurl,
+                params: params
+            };
 
-    useEffect(() => {       
+            console.log("Getting NFTs with ", params)
+            try {
+                axios(config)
+                    .then((response) => {
+                        resolve(response.data)
+                    })
+                    .catch(function (error) {
+                        console.log('error', error);
+                        resolve([]);
+                    });
+            } catch (error) {
+                console.log("Error getting nfts ", error)
+            }
+        })
+    }
+
+    useEffect(() => {
         if (!NFTData) {
             console.log('parameters ', NFTData, contractid, tokenid);
             getNFT().then((data) => {
@@ -100,66 +100,58 @@ export default function NFTDetail({contractid, tokenid}) {
 
     const getMedia = () => {
         console.log("NFTListAlchemy: ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~> check media ")
-        
-       return <Image src={NFTData?.raw?.metadata?.image} alt={"NFT media"} />
+
+        return <img src={NFTData?.raw?.metadata?.image} alt={"NFT media"} />
     }
 
     return (
         <div suppressHydrationWarning>
             <Head title="Macy's STYL - NFT Detail" />
-                       
-            <div className={styles.detailsFrame}>
-                {NFTData && 
-                <div className={styles.detailsWrap}>
-                    <Link href="/profile/dashboard">Back to dashboard</Link>
-                    
-                    <div className={styles.content}>
-                    <div className={styles.imageContainer}>
-                        {getMedia()}
-                    </div>
-                    <div className={styles.copyContainer}>
-                        <h2 data-alt={NFTData.name}>
-                            {NFTData.name}
-                        </h2>
-                        <p>{NFTData.description}</p>
 
-                        <div className={styles.detailsContent}>
-                            <div className={styles.specs} ref={detailref}>
-                            <ul>
-                                <li
-                                className={styles.gradientBackground}
-                                >
-                                <span>Contact Address</span>{" "}
-                                {textEllipsisMid(NFTData.contract?.address)}
-                                </li>
-                                <li
-                                className={styles.gradientBackground}
-                                >
-                                <span>Token ID</span> {NFTData.tokenId}
-                                </li>
-                                <li
-                                className={styles.gradientBackground}
-                                >
-                                <span>Token Type</span> {NFTData.tokenType}
-                                </li>
-                                <li
-                                className={styles.gradientBackground}
-                                >
-                                <span>Network</span>
-                                {getNetwork(querystrings.get('network'))}
-                                </li>
-                            </ul>
+            <div className={styles.detailsFrame}>
+                {NFTData &&
+                    <div className={styles.detailsWrap}>
+                        <Link href="/profile/dashboard">Back to dashboard</Link>
+
+                        <div className={styles.content}>
+                            <div className={styles.imageContainer}>
+                                {getMedia()}
                             </div>
+                            <div className={styles.copyContainer}>
+                                <h2 data-alt={NFTData.name}>
+                                    {NFTData.name}
+                                </h2>
+                                <p>{NFTData.description}</p>
+
+                                <div className={styles.detailsContent}>
+                                    <div className={styles.specs} ref={detailref}>
+                                        <ul>
+                                            <li className={styles.gradientBackground}>
+                                                <span>Contact Address</span>{" "}
+                                                {textEllipsisMid(NFTData.contract?.address)}
+                                            </li>
+                                            <li className={styles.gradientBackground}>
+                                                <span>Token ID</span> {NFTData.tokenId}
+                                            </li>
+                                            <li className={styles.gradientBackground}>
+                                                <span>Token Type</span> {NFTData.tokenType}
+                                            </li>
+                                            <li className={styles.gradientBackground}>
+                                                <span>Network</span>
+                                                {getNetwork(querystrings.get('network'))}
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div>}
+                    </div>}
             </div>
         </div>
     );
 }
 
-export async function getServerSideProps({params}) {
+export async function getServerSideProps({ params }) {
     return {
         props: {
             contractid: params.contractid,

@@ -1,0 +1,26 @@
+@import '../styles/_fonts.scss';
+@import '../styles/_variables.scss';
+@import '../styles/_mixins.scss';
+
+
+.frame {
+  width: 100%;
+  max-width: 1345px;
+  padding-top: 80px;
+  margin: 0 auto;
+  min-height: calc(100vh - 100px);
+
+  @include mq(max) {
+    padding-top: 160px;
+  }
+
+  @include mq(max-width-desktop) {
+    width: 95%;
+    height: auto;
+  }
+  @include mq(mobile) {
+    width: 90%;
+    margin: 0 auto;
+    min-height: calc(100vh - 150px);
+  }
+}
