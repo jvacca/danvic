@@ -1,5 +1,4 @@
 import React, { useState, forwardRef, useRef, useImperativeHandle, useContext } from "react";
-import IConContextMenu from '@/assets/icon-contextmenu.svg';
 import styles from './FlyoutMenu.module.scss';
 import {FlyoutContext} from '../WalletComponents/WalletManager'
 
@@ -24,7 +23,7 @@ import {FlyoutContext} from '../WalletComponents/WalletManager'
   )
 })
 
-function Toggle({id, open, setOpen}) {
+function Toggle({id, children, open, setOpen}) {
   const flyoutListner = useContext(FlyoutContext);
   const toggleMenu = (e) => {
     e.stopPropagation()
@@ -34,7 +33,7 @@ function Toggle({id, open, setOpen}) {
   }
 
   return (
-    <button className={styles.FlyoutMenuToggle} onClick={(e) => toggleMenu(e)}><IConContextMenu /></button>
+    <button className={styles.FlyoutMenuToggle} onClick={(e) => toggleMenu(e)}>{children}</button>
   )
 }
 

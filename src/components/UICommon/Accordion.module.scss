@@ -1,0 +1,30 @@
+@import '@/styles/fonts';
+@import '@/styles/variables';
+@import '@/styles/mixins';
+
+.Accordion {
+  width: 100%;
+  margin: 4% 0;
+
+  .item {
+    position: relative;
+    width: 100%;
+    margin-bottom: 4%;
+    border-bottom: 1px solid #ccc;
+
+    .head {
+      width: 100%;
+      margin-bottom: 4%;
+      
+      svg {
+        position: absolute;
+        top: 0;
+        right: 0; 
+      }
+    }
+
+    .body {
+      width: 100%;
+    }
+  }
+}

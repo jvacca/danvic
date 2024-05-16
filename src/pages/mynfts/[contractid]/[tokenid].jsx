@@ -4,7 +4,8 @@ import { useSelector } from 'react-redux';
 import Link from "next/link"
 import Image from "next/image"
 import { useSearchParams } from 'next/navigation'
-import Head from '../../../components/Head';
+import Head from '@/components/Head';
+import Accordion from '@/components/UICommon/Accordion'
 import axios from 'axios';
 import web3 from 'web3'
 import { Alchemy, Network } from "alchemy-sdk";
@@ -123,26 +124,43 @@ export default function NFTDetail({ contractid, tokenid }) {
                                 </h2>
                                 <p>{NFTData.description}</p>
 
-                                <div className={styles.detailsContent}>
-                                    <div className={styles.specs} ref={detailref}>
-                                        <ul>
-                                            <li className={styles.gradientBackground}>
-                                                <span>Contact Address</span>{" "}
-                                                {textEllipsisMid(NFTData.contract?.address)}
-                                            </li>
-                                            <li className={styles.gradientBackground}>
-                                                <span>Token ID</span> {NFTData.tokenId}
-                                            </li>
-                                            <li className={styles.gradientBackground}>
-                                                <span>Token Type</span> {NFTData.tokenType}
-                                            </li>
-                                            <li className={styles.gradientBackground}>
-                                                <span>Network</span>
-                                                {getNetwork(querystrings.get('network'))}
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
+                                <Accordion>
+                                    <Accordion.Item id={'details'}>
+                                        <Accordion.Head>
+                                            <h3>NFT Details</h3>
+                                        </Accordion.Head>
+                                        <Accordion.Body>
+                                            <div className={styles.detailsContent}>
+                                                <div className={styles.specs} ref={detailref}>
+                                                    <ul>
+                                                        <li className={styles.gradientBackground}>
+                                                            <span>Contact Address</span>{" "}
+                                                            {textEllipsisMid(NFTData.contract?.address)}
+                                                        </li>
+                                                        <li className={styles.gradientBackground}>
+                                                            <span>Token ID</span> {NFTData.tokenId}
+                                                        </li>
+                                                        <li className={styles.gradientBackground}>
+                                                            <span>Token Type</span> {NFTData.tokenType}
+                                                        </li>
+                                                        <li className={styles.gradientBackground}>
+                                                            <span>Network</span>
+                                                            {getNetwork(querystrings.get('network'))}
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </Accordion.Body>
+                                    </Accordion.Item>
+                                    <Accordion.Item id={'history'}>
+                                        <Accordion.Head>
+                                            <h3>NFT History</h3>
+                                        </Accordion.Head>
+                                        <Accordion.Body>
+                                            <p>[History here]</p>
+                                        </Accordion.Body>
+                                    </Accordion.Item>
+                                </Accordion>
                             </div>
                         </div>
                     </div>}

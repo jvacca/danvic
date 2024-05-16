@@ -11,7 +11,7 @@ import IConMacys from '@/assets/icon-macys.svg';
 import IConMagic from '@/assets/icon-magic-wallet.svg';
 import IConCoinbase from '@/assets/icon-coinbase.svg';
 import IConWalletconnect from '@/assets/icon-wallet-connect.svg';
-
+import IConContextMenu from '@/assets/icon-contextmenu.svg';
 import IConHeart from '@/assets/icon-heart.svg';
 import IConTrash from '@/assets/icon-trash.svg';
 import IConLinkout from '@/assets/icon-linkout.svg';
@@ -155,7 +155,9 @@ const Card = forwardRef(({
       {error && <p className={styles.error}>{error.message ? `Error : ${error.message}` : ''}</p>}
 
       <FlyoutMenu ref={flyoutMenu}>
-        <FlyoutMenu.Toggle id={id} />
+        <FlyoutMenu.Toggle id={id}>
+          <IConContextMenu />
+        </FlyoutMenu.Toggle>
         <FlyoutMenu.List>
           <li><IConHeart /><a onClick={() => setDefaultWallet(accounts)}>Set default wallet</a></li>
           <li><IConLinkout /><a href={`https://etherscan.io/address/${accounts}`} target="_blank" onClick={(e) => onLinkout()}>View on explorer</a></li>
