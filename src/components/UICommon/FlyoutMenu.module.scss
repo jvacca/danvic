@@ -24,22 +24,22 @@
       border: 2px solid #000;
       border-radius: 5px;
       
-      ul.cmList {
+      ul {
         > li {
           font-size: 14px;
           line-height: 2;
-          border-top: none !important;
+          border-top: none;
           border-bottom: 1px solid #ccc;
-          padding: 5% 0 !important;
+          padding: 5% 0;
           
           a {
             display: inline-block;
             cursor: pointer;
-            text-decoration: none !important;
+            text-decoration: none;
           }
 
           p {
-            position: static !important;
+            position: static;
             line-height: 1;
             margin-top: 20%;
           }
@@ -52,13 +52,12 @@
           }
         }
         > li:first-child {
-          border-bottom: 1px solid #ccc !important;
-          border-radius: 0 !important;
-          margin: 0 !important;
-          color: #ccc;
+          border-bottom: 1px solid #ccc ;
+          border-radius: 0 ;
+          margin: 0;
         }
         li:last-child {
-          border-bottom: none !important;
+          border-bottom: none;
         }
       }
     }

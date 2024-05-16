@@ -3,7 +3,7 @@ import styles from './FlyoutMenu.module.scss';
 import {FlyoutContext} from '../WalletComponents/WalletManager'
 
  // eslint-disable-next-line react/display-name
- const FlyoutMenu = forwardRef(({id, children}, ref) => {
+ const FlyoutMenu = forwardRef(({classname, children}, ref) => {
   const [open, setOpen] = useState(false)
 
   useImperativeHandle(ref, () => {
@@ -15,7 +15,7 @@ import {FlyoutContext} from '../WalletComponents/WalletManager'
   })
 
   return (
-    <div className={styles.FlyoutMenu}>
+    <div className={`${styles["FlyoutMenu"]} ${classname}`}>
       {React.Children.map(children, (child) => (
         React.cloneElement(child, {open, setOpen})
       ))}
@@ -23,28 +23,26 @@ import {FlyoutContext} from '../WalletComponents/WalletManager'
   )
 })
 
-function Toggle({id, children, open, setOpen}) {
+function Toggle({id, children, open, setOpen, classname}) {
   const flyoutListner = useContext(FlyoutContext);
   const toggleMenu = (e) => {
     e.stopPropagation()
     setOpen(!open)
 
-    if (open === false) flyoutListner(id)
+    if (open === false && flyoutListner) flyoutListner(id)
   }
 
   return (
-    <button className={styles.FlyoutMenuToggle} onClick={(e) => toggleMenu(e)}>{children}</button>
+    <button className={`${styles["FlyoutMenuToggle"]} ${classname}`} onClick={(e) => toggleMenu(e)}>{children}</button>
   )
 }
 
-function List({children, open}) {
+function List({children, open, classname}) {
   return (
     open && 
-    <div className={styles.FlyoutMenuList}>
+    <div className={`${styles["FlyoutMenuList"]} ${classname}`}>
       <div className={styles.inner} onClick={(e) => e.stopPropagation()}>
-        <ul className={styles.cmList}>
-          {children}                
-        </ul>
+        {children}                
       </div>
     </div>
   )

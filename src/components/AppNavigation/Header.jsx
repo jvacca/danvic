@@ -1,4 +1,4 @@
-import React, {useState, useRef} from 'react'
+import React, {useEffect, useRef} from 'react'
 import Image from 'next/image';
 import Link from "next/link";
 import { useSelector, useDispatch } from "react-redux";
@@ -8,7 +8,8 @@ import {
 import Button from '../UICommon/Button'
 import Modal from '../UICommon/Modal'
 import Signin from '../Signin/Signin'
-import DropDown from '../UICommon/DropDown'
+//import DropDown from '../UICommon/DropDown'
+import FlyoutMenu from '../UICommon/FlyoutMenu'
 
 import IconLogiIn from '@/assets/icon-signin.svg'
 import IconLogOut from '@/assets/icon-logout.svg';
@@ -23,7 +24,7 @@ import styles from './Header.module.scss'
 export default function AppNavigation() {
   const isLoggedIn = useSelector((state) => state.application.isLoggedIn)
   const modal = useRef()
-  const dropdown = useRef()
+  const flyoutMenu = useRef()
   const dispatch = useDispatch()
 
   const onLogout = () => {
@@ -72,7 +73,17 @@ export default function AppNavigation() {
 
   const onClose = () => {
     modal.current.closeModal()
+    flyoutMenu.current.closeMenu()
   }
+
+  useEffect(() => {
+    document.addEventListener('click', () => {
+      flyoutMenu.current?.closeMenu()
+    });
+    return () => {
+      document.removeEventListener('click', () => {});
+    }
+  }, [])
 
   return (
     <>
@@ -92,10 +103,25 @@ export default function AppNavigation() {
           <Link href="/faqs">FAQs</Link> |
 
         {isLoggedIn?
-          <DropDown ref={dropdown} data={options} triggerIcon={ProfilePicSrc} />
+          <FlyoutMenu ref={flyoutMenu} classname={styles.profileMenu}>
+            <FlyoutMenu.Toggle id={'main'} classname={styles.profileToggle}>
+              <Image src={ProfilePicSrc} alt="trigger icon" />
+            </FlyoutMenu.Toggle>
+            <FlyoutMenu.List classname={styles.profileList}>
+              <ul>
+              {options?.map((option) => (
+                <li key={option.id}>
+                  {option.icon? option.icon : null}
+                  {(option.type === 'link')? <Link href={option.route} onClick={onClose}>{option.label}</Link> : null}
+                  {(option.type === 'linkout')? <a href={option.url} onClick={onClose} target='_blank'>{option.label}</a> : null}
+                  {(option.type === 'button')? <a onClick={option.onclick} target='_blank'>{option.label}</a> : null}
+                </li>
+              ))}
+              </ul>
+            </FlyoutMenu.List>
+          </FlyoutMenu>
           :
           <>
-            
             <Button classname={styles.signin} onclickHandler={handleSignin}>Sign in</Button>
           </>}
           </nav>

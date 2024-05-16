@@ -41,13 +41,9 @@
       }
     }
 
-    ul {
+    .faqList {
       margin: 0;
       width: 100%;
-
-      li {
-        margin: 30px 0;
-        position: relative;
 
         .faqElement {
           display: block;
@@ -55,34 +51,12 @@
           width: 100%;
           min-height: 68px;
           max-width: 1045px;
-          margin: 0 auto;
-          .faqContent {
-            position: relative;
-            width: 100%;
-            min-height: 68px;
-            background-color: #fff;
-            border: 2px solid #000;
-            border-radius: 10px;
-            padding: 20px;
-            cursor: pointer;
-            z-index: 1;
+          margin: 4% 0;
+          padding: 20px;
+          border: 2px solid #000;
+          border-radius: 10px;
 
-            @include mq(mobile) {
-              padding-left: 10px;
-            }
-
-            .btnExpandCollapse {
-              position: absolute;
-              width: 32px;
-              height: 32px;
-              top: 17px;
-              right: 22px;
-              
-              @include mq(mobile) {
-                right: 10px;
-              }
-            }
-
+          .faqHead {
             h3 {
               font-family: $macys;
               width: 90%;
@@ -93,6 +67,30 @@
                 font-size: 18px;
               }
             }
+
+            a {
+              position: absolute;
+              width: 32px;
+              height: 32px;
+              top: 17px;
+              right: 22px;
+              
+              @include mq(mobile) {
+                right: 10px;
+              }
+            }
+          }
+          .faqContent {
+            position: relative;
+            width: 100%;
+            min-height: 68px;
+            padding: 20px;
+            cursor: pointer;
+            z-index: 1;
+
+            @include mq(mobile) {
+              padding-left: 10px;
+            }           
 
             p{
               max-width: 800px;
@@ -110,13 +108,13 @@
             }
           }
           
-          .faqContent:hover {
+          &:hover {
             background-color: #FDF6FE;
           }
           
         }
         
-      }
+      
     }
   }
 }

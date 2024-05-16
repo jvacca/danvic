@@ -65,4 +65,81 @@
       }
     }
   }
+
+  .profileMenu {
+    position: relative;
+    img {
+      width: 25px;
+      height: auto;
+      vertical-align: middle;
+    }
+    .profileToggle {
+      position: static;
+      margin-left: 10%;      
+    }
+    .profileList {
+      position: absolute;
+      top: 20px;
+      right: 2%;
+      background-color: #fff;
+      margin-top: 16px;
+      margin-left: -190px;
+      width: 200px;
+      border: none;
+      
+      border-radius: 20px;
+      color: #000;
+      z-index: 10;
+      box-shadow: 2px 2px 5px rgba(0, 0, 0, .2);
+
+      > div {
+        border: 1px solid #ccc !important;
+      }
+      
+      ul {
+        padding: 8px;
+        li {
+          line-height: 1;
+          display: flex;
+          align-items: center;
+          padding: 10%;
+
+          &.li {
+            padding: 0;
+          }
+          &.lineDivider {
+            margin: 10px auto;
+            padding:0;
+          }
+          &:hover {
+            background-color: $gray;
+          }
+          a {
+            display: block;
+            width: 100%;
+            font-family: Arial;
+            font-size: 14px;
+            text-decoration: none;
+            margin-left: 10px;
+            cursor: pointer;
+
+            &:hover {
+              text-decoration: none;
+            }
+          }
+
+          svg, img {
+            width: 25px;
+            vertical-align: middle;
+          }
+
+          img {
+            width: 20px;
+            height: 20px;
+            vertical-align: middle;
+          }
+        }
+      }
+    }
+  }
 }

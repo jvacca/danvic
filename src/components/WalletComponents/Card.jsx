@@ -104,6 +104,7 @@ const Card = forwardRef(({
   const removeWallet = (accounts) => {
     handleRemoveWallet(accounts[0])
     onRemoveWallet(accounts[0])
+    flyoutMenu.current.closeMenu()
   }
 
   useEffect(() => {
@@ -159,9 +160,11 @@ const Card = forwardRef(({
           <IConContextMenu />
         </FlyoutMenu.Toggle>
         <FlyoutMenu.List>
-          <li><IConHeart /><a onClick={() => setDefaultWallet(accounts)}>Set default wallet</a></li>
-          <li><IConLinkout /><a href={`https://etherscan.io/address/${accounts}`} target="_blank" onClick={(e) => onLinkout()}>View on explorer</a></li>
-          <li><IConTrash /><a onClick={() => removeWallet(accounts)}>Remove from list</a></li>
+          <ul>
+            <li><IConHeart /><a onClick={() => setDefaultWallet(accounts)}>Set default wallet</a></li>
+            <li><IConLinkout /><a href={`https://etherscan.io/address/${accounts}`} target="_blank" onClick={(e) => onLinkout()}>View on explorer</a></li>
+            <li><IConTrash /><a onClick={() => removeWallet(accounts)}>Remove from list</a></li>
+          </ul>
         </FlyoutMenu.List>
       </FlyoutMenu>
     </>
