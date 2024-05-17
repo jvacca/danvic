@@ -1,0 +1,28 @@
+.iconNFTDetailsMinus {
+    height: 1.5px;
+    background-color: #ccc;
+    display: inline-block;
+    width: 16px;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.iconNFTDetailsPlus {
+    width: 16px;
+    height: 16px;
+    display: block;
+    // float: right;
+    position: absolute;
+    right: 0;
+
+    .iconNFTDetailsMinus:first-of-type {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) rotateY(45deg);
+        width: 1.5px;
+        height: 16px;
+    }
+}

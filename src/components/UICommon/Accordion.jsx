@@ -18,15 +18,15 @@ export default function Accordion({children, classname}) {
   )
 }
 
-function Head({children, open, toggle, classname}) {
+function Head({children, open, toggle, classname, iconExpand, iconCollapse}) {
   const onToggle = () => {
     toggle(!open)
   }
   return(
     <div className={`${styles["head"]} ${classname}`}>
       <a href onClick={onToggle}>
-        { !open && <IConExpand />}
-        { open && <IConCollapse />}
+        { !open && (iconExpand? iconExpand : <IConExpand />)}
+        { open && (iconCollapse? iconCollapse : <IConCollapse />)}
       </a>
       {children}
     </div>

@@ -11,6 +11,8 @@ import web3 from 'web3'
 import { Alchemy, Network } from "alchemy-sdk";
 import styles from './nftDetail.module.scss';
 import { textEllipsisMid } from '@/services/GlobalUtilities';
+import IconPlus from '@/assets/IconPlus';
+import IconMinus from "@/assets/IconMinus";
 
 export default function NFTDetail({ contractid, tokenid }) {
     const [NFTData, setNFTData] = useState(null);
@@ -126,7 +128,7 @@ export default function NFTDetail({ contractid, tokenid }) {
 
                                 <Accordion>
                                     <Accordion.Item id={'details'}>
-                                        <Accordion.Head>
+                                        <Accordion.Head classname={styles.head} iconExpand={<IconPlus />} iconCollapse={<IconMinus />}>
                                             <h3>NFT Details</h3>
                                         </Accordion.Head>
                                         <Accordion.Body>
@@ -153,7 +155,7 @@ export default function NFTDetail({ contractid, tokenid }) {
                                         </Accordion.Body>
                                     </Accordion.Item>
                                     <Accordion.Item id={'history'}>
-                                        <Accordion.Head>
+                                        <Accordion.Head classname={styles.head} iconExpand={<IconPlus />} iconCollapse={<IconMinus />}>
                                             <h3>NFT History</h3>
                                         </Accordion.Head>
                                         <Accordion.Body>
