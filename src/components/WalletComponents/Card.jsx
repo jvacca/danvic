@@ -15,6 +15,8 @@ import IConContextMenu from '@/assets/icon-contextmenu.svg';
 import IConHeart from '@/assets/icon-heart.svg';
 import IConTrash from '@/assets/icon-trash.svg';
 import IConLinkout from '@/assets/icon-linkout.svg';
+import IConSwitchOn from '../../assets/icon-switch-on.svg';
+import IConSwitchOff from '../../assets/icon-switch-off.svg';
 
 import styles from './CardStyles.module.scss';
 import useWalletStateSync from '../../hooks/useWalletStateSync'
@@ -134,7 +136,12 @@ const Card = forwardRef(({
         isActive = {isActive}
         toggleSwitchHandler = {onConnectDisconnect}
         disable = {disable? disable : false}
-      /></div>}
+      >
+        <IConSwitchOn />
+        <IConSwitchOff />
+      </Switch>
+      
+      </div>}
      
       {(options.showChains) && <p className={styles.default}>{getChainName(activeChainId)}</p>}
       {options.useChainSelect && <p className={styles.default}>

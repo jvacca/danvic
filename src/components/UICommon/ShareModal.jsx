@@ -163,33 +163,27 @@ const AltTwitterCopy = "Take a look! https://www.macys.com/social/mstylelab"
   return (
     <>
     {(showModal) &&
-    <div className={styles.modalmask} onClick={handleClickOutside}>
-      <div className={styles.modalmaskOuter}>
-        <div className={styles.modalmaskInner}>
-          <div className={styles.modalContainer} onClick={(e) => e.stopPropagation()}>
-            <div className={styles.content}>
-              <h2>Share</h2>
+      <div className={styles.modalContainer} onClick={(e) => e.stopPropagation()}>
+        <div className={styles.content}>
+          <h2>Share</h2>
 
-              <ul className={`${styles.ulwrap} ${getLink('tweet')||short ? "" : "disabled"}`}>
+          <ul className={`${styles.ulwrap} ${getLink('tweet')||short ? "" : "disabled"}`}>
+              <li><a target="_blank"
+                        href={"//twitter.com/intent/tweet?text=" + ((nftMedia)? AltTwitterCopy : twitterCopy) + "&url=" + getLink('tweet')||short }><div className={styles.buttonInner}><IConTwitter /><span>Twitter</span></div></a></li>
+              <li><a target="_blank"
+                        href={"//www.facebook.com/sharer/sharer.php?u=" + getLink('tweet')||short + "?src=sdkpreparse"}><div className={styles.buttonInner}><IConFacebook /><span>Facebook</span></div></a></li>
+              {!nftMedia && 
+                <>
                   <li><a target="_blank"
-                           href={"//twitter.com/intent/tweet?text=" + ((nftMedia)? AltTwitterCopy : twitterCopy) + "&url=" + getLink('tweet')||short }><div className={styles.buttonInner}><IConTwitter /><span>Twitter</span></div></a></li>
-                  <li><a target="_blank"
-                           href={"//www.facebook.com/sharer/sharer.php?u=" + getLink('tweet')||short + "?src=sdkpreparse"}><div className={styles.buttonInner}><IConFacebook /><span>Facebook</span></div></a></li>
-                  {!nftMedia && 
-                    <>
-                      <li><a target="_blank"
-                              onClick={download}><div className={styles.buttonInner}><IConDownload /><span>Download Image</span></div></a></li>
-                      <li onClick={(e) => onCopy(e)}><div className={styles.buttonInner}><IConCopyLink /><span>Copy Image Link</span></div></li>
-                    </>}
-              </ul>
-            </div>
-            <button className={styles.btnClose} onClick={onCloseModal}>
-              <IconClose />
-            </button>
-          </div>
+                          onClick={download}><div className={styles.buttonInner}><IConDownload /><span>Download Image</span></div></a></li>
+                  <li onClick={(e) => onCopy(e)}><div className={styles.buttonInner}><IConCopyLink /><span>Copy Image Link</span></div></li>
+                </>}
+          </ul>
         </div>
+        <button className={styles.btnClose} onClick={onCloseModal}>
+          <IconClose />
+        </button>
       </div>
-    </div>
     }
     </>
   )
