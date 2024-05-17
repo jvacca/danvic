@@ -3,12 +3,16 @@ import IConExpand from '@/assets/icon-faqs-expand.svg'
 import IConCollapse from '@/assets/icon-faqs-collapse.svg'
 import styles from './Accordion.module.scss'
 
-export default function Accordion({children, classname}) {
+export default function Accordion({children, classname, initItemOpen}) {
   const [itemExpanded, setItemExpanded] = useState(null)
   
   useEffect(() => {
     console.log('checking: ', itemExpanded)
-  }, [itemExpanded])
+    if (initItemOpen) {
+      setItemExpanded(initItemOpen)
+    }
+  }, [initItemOpen])
+
   return (
     <div className={`${styles["Accordion"]} ${classname}`}>
       {React.Children.map(children, (child) => (
@@ -24,7 +28,7 @@ function Head({children, open, toggle, classname, iconExpand, iconCollapse}) {
   }
   return(
     <div className={`${styles["head"]} ${classname}`}>
-      <a href onClick={onToggle}>
+      <a onClick={onToggle}>
         { !open && (iconExpand? iconExpand : <IConExpand />)}
         { open && (iconCollapse? iconCollapse : <IConCollapse />)}
       </a>
@@ -46,8 +50,10 @@ function Item({children, id, itemExpanded, setItemExpanded, classname}) {
   const [open, setOpen] = useState(false)
 
   useEffect(() => {
-    console.log('checking: ', itemExpanded)
+    console.log('item checking: ', itemExpanded)
     if (open === true && id !== itemExpanded) setOpen(false)
+
+    if (id === itemExpanded) setOpen(true)
   }, [itemExpanded])
   
 
@@ -56,7 +62,7 @@ function Item({children, id, itemExpanded, setItemExpanded, classname}) {
     if (newStatus === true) setItemExpanded(id)
   }
   return (
-    <div className={`${styles["item"]} ${classname}`}>
+    <div id={id} className={`${styles["item"]} ${classname}`}>
       {React.Children.map(children, (child) => (
         React.cloneElement(child, {open, toggle})
       ))}
