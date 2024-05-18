@@ -6,6 +6,7 @@ import FAQList from './FAQList'
 import styles from './Faq.module.scss'
 
 export default function Faqs() {
+  // example of HOC
   const FaqList = FAQList(Accordion, faqsData)
   
   return (

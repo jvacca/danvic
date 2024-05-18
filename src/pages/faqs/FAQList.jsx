@@ -40,8 +40,6 @@ export default function FAQList(Accordion, faqsData) {
           </Accordion.Item>
         ))}
       </Accordion>
-
-      <button onClick={() => forceOpen('0')}>Open question 1</button>
       </>
     )
   }

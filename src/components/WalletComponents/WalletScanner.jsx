@@ -1,9 +1,6 @@
 import React, {useEffect, useState, useRef, useContext} from "react";
 import {useSelector, useDispatch} from 'react-redux';
-import Link from "next/link"
-import Image from "next/image"
 import {Alchemy, Network} from "alchemy-sdk";
-import axios from 'axios';
 import { ethers } from "ethers";
 import {textEllipsisMid} from '../../services/GlobalUtilities';
 import { CHAINS } from '../WalletConnectors/chains'
@@ -15,9 +12,8 @@ import IConMagic from '@/assets/icon-magic-wallet.svg';
 import IConCoinbase from '@/assets/icon-coinbase.svg';
 import IConWalletconnect from '@/assets/icon-wallet-connect.svg';
 import styles from './WalletScanner.module.scss';
-import VideoPlay from '../../components/UICommon/VideoPlay'
 import WalletManager from "../WalletComponents/WalletManager.jsx";
-
+import PDPThumb from "@/pages/mynfts/[contractid]/PDPThumb";
 
 export default function WalletScanner() {
     const walletManager = useRef();
@@ -99,38 +95,6 @@ export default function WalletScanner() {
       } catch(error) {
         console.log("Error getting nfts ", error)
       }
-    }
-    
-    const ipfs = function (img) {
-      if (img) {
-          return img.replace('ipfs://', "https://ipfs.io/ipfs/")
-      } else {
-          return img;
-      }
-    }
-    
-    const getMedia = (NFTData) => {
-      console.log("NFTListAlchemy: ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~> check media ", NFTData.title)
-      console.log("image? ", (NFTData.media[0].raw || NFTData.media[0].thumbnail))
-      console.log("video? ", NFTData.rawMetadata.animation_url)
-  
-      if (NFTData && NFTData.rawMetadata && NFTData.rawMetadata.animation_url) {
-        let poster = ipfs((NFTData.media[0].raw)? NFTData.media[0].raw : NFTData.media[0].thumbnail);
-        let videopath = ipfs(NFTData.rawMetadata.animation_url);
-  
-        return (
-          <VideoPlay videopath={videopath} poster={poster} />
-        )
-      } else if (NFTData && NFTData.media[0]) {
-        return (
-          NFTData.media[0].raw
-            ? <img src={ipfs(NFTData.media[0].raw)} alt={"NFT media"}/>
-          : <img src={ipfs(NFTData.media[0].thumbnail)} alt={"NFT media"}/>
-        )
-      } else {
-        console.log("Warning: not getting any media for this NFT ")
-        return null
-      }      
     }
 
     useEffect(() => {
@@ -214,16 +178,7 @@ export default function WalletScanner() {
         <h3>Collection:</h3>
         {nfts &&<div className={styles.digitalItems}><p>NFTs: {nfts.length}</p>
           <ul>
-          {nfts && nfts.map(nft => (
-            <li className={styles.allNFTSItem} key={nft.title}>
-              <div className={styles.inner}>
-                <Link href={`/mynfts/${nft.contract.address}/${nft.tokenId}?network=${currentAccount.network}${(nft?.tokenType)? '&type=' + nft?.tokenType : ''}`}>
-                  {getMedia(nft)}
-                  <p>{nft.title}</p>
-                </Link>
-              </div>
-            </li>
-          ))}
+          {nfts && nfts.map(nft => <PDPThumb key={nft.title} nft={nft} network={currentAccount.network} />)}
           </ul>
         </div>}
       </div>
