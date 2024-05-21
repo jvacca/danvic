@@ -13,16 +13,21 @@ import IConCoinbase from '@/assets/icon-coinbase.svg';
 import IConWalletconnect from '@/assets/icon-wallet-connect.svg';
 import styles from './WalletScanner.module.scss';
 import WalletManager from "../WalletComponents/WalletManager.jsx";
+import Button from '../UICommon/Button'
 import PDPThumb from "@/pages/mynfts/[contractid]/PDPThumb";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 export default function WalletScanner() {
-    const walletManager = useRef();
+    const walletManager = useRef()
+    const addressRef = useRef()
     const [currentProvider, setCurrentProvider] = useState(null)
     const [balance, setBalance] = useState(null)
     const [nfts, setNfts] = useState(null)
     const walletProviders = useContext(WalletProvidersContext)
     const [currentAccount, setCurrentAccount] = useState(null)
-    const connectedWallets = useSelector((state) => state.account.wallets);
+    const connectedWallets = useSelector((state) => state.account.wallets)
     const [selectedWallet, setSelectedWallet] = useState('macys')
 
     const keyswap = [
@@ -138,10 +143,38 @@ export default function WalletScanner() {
       }
     }, [currentProvider, currentAccount])
 
+    useEffect(() => {
+      // grab the current wallet's provider when it's available
+      console.log("MyCollectionsDev checking address: ", currentAccount)
+      if (currentAccount && addressRef.current.value) {
+        console.log("Making call???????????")
+        getNFTs(currentAccount.address, currentAccount.network).then((data) => {
+          console.log("GOT NFTS!!!! ", data)
+          
+          if (data?.ownedNfts?.length > 0) {
+            const collection = []
+            data.ownedNfts.map((nft) => {
+              collection.push(nft)
+            })
+            console.log("counted NFTS!!!! ", collection.length)
+            setNfts(collection)
+          }
+        })
+      }
+    }, [currentAccount])
+
     const onSelectWallet = (selectedWallet) => {
       setNfts(null)
       setBalance(null)
       setSelectedWallet(selectedWallet)
+    }
+
+    const onWalletAddress = () => {
+      console.log("MyCollectionsDev checking ***: ", addressRef.current.value)
+      setCurrentAccount({
+        address: addressRef.current.value,
+        network: '137'
+      })
     }
 
     return (
@@ -160,7 +193,7 @@ export default function WalletScanner() {
               {connectedWallets.map((wallet) => (
                 <option key={wallet.wallet_name} value={wallet.wallet_name}>{wallet.wallet_name}</option>
               ))}
-          </select>
+          </select> <input ref={addressRef} type="text" placeholder="Or enter wallet address" /> <Button onclickHandler={onWalletAddress}>Add</Button>
         </div>}
         {(currentProvider && currentAccount) && 
         <div className={styles.currentWallet}>
@@ -175,8 +208,8 @@ export default function WalletScanner() {
         </div>}
       </div>
       <div className={styles.collection}>
-        <h3>Collection:</h3>
-        {nfts &&<div className={styles.digitalItems}><p>NFTs: {nfts.length}</p>
+        <h3>Collections:</h3>
+        {nfts &&<div className={styles.digitalItems}>
           <ul>
           {nfts && nfts.map(nft => <PDPThumb key={nft.title} nft={nft} network={currentAccount.network} />)}
           </ul>

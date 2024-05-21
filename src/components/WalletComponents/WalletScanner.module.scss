@@ -11,6 +11,7 @@
   border: 1px solid #666;
   border-radius: 10px;
   vertical-align: top;
+  margin-top: 2%;
 
   @include mq(mobile) {
     width: 95%;
@@ -28,12 +29,14 @@
   h3 {
     display: inline-block;
     font-family: $macysbold;
-    font-size: 16px;
+    font-size: 16px !important;
+    margin-top: 0 !important;
   }
 
   p {
     display: inline-block;
-    font-size: 14px;;
+    font-size: 14px;
+    margin-right: 2%;
   }
 
   .walletName {
@@ -51,34 +54,47 @@
   }
 
   .walletAddress {
+    width: 50%;
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
   }
 
   .walletChain {
+    width: 50%;
     position: absolute;
-    top: 32%;
+    top: 41%;
     left: 50%;
     transform: translateX(-50%);
   }
 
   .walletBalance {
+    width: 50%;
     position: absolute;
-    top: 40%;
+    top: 48%;
     left: 50%;
     transform: translateX(-50%);
   }
 
   .walletStatus {
     position: absolute;
-    right: 5%;
+    top: 5%;
+    right: 3%;
+  }
+
+  select, input {
+    line-height: 1;
+    padding: 2%;
+    margin-right: 2%;
   }
 }
 
 .collection {
-  margin-top: 2%;
-  padding-bottom: 5%;
+
+  h3 {
+    margin-top: 3% !important;
+  }
+
   .digitalItems {
     margin-top: 2%;
     ul {
@@ -91,7 +107,7 @@
         display: block
       }
       .allNFTSItem {
-        max-width: 412px;
+        max-width: 332px;
         width: 100%;
         padding: 10px;
         margin-bottom: 2%;
@@ -99,7 +115,7 @@
           /*width: get-vw(432px, 1344);*/
         }
         @include mq(max) {
-          width: 432px;
+          width: 382px;
           /*max-width: 33%;*/
           margin-right: 24px;
           > div {

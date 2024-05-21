@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from "react"
 import Link from "next/link"
 import VideoPlay from '@/components/UICommon/VideoPlay'
-import styles from './nftDetail.module.scss';
+import styles from '@/components/WalletComponents/WalletScanner.module.scss';
 
 export default function PDPThumb({nft, network}) {
   
@@ -15,8 +15,8 @@ export default function PDPThumb({nft, network}) {
   
   const getMedia = (NFTData) => {
     console.log("NFTListAlchemy: ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~> check media ", NFTData.title)
-    console.log("image? ", (NFTData.media[0].raw || NFTData.media[0].thumbnail))
-    console.log("video? ", NFTData.rawMetadata.animation_url)
+    console.log("image? ", (NFTData?.media[0]?.raw || NFTData?.media[0]?.thumbnail))
+    console.log("video? ", NFTData?.rawMetadata?.animation_url)
 
     if (NFTData && NFTData.rawMetadata && NFTData.rawMetadata.animation_url) {
       let poster = ipfs((NFTData.media[0].raw)? NFTData.media[0].raw : NFTData.media[0].thumbnail);

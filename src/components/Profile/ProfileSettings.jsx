@@ -90,7 +90,7 @@ export default function ProfileSettings ({profileData, saveUserData}) {
       <div className={styles.formContainer}>
       {(profileData && !profileData.message) &&
         <div>
-          <div>
+          <div className={styles.profileImage}>
             <Image src={ProfilePicSrc} alt="trigger icon" />
           </div>
           <div className={styles.halfBlock}>
@@ -98,7 +98,7 @@ export default function ProfileSettings ({profileData, saveUserData}) {
             <p>{profileData.username}</p>
           </div>
           <div className={styles.halfBlock}>
-            <div className={styles.label}><p>Default digital address</p></div>
+            <div className={styles.label}><p>Default digital wallet</p></div>
             <p>{textEllipsisMid(getMacysWallet())}</p><button onClick={() => onCopy(getMacysWallet())} className={styles.copyBtn}><IConCopy /></button>
           </div>
 

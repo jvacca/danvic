@@ -148,7 +148,7 @@
           h3 {
             font-size: 18px;
             font-family: $macysbold;
-            margin: 6% 0 3%;
+            margin: 5% 0 1%;
             @include mq(mobile) {
               margin-bottom: 16px;
             }
@@ -266,6 +266,10 @@
             
             .formContainer {
               max-width: 1035px;
+
+              .profileImage {
+                margin-bottom: 3%;
+              }
 
               input {
                 line-height: 32px;

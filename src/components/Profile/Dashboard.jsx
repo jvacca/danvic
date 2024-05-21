@@ -25,7 +25,7 @@ export default function Dashboard({profileData}) {
       <div className={styles.collectionsFrame}>
         <div className={styles.collectionsPanels}>
           <div className={styles.collectionsContent}>
-            <h2>Profile Name: {profileData.username}</h2>
+            <h2>Dashboard for: {profileData.username}</h2>
               <div className={styles.profileImage}>
                 <Image src={ProfilePicSrc} alt="trigger icon" />
               </div>
