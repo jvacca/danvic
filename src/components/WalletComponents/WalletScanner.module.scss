@@ -98,19 +98,16 @@
   .digitalItems {
     margin-top: 2%;
     ul {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: flex-start;
-      align-content: center;
+      text-align: center;
 
       @include mq(mobile) {
         display: block
       }
       .allNFTSItem {
         max-width: 332px;
-        width: 100%;
+        //width: 100%;
         padding: 10px;
-        margin-bottom: 2%;
+        //margin-bottom: 2%;
         @include mq(desk-sm) {
           /*width: get-vw(432px, 1344);*/
         }
@@ -119,7 +116,7 @@
           /*max-width: 33%;*/
           margin-right: 24px;
           > div {
-            width: 100%;
+            //width: 100%;
           }
           &:nth-of-type(3n) {
             margin-right: 0;
@@ -167,6 +164,13 @@
           width: 100%;
         }
       }
+    }
+
+    .nonslider {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      align-content: center;
     }
   }
 }

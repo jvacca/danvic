@@ -14,12 +14,9 @@ import IConWalletconnect from '@/assets/icon-wallet-connect.svg';
 import styles from './WalletScanner.module.scss';
 import WalletManager from "../WalletComponents/WalletManager.jsx";
 import Button from '../UICommon/Button'
-import PDPThumb from "@/pages/mynfts/[contractid]/PDPThumb";
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
 
-export default function WalletScanner() {
+
+export default function WalletScanner({render}) {
     const walletManager = useRef()
     const addressRef = useRef()
     const [currentProvider, setCurrentProvider] = useState(null)
@@ -209,11 +206,9 @@ export default function WalletScanner() {
       </div>
       <div className={styles.collection}>
         <h3>Collections:</h3>
-        {nfts &&<div className={styles.digitalItems}>
-          <ul>
-          {nfts && nfts.map(nft => <PDPThumb key={nft.title} nft={nft} network={currentAccount.network} />)}
-          </ul>
-        </div>}
+        <div className={styles.digitalItems}>
+          {nfts && render(nfts, currentAccount)}
+        </div>
       </div>
       <WalletManager ref={walletManager} show={false} />
       </>
