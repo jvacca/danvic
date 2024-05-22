@@ -182,7 +182,7 @@ const WalletConnectCard = forwardRef(({account, show, onStatusChange, onError}, 
     if (isConnected && isMobile) {
       try {
         disconnect()
-        onRemoveWallet(walletAddress);
+        //onRemoveWallet(walletAddress);
       } catch(error) {
         console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~", error)
         //setError(getErrorMsg(error))
@@ -193,7 +193,7 @@ const WalletConnectCard = forwardRef(({account, show, onStatusChange, onError}, 
       
     if (!isMobile) {
       if (!isConnected) {
-        onRemoveWallet(walletAddress);
+        //onRemoveWallet(walletAddress);
       } else {
         setError({name:'not allowed', message:'Must disconnect from within the extension'})
       }

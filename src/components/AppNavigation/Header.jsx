@@ -3,12 +3,21 @@ import Image from 'next/image';
 import Link from "next/link";
 import { useSelector, useDispatch } from "react-redux";
 import {
-  updateIsLoggedIn
-} from "../../reducers/ApplicationSlice";
+  updateAccount,
+  updateUserId,
+  updateProfileName,
+  updateDefaultWallet,
+  updateWalletStatus,
+  updateProfileData
+} from "@/reducers/AccountSlice";
+import {
+  updateIsLoggedIn,
+  updateIsReturningUser,
+  setOpenModal
+} from "@/reducers/ApplicationSlice";
 import Button from '../UICommon/Button'
 import Modal from '../UICommon/Modal'
 import Signin from '../Signin/Signin'
-//import DropDown from '../UICommon/DropDown'
 import FlyoutMenu from '../UICommon/FlyoutMenu'
 
 import IconLogiIn from '@/assets/icon-signin.svg'
@@ -18,11 +27,14 @@ import IconProfileSrc from '../../../public/images/icon-profile.png'
 
 import ProfilePicSrc from '../../../public/images/profilePic.png'
 import logoSrc from '../../../public/images/icons8-card-wallet-94.png'
-
+import useAsyncLoad from "@/hooks/useAsyncLoad";
+import useWalletStateSync from "@/hooks/useWalletStateSync";
 import styles from './Header.module.scss'
 
 export default function AppNavigation() {
   const isLoggedIn = useSelector((state) => state.application.isLoggedIn)
+  const loadUserData = useAsyncLoad();
+  const { loadWalletDataToStates } = useWalletStateSync();
   const modal = useRef()
   const flyoutMenu = useRef()
   const dispatch = useDispatch()
@@ -61,6 +73,31 @@ export default function AppNavigation() {
         onclick: onLogout
       }
     ]
+  
+  const handleLoadUserData = () => {
+    loadUserData('mockLoadUser').then((data) => {
+      console.log("Header: Got user settings -----", data)
+
+      dispatch(updateUserId(data.userid));
+      try { // putting in try catch for public view username PDP
+        dispatch(updateProfileName(data.username));
+      } catch(e){}
+      dispatch(updateDefaultWallet(data.default_wallet));
+      loadWalletDataToStates(data.wallets);
+      dispatch(updateProfileData(data));
+      dispatch(updateWalletStatus({ which: "macys", value: true }));
+      dispatch(
+          updateAccount({
+            address: data.default_wallet.address,
+            network: "0x1",
+            wallet: "macys",
+          })
+      );
+
+      dispatch(updateIsLoggedIn(true));
+      dispatch(updateIsReturningUser(true));
+    })
+  }
 
   const handleSignin = () => {
     modal.current.openModal()
@@ -69,6 +106,8 @@ export default function AppNavigation() {
   const onLoggedIn = () => {
     dispatch(updateIsLoggedIn(true))
     modal.current.closeModal()
+
+    handleLoadUserData()
   }
 
   const onClose = () => {

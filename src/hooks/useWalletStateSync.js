@@ -29,7 +29,7 @@ export default function useWalletStateSync() {
       wallet_name: updateWalletObj.wallet_name
     }
     console.log("useWalletStateSync: saving **** ", wallet)
-    saveWalletData('/users/setuserwallets', wallet).then((res) => {
+    saveWalletData('mockSetUserWallets', wallet).then((res) => {
       console.log("useWalletStateSync: wallet updated: ", res);
       
       if (res) {
@@ -61,10 +61,10 @@ export default function useWalletStateSync() {
     })
   });
 
-  const handleRemoveWallet = (address) => {
-    console.log("useWalletStateSync: removing from db ", address);
+  const handleRemoveWallet = (wallet_name) => {
+    console.log("useWalletStateSync: removing from db ", wallet_name);
 
-    const wallet = wallets.find(wallet => wallet.address === address);
+    const wallet = wallets.find(wallet => wallet.wallet_name === wallet_name);
 
     if (wallet) {
       const updateObj = {
@@ -73,10 +73,10 @@ export default function useWalletStateSync() {
       }
 
       updateObj.userid = sessionStorage.getItem('m3ids');
-      saveWalletData('/users/removeuserwallet', updateObj).then((res) => {
+      saveWalletData('mockRemoveUserWallet', updateObj).then((res) => {
         console.log("useWalletStateSync: removed: ", res);
         
-        if (res.wallets) {
+        if (res) {
           dispatch(removeWallet(updateObj.address));
           localStorage.setItem('m3get', true);
           localStorage.removeItem('m3NL');
@@ -89,27 +89,28 @@ export default function useWalletStateSync() {
     }
   }
 
-  const setDefaultWallet = (address) => {
+  const setDefaultWallet = (wallet_name) => {
     const wallet = wallets.find((wallet) => {
-      return (wallet.address === address)
+      return (wallet.wallet_name === wallet_name)
     })
-    
-    const updateObj = {
-      default_wallet: {
-        address: wallet.address,
-        network: wallet.network,
-        wallet_name: wallet.wallet_name
+    if (wallet) {
+      const updateObj = {
+        default_wallet: {
+          address: wallet.address,
+          network: wallet.network,
+          wallet_name: wallet.wallet_name
+        }
       }
-    }
-    
-    updateObj.userid = sessionStorage.getItem('m3ids');
-    
-    saveWalletData('/users/setusersettings', updateObj).then((res) => {
-      console.log("Profile: Saved: ", res);
-      dispatch(updateProfileData(res))
-    })
+      
+      updateObj.userid = sessionStorage.getItem('m3ids');
+      
+      saveWalletData('mockSetUserSettings', updateObj).then((res) => {
+        console.log("Profile: Saved: ", res);
+        dispatch(updateProfileData(res))
+      })
 
-    console.log("ProfileWallets: Setting this wallet as default ", updateObj);
+      console.log("ProfileWallets: Setting this wallet as default ", updateObj);
+    }
   }
 
   const setCurrentWallet = (id) => {

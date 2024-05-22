@@ -104,8 +104,8 @@ const Card = forwardRef(({
   }
 
   const removeWallet = (accounts) => {
-    handleRemoveWallet(accounts[0])
-    onRemoveWallet(accounts[0])
+    handleRemoveWallet(id)
+    onRemoveWallet()
     flyoutMenu.current.closeMenu()
   }
 
@@ -168,9 +168,9 @@ const Card = forwardRef(({
         </FlyoutMenu.Toggle>
         <FlyoutMenu.List>
           <ul>
-            <li><IConHeart /><a onClick={() => setDefaultWallet(accounts)}>Set default wallet</a></li>
+            <li><IConHeart /><a onClick={() => setDefaultWallet(id)}>Set default wallet</a></li>
             <li><IConLinkout /><a href={`https://etherscan.io/address/${accounts}`} target="_blank" onClick={(e) => onLinkout()}>View on explorer</a></li>
-            <li><IConTrash /><a onClick={() => removeWallet(accounts)}>Remove from list</a></li>
+            <li><IConTrash /><a onClick={() => removeWallet(id)}>Remove from list</a></li>
           </ul>
         </FlyoutMenu.List>
       </FlyoutMenu>

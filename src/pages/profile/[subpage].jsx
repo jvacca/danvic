@@ -8,8 +8,8 @@ import Head from '../../components/Head';
 import ProfileSettings from '../../components/Profile/ProfileSettings';
 import ProfileWallets from '../../components/Profile/ProfileWallets';
 import Dashboard from '../../components/Profile/Dashboard';
-//import ProfileDevMode from '../../components/Profile/ProfileDevMode';
-import profileData from '../../../data/profile.json'
+
+//import profileData from '../../../data/profile.json'
 
 //library imports
 import useAsyncLoad from "../../hooks/useAsyncLoad";
@@ -18,7 +18,7 @@ import styles from './profile.module.scss';
 
 export default function Profile({subpage}) {
   //const params = useParams();
-  //const profileData = useSelector((state) => state.account.profileData);
+  const profileData = useSelector((state) => state.account.profileData);
   const [routename, setRoutename] = useState(null);
   const dispatch = useDispatch();
   const router = useRouter();
@@ -35,7 +35,7 @@ export default function Profile({subpage}) {
   }, [router.query.subpage])
 
   useEffect(() => {
-    //if (profileData) console.log("Profile: updating page");
+    if (profileData) console.log("Profile: updating page");
   }, [profileData])
 
   const getPanelByName = (panelname) => {
@@ -44,7 +44,7 @@ export default function Profile({subpage}) {
       case "settings":
         return (<ProfileSettings profileData={profileData} saveUserData={saveUserData} />);
       case "wallet":
-          return (<ProfileWallets />);
+          return (<ProfileWallets profileData={profileData} />);
       case "dashboard":
         return (<Dashboard profileData={profileData} saveUserData={saveUserData} />);
       default:

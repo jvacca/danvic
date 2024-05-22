@@ -20,22 +20,24 @@ export default function Dashboard({profileData}) {
     dots: true
   };
 
-  const profileName = useSelector((state) => state.account.profileName);
+  //const profileName = useSelector((state) => state.account.profileName);
+  //const profileData = useSelector((state) => state.account.profileData);
   const [profileNameTitle, setProfileNameTitle] = useState(null)
 
   useEffect(() => {
     let profName = sessionStorage.getItem('profileName')
 
-    if (profName || profileName) {
-        let name = profileName? profileName : profName;
+    if (profName || profileData?.username) {
+        let name =  profileData?.username?  profileData.username : profName;
         setProfileNameTitle(name);
     }
-  }, [profileName])
+  }, [profileData])
 
   return (
       <>
       <div className={styles.collectionsFrame}>
         <div className={styles.collectionsPanels}>
+        {(profileData)?
           <div className={styles.collectionsContent}>
             <h2>Dashboard for: {profileData.username}</h2>
               <div className={styles.profileImage}>
@@ -59,6 +61,10 @@ export default function Dashboard({profileData}) {
                 )}
               />
           </div>
+          :
+          <>
+            Please Log in first
+          </>}
         </div>
       </div>
       </>

@@ -29,6 +29,12 @@ export const accountSlice = createSlice({
           profileName: action.payload
       }
     },
+    updateProfileData: (state, action) => {
+      return {
+          ...state,
+          profileData: action.payload
+      }
+    },
     updateAccount: (state, action) => {
       return {
         ...state,
@@ -95,7 +101,8 @@ export const accountSlice = createSlice({
 
 export const {
   updateAccount, 
-  updateProfileName, 
+  updateProfileName,
+  updateProfileData,
   updateUserId,
   updateDefaultWallet,
   updateWallets,

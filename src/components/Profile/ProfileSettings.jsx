@@ -20,14 +20,11 @@ export default function ProfileSettings ({profileData, saveUserData}) {
     console.log("ProfileSettings: page updating ", profileData)
 
     if (sessionStorage.getItem('profileName')) {
-        // setProfileName(sessionStorage.getItem('profileName'))
-      let url = "https://web3servicesmcom.herokuapp.com";
+      let url = "";
       if (window.location.host.indexOf('localhost')> -1) {
         url = 'http://localhost:3005';
       }
-      if (window.location.host.indexOf('fds')> -1) {
-        url = 'https://web3servicesstaging-fe3af8a30134.herokuapp.com';
-      }
+     
       (async () => {
         if (sessionStorage.getItem('profileName')) {
           let getAttr = await DataProvider.getData(`${url}/users/usernameattr?username=${sessionStorage.getItem('profileName')}`);
@@ -88,7 +85,7 @@ export default function ProfileSettings ({profileData, saveUserData}) {
       <h2>Profile Details</h2>
 
       <div className={styles.formContainer}>
-      {(profileData && !profileData.message) &&
+      {(profileData && !profileData.message)?
         <div>
           <div className={styles.profileImage}>
             <Image src={ProfilePicSrc} alt="trigger icon" />
@@ -113,10 +110,12 @@ export default function ProfileSettings ({profileData, saveUserData}) {
             <div className={styles.label}><p>Password</p></div>
             <p>********</p>
           </div>
-
+          <Button onclickHandler={handleClick} target="_blank">Change password</Button>
         </div>
-        }
-        <Button onclickHandler={handleClick} target="_blank">Change password</Button>
+        :
+        <>
+          Please Log in first
+        </> }
       </div>
     </div>
     </>
