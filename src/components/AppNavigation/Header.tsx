@@ -1,7 +1,8 @@
 import React, {useEffect, useRef} from 'react'
 import Image from 'next/image';
 import Link from "next/link";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux"
+import { RootState } from '@/store'
 import {
   updateAccount,
   updateUserId,
@@ -16,9 +17,9 @@ import {
   setOpenModal
 } from "@/reducers/ApplicationSlice";
 import Button from '../UICommon/Button'
-import Modal from '../UICommon/Modal'
+import Modal, {ModalHandlers} from '../UICommon/Modal'
 import Signin from '../Signin/Signin'
-import FlyoutMenu from '../UICommon/FlyoutMenu'
+import FlyoutMenu, {FlyoutMenuHandlers} from '../UICommon/FlyoutMenu'
 
 import IconLogiIn from '@/assets/icon-signin.svg'
 import IconLogOut from '@/assets/icon-logout.svg';
@@ -30,20 +31,30 @@ import logoSrc from '../../../public/images/icons8-card-wallet-94.png'
 import useAsyncLoad from "@/hooks/useAsyncLoad";
 import useWalletStateSync from "@/hooks/useWalletStateSync";
 import styles from './Header.module.scss'
+import { Url } from 'next/dist/shared/lib/router/router';
+
+interface OptionInterface {
+  id: number,
+  type: string,
+  icon?: React.ReactNode,
+  label: string,
+  route?: Url,
+  onclick?: () => void
+}
 
 export default function AppNavigation() {
-  const isLoggedIn = useSelector((state) => state.application.isLoggedIn)
+  const isLoggedIn = useSelector((state: RootState) => state.application.isLoggedIn)
   const loadUserData = useAsyncLoad();
   const { loadWalletDataToStates } = useWalletStateSync();
-  const modal = useRef()
-  const flyoutMenu = useRef()
+  const modal = useRef<ModalHandlers>(null)
+  const flyoutMenu = useRef<FlyoutMenuHandlers>(null)
   const dispatch = useDispatch()
 
   const onLogout = () => {
      dispatch(updateIsLoggedIn(false))
   }
 
-  const options = [
+  const options: OptionInterface[] = [
       {
         id: 0,
         type: 'link',
@@ -91,33 +102,44 @@ export default function AppNavigation() {
             address: data.default_wallet.address,
             network: "0x1",
             wallet: "macys",
+            balance: null
           })
       );
 
-      dispatch(updateIsLoggedIn(true));
+      dispatch(updateIsLoggedIn(true) as any);
       dispatch(updateIsReturningUser(true));
     })
   }
 
   const handleSignin = () => {
-    modal.current.openModal()
+    if (modal.current) {
+      modal.current.openModal();
+    }
   }
 
   const onLoggedIn = () => {
     dispatch(updateIsLoggedIn(true))
-    modal.current.closeModal()
+    if (modal.current) {
+      modal.current.closeModal()
+    }
 
     handleLoadUserData()
   }
 
   const onClose = () => {
-    modal.current.closeModal()
-    flyoutMenu.current.closeMenu()
+    if (modal.current) {
+      modal.current.closeModal()
+    }
+    if (flyoutMenu.current) {
+      flyoutMenu.current.closeMenu()
+    }
   }
 
   useEffect(() => {
     document.addEventListener('click', () => {
-      flyoutMenu.current?.closeMenu()
+      if (flyoutMenu.current) {
+        flyoutMenu.current.closeMenu()
+      }
     });
     return () => {
       document.removeEventListener('click', () => {});
@@ -138,7 +160,7 @@ export default function AppNavigation() {
           </Link>
           
         <nav>
-          <Link href="/">Home</Link> |
+          <Link href="/" passHref>Home</Link> |
           <Link href="/faqs">FAQs</Link> |
 
         {isLoggedIn?
@@ -151,8 +173,7 @@ export default function AppNavigation() {
               {options?.map((option) => (
                 <li key={option.id}>
                   {option.icon? option.icon : null}
-                  {(option.type === 'link')? <Link href={option.route} onClick={onClose}>{option.label}</Link> : null}
-                  {(option.type === 'linkout')? <a href={option.url} onClick={onClose} target='_blank'>{option.label}</a> : null}
+                  {(option.type === 'link')? <Link href={option.route || '/'} onClick={onClose}>{option.label}</Link> : null}
                   {(option.type === 'button')? <a onClick={option.onclick} target='_blank'>{option.label}</a> : null}
                 </li>
               ))}
@@ -161,7 +182,7 @@ export default function AppNavigation() {
           </FlyoutMenu>
           :
           <>
-            <Button classname={styles.signin} onclickHandler={handleSignin}>Sign in</Button>
+            <Button classname={styles.signin} onclickHandler={handleSignin} disabled={false}>Sign in</Button>
           </>}
           </nav>
         </div>

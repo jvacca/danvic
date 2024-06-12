@@ -1,10 +1,19 @@
 import React, {useState, forwardRef, useImperativeHandle} from 'react'
-import Button from '../UICommon/Button'
+import Button from './Button'
 import IconClose from '@/assets/icon-close-black.svg'
 import styles from './Modal.module.scss'
 
+export interface ModalHandlers {
+  openModal: () => void,
+  closeModal: () => void
+}
+
+interface ModalProps {
+  children: React.ReactNode
+}
+
 // eslint-disable-next-line react/display-name
-const Modal = forwardRef(({children}, ref) => {
+const Modal = forwardRef<ModalHandlers, ModalProps>(({children}, ref) => {
   const [isOpen, setIsOpen] = useState(false)
 
   useImperativeHandle(ref, () => {
@@ -19,15 +28,15 @@ const Modal = forwardRef(({children}, ref) => {
     }
   })
 
-  const onCloseModalFromOutside = (e) => {
-    if (e.target.className.indexOf("modalMaskOuter") > -1) {
+  const onCloseModalFromOutside = (e: React.MouseEvent<HTMLDivElement>) => {
+    if ((e.target as HTMLDivElement).className.indexOf("modalMaskOuter") > -1) {
       setIsOpen(false)
     } else {
       console.log("Not the outer shell")
     }
   }
 
-  const onCloseModal = (e) => {
+  const onCloseModal = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
     setIsOpen(false)
   }

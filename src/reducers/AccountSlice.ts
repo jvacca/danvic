@@ -1,6 +1,22 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-const initialState = {
+export interface CurrentAccount {
+  address: string | null,
+  network: string | null,
+  balance: string | null,
+  wallet: string | null
+}
+
+
+export interface AccountState {
+  userId: string | null,
+  profileName: string | null,
+  defaultWallet: string,
+  wallets: Array<any>,
+  currentAccount: CurrentAccount | null
+}
+
+const initialState: AccountState = {
   userId: null,
   profileName: null,
   defaultWallet: 'macys',
@@ -17,16 +33,24 @@ export const accountSlice = createSlice({
   name: 'account',
   initialState,
   reducers: {
-    updateUserId: (state, action) => {
+    updateUserId: (state, action: PayloadAction<string>) => {
       return {
         ...state,
         userId: action.payload
       }
     },
-    updateProfileName: (state, action) => {
+    updateProfileName: (state, action: PayloadAction<string>) => {
       return {
           ...state,
           profileName: action.payload
+      }
+    },
+    updateAccount: (state, action: PayloadAction<CurrentAccount>) => {
+      return {
+        ...state,
+        currentAccount: {
+          ...action.payload
+        }
       }
     },
     updateProfileData: (state, action) => {
@@ -35,33 +59,25 @@ export const accountSlice = createSlice({
           profileData: action.payload
       }
     },
-    updateAccount: (state, action) => {
-      return {
-        ...state,
-        currentAccount: {
-          ...action.payload
-        }
-      }
-    },
-    updateDefaultWallet: (state, action) => {
+    updateDefaultWallet: (state, action: PayloadAction<string>) => {
       return {
         ...state,
         defaultWallet: action.payload
       }
     },
-    updateWallets: (state, action) => {
+    updateWallets: (state, action: PayloadAction<Array<any>>) => {
       return {
         ...state,
         wallets: action.payload
       }
     },
-    addWallet: (state, action) => {
+    addWallet: (state, action: PayloadAction<Array<any>>) => {
       return {
         ...state,
         wallets: [...state.wallets, action.payload]
       }
     },
-    removeWallet: (state, action) => {
+    removeWallet: (state, action: PayloadAction<Array<any>>) => {
       return {
         ...state,
         wallets: state.wallets.filter(wallet => (wallet.address !== action.payload))
