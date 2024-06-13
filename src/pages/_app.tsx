@@ -13,9 +13,11 @@ export const WalletProvidersContext = createContext<{ providers: { id: string; }
   }
 });
 
-export default function App({ Component, pageProps }: AppProps) {
-  const [providers, setProviders] = useState<{ id: string }[]>([]) // Explicitly define the type of providers as an array of objects with an id property
 
+
+export default function App({ Component, pageProps }: AppProps): React.ReactNode {
+  // this needs to be re-written properly
+  const [providers, setProviders] = useState<{ id: string }[]>([]) // Explicitly define the type of providers as an array of objects with an id property
   const addProvider = (newProvider: {id: string}) => {
     
     const exists = providers.find((provider) => {

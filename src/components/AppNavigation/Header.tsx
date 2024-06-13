@@ -2,7 +2,7 @@ import React, {useEffect, useRef} from 'react'
 import Image from 'next/image';
 import Link from "next/link";
 import { useSelector, useDispatch } from "react-redux"
-import { RootState } from '@/store'
+import { RootState, AppDispatch } from '@/store'
 import {
   updateAccount,
   updateUserId,
@@ -42,13 +42,13 @@ interface OptionInterface {
   onclick?: () => void
 }
 
-export default function AppNavigation() {
+export default function AppNavigation(): React.ReactNode {
   const isLoggedIn = useSelector((state: RootState) => state.application.isLoggedIn)
   const loadUserData = useAsyncLoad();
   const { loadWalletDataToStates } = useWalletStateSync();
   const modal = useRef<ModalHandlers>(null)
   const flyoutMenu = useRef<FlyoutMenuHandlers>(null)
-  const dispatch = useDispatch()
+  const dispatch: AppDispatch = useDispatch()
 
   const onLogout = () => {
      dispatch(updateIsLoggedIn(false))

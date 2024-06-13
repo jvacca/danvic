@@ -1,4 +1,4 @@
-import React, { useState, forwardRef, useRef, useImperativeHandle, useContext } from "react";
+import React, { useState, forwardRef, useImperativeHandle, useContext } from "react";
 import styles from './FlyoutMenu.module.scss';
 import {FlyoutContext} from '../WalletComponents/WalletManager'
 
@@ -32,7 +32,7 @@ type FlyoutMenuComponent = React.ForwardRefExoticComponent<FlyoutMenuProps & Rea
 
  // eslint-disable-next-line react/display-name
 const FlyoutMenu = forwardRef<FlyoutMenuHandlers, FlyoutMenuProps>(({classname, children}, ref) => {
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState<boolean>(false)
 
   useImperativeHandle(ref, () => {
     return {
@@ -44,7 +44,7 @@ const FlyoutMenu = forwardRef<FlyoutMenuHandlers, FlyoutMenuProps>(({classname, 
 
   return (
       <div className={`${styles["FlyoutMenu"]} ${classname}`}>
-        {React.isValidElement(children) && React.Children.map(children, (child: React.ReactElement<any>) => (
+        {React.Children.map(children, (child: React.ReactElement<any>) => (
           React.cloneElement(child, {open, setOpen})
         ))}
       </div>
