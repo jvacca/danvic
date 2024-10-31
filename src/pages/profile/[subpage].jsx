@@ -14,7 +14,7 @@ import Dashboard from '../../components/Profile/Dashboard';
 //library imports
 import useAsyncLoad from "../../hooks/useAsyncLoad";
 
-import styles from './profile.module.scss';
+import styles from '../../components/Profile/profile.module.scss';
 
 export default function Profile({subpage}) {
   //const params = useParams();

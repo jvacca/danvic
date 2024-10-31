@@ -8,7 +8,7 @@ import ProfilePicSrc from '../../../public/images/profilePic.png'
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import PDPThumb from "@/pages/mynfts/[contractid]/PDPThumb";
+import PDPThumb from "@/components/PDPs/PDPThumb";
 
 export default function Dashboard({profileData}) {
   const walletManager = useRef();

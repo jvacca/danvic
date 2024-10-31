@@ -1,496 +1,483 @@
-@import '@/styles/_fonts.scss';
-@import '@/styles/_variables.scss';
-@import '@/styles/_mixins.scss';
+@import '../../styles/_fonts.scss';
+@import '../../styles/_variables.scss';
+@import '../../styles/_mixins.scss';
 
-.collectionsFrame {
-  width: 100%;
-  //background-image: url('https://storage.googleapis.com/assets.mcomnyapps.net/john-vacca-test/web3/images/bg.jpg');
-  background-size: contains;
-  background-repeat: no-repeat;
-  padding-bottom: 7%;
-  overflow: hidden;
-  @include mq(max-width-desktop) {
-    width: 95%;
-    margin: 0 auto;
-  }
-  @include mq(mobile) {
-    width: 90%;
-    margin: 0 auto;
-  }
+.profileFrame {
 
-  #username {
-    max-width: 412px;
-  }
   
 
-  .collectionsPanels {
-    //width: 90%;
-    margin: 0 auto;
-    background-color: #fff;
-    max-width: $desktop;
-    //color: #000;
+  .profileContent {
     width: 100%;
+    margin: 0 auto;
+    max-width: $desktop;
+    background-color: #fff;
+    color: #000;
+    //width: 100%;
+    &:before, &:after {
+      display: block;
+      content: ' ';
+      clear: both;
+    }
     h2 {
-      width: 100%;
-      // border-bottom: 1px dotted $blue;
       font-family: $macysbold;
-      //color: #fff;
-      font-size: 24px;
-      line-height: 1;
-      padding: 38px 0 38px;
-      @include mq(mobile) {
-        padding: 8% 0  8%;
-        font-size: 5.5vw;
-      }
-    }
-
-    .heading {
-      margin: 80px auto 50px;
-      @include mq(mobile) {
-        margin: 12% 0 10%;
-      }
-    }
-
-    .collectionsContent {
       width: 100%;
-      max-width: 1344px;
+      font-size: 36px;
+      line-height: 1;
+      @include mq(mobile) {
+        margin-bottom: 30px;
+      }
+    }
+
+    .profileSummary {
+      width: 90%;
       margin: 0 auto;
+      color: #fff;
 
-      hr {
-        margin: 0;
-        border: none;
-        height: 1px;
-        background-image: linear-gradient(to right, #0076FF 33%, rgba(255,255,255,0) 0%);
-        background-position: bottom;
-        background-size: 5px 1px;
-        background-repeat: repeat-x;
-      }
-
-      .profileImage {
+      p {
         display: inline-block;
-        width: 30%;
-        margin-right: 5%;
-        margin-top: 2%;
+        vertical-align: bottom;
+        margin-left: 2%;
+      }
+    }
+
+    .inner {
+      // width: 90%;
+      margin: 3% auto;
+      @include mq(mobile) {
+        margin-top: 0;
       }
 
-      .collection {
-        padding-top: 0x;
-        
-          
-        .iframeContainer {
-          position: relative;
-          height: 432px;
-          width: 432px;
-          overflow: hidden;
-          border: 1px solid $black;
-          iframe {
-            border: none;
-            overflow: hidden;
-            width: 100%;
-            height: 100%;
-            position: absolute;
-              top: 0;
-              left: 0;
-              width: 100%;
-              height: 100%;
-          }
-        }
-
-        .loaderContainer {
-          position: relative;
-          padding: 5% 0;
-        }
-        
-       
-        p {
-          text-align: left;
-        }
-        .digitalCollection {
-          margin-top: 60px;
-        }
-
-        .digitalItems {
-          ul {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: flex-start;
-            align-content: center;
-
-            @include mq(mobile) {
-              display: block
-            }
-
-            .allNFTSItem {
-              max-width: 412px;
-              width: 100%;
-              padding: 10px;
-              margin-bottom: 2%;
-              @include mq(desk-sm) {
-                /*width: get-vw(432px, 1344);*/
-              }
-              @include mq(max) {
-                width: 432px;
-                /*max-width: 33%;*/
-                margin-right: 24px;
-                > div {
-                  width: 100%;
-                }
-                &:nth-of-type(3n) {
-                  margin-right: 0;
-                }
-              }
-
-              @include mq(mobile) {
-                max-width: 247px;
-              }
-          
-              .inner {
-                height: auto;
-                display: flex;
-                flex-direction: column;
-                align-content: center;
-                justify-content: center;
-                //border: 1px solid #333;
-                //border-radius: 10px;
-                overflow: hidden;
-                // padding: 2%;
-                margin: 2% 0;
-          
-                button {
-                  border: none;
-                  padding: 0;
-                  margin: 0;
-                  cursor: pointer;
-                }
-
-                .tryOn {
-                  background-color: #D9D9D9;
-                  max-width: 250px;
-                  width: 70%;
-                  line-height: 32px;
-                  text-align: center;
-                  font-size: 14px;
-                  margin-top: 5%;
-                  border-radius: 5px;
-                }
-              }
-            }
-            .allNFTSItem:first-child {
-              padding-left: 0;
-            }
-            @media only screen and (max-width: 1024px) {
-              .allNFTSItem {
-                width: calc(50% - 2px);
-              }
-            }
-            @media only screen and (max-width: 767px) {
-              .allNFTSItem {
-                width: 100%;
-              }
-            }
-            .allNFTSItem-name {
-              height: 3em;
-            }
-            .allNftsListItemMedia {
-              /*height: 11em;*/
-              overflow: hidden;
-              background-color: #000;
-              display: flex;
-              position: relative;
-              aspect-ratio: 1 / 1;
-              @supports not (aspect-ratio: 1 / 1) {
-          
-              }
-              object {
-                width: 100%;
-                height: fit-content;
-                aspect-ratio: 1 / 1;
-                @supports not (aspect-ratio: 1 / 1) {
-                  height: auto;
-                }
-              }
-              .object {
-                width: 100%;
-                height: fit-content;
-                aspect-ratio: 1 / 1;
-                @supports not (aspect-ratio: 1 / 1) {
-                  height: auto;
-                }
-              }
-              video {
-                pointer-events: auto !important;
-              }
-              .nftVideoOverlay {
-                position: absolute;
-                top: 0;
-                left: 0;
-                right: 0;
-                height: 80%;
-                width: 100%;
-                pointer-events: auto;
-                @include mq(desk-sm) {
-                    height: 83%
-                  }
-                @include mq(desk-lg) {
-                  height: 85%
-                }
-              }
-            }
-            .allNftsListItemMedia > * {
-              /*max-width: 100%;*/
-              /*height: fit-content;*/
-              //width: 428px;
-              //height: 428px;
-              aspect-ratio: 1 / 1;
-              align-self: center;
-              object-fit: cover;
-              max-width: 100%;
-              pointer-events: none;
-            }
-            /*
-            .allNFTSItem video {
-              width: 100%;
-              height: auto;
-              object-fit: cover;
-            }*/
-            .allNftsItemInfo {
-              background-color: #fff;
-              padding-top: 1%;
-              margin-top: auto;
-              /*height: 5.5em;*/
-              font-size: 14px;
-              overflow: hidden;
-              text-overflow: ellipsis;
-            }
-            .allNftsItemTitle {
-              font-family: $macysbold;
-              font-size: 14px;
-              text-align: left; 
-            }
-          }
-        }
-      }
-
-      
-
-      .walletConnect {
-        position: relative;
-        width: 97%;
-        margin: 5% 0 0;
+      .profileInner {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content:space-between;
+        align-items:flex-start;
         @include mq(mobile) {
-          /*padding: 5%;*/
-          display: none;
+          flex-direction: column;
         }
 
-        .walletConnectImage {
-          display: block;
-          width: 100%;
+        .sidebar {
+          width: 22%;
+          margin: 0;
           @include mq(mobile) {
-            display: block;
-            width: 100%;
-          }
-        }
-
-        .walletConnectCopy {
-          position: absolute;
-          width: 40%;
-          top: 45%;
-          left: 3%;
-          transform: translateY(-50%);
-          @include mq(mobile) {
-            display: block;
-            padding-left: 0;
             width: 100%;
           }
 
-          h1 {
+          @include mq(mobile) {
+            width: 100%;
+          }
+
+          h2 {
             font-family: $macysbold;
-            font-size: 3.5vw;
-            margin-bottom: 2%;
-            @include mq(max-content) {
-              font-size: 48px;
+            font-size: 20px;
+            background-color: transparent;
+            color: #000;
+          }
+          ul {
+            width: 80%;
+            @include mq(mobile) {
+              width: 100%;
+              border-bottom: 1px solid $grayBorder;              
             }
+            li {
+              padding: 8% 0;
+              border-top: 1px $grayBorder solid;
+              line-height: 24px;
+              @include mq(mobile) {
+                display: inline-block;
+                margin-right: 8%;
+                line-height: 2;
+                border-top: none;
+                padding: 0;
+              }
+
+              &:last-of-type {
+                border-bottom: 1px solid $grayBorder;
+                /*padding-bottom:6px;*/
+              }
+              @include mq(mobile) {
+                display: inline-block;
+                width: auto;
+                border: 0;
+                &:last-of-type {
+                  border-bottom: 0;
+                }
+              }
+              a {
+                display: inline-block;
+                font-size: 14px;
+                cursor: pointer;
+              }
+              a.active {
+                font-family: $macysbold;
+                @include mq(mobile) {
+                  border-bottom: 2px solid $black;
+                  padding-bottom: 0;
+                }
+              }
+            }
+            button {
+              @include mq(mobile) {
+                width: 100%;
+              }
+            }
+          }
+          
+        }
+
+        .panels {
+          width: 77%;
+          @include mq(mobile) {
+            width: 100%;
+            padding: 13% 0;
+          }
+
+          h2 {
+            font-family: $macysbold;
+            font-size: 24px;
+            margin: 0% 0 2%;
+            background-color: transparent;
+            color: #000;
+            padding: 0;
             @include mq(mobile) {
               font-size: 6.5vw;
-              margin: 4% 0;
+              margin-bottom: 8%;
+            }
+          }
+
+          h3 {
+            font-size: 18px;
+            font-family: $macysbold;
+            margin: 5% 0 1%;
+            @include mq(mobile) {
+              margin-bottom: 16px;
             }
           }
 
           p {
-            max-width: 366px;
-            width: 50%;
             font-size: 14px;
           }
 
-          button {
-            max-width: 320px;
-            width: 50%;
-            margin-top: 5%;
-            background: #B0FD00;
-            font-size: 14px;
-            color: #000;
-            line-height: 50px;
-            border: 2px solid #B0FD00;
-            border-radius: 3px;
-            cursor: pointer;
-            transition: all 500ms;
-
+          .mobile {
+            display: none;
             @include mq(mobile) {
-              width: 100%;
+              //display: block;
+            }
+          }
+
+          .walletsPanel {
+            .desktop {
+              display: block;
+              @include mq(mobile) {
+                //display: none;
+              }
+            }
+            
+            img {
+              max-width: 100px;
+            }
+            > p {
+              margin-bottom: 8% !important;
+              @include mq(mobile) {
+                line-height: 1.4;
+                margin: 24px 0 42px;
+              }
+            }
+           
+
+
+
+            a {
+              text-decoration: underline;
+              cursor: pointer;
             }
 
-            &:hover {
-              background-color: $white;
+            >button {
+              margin-top: 5%;
+              // line-height: 50px;
+              // border: none;
+              // border-radius: 3px;
+              cursor: pointer;
+              @include mq(mobile) {
+                width: 100%;
+                max-width: 100%;
+                display: block;
+              }
+            }
+
+            .active {
+              background-color: #efefef;
+            }
+
+            .sweetContainer {
+              position: relative;
+              .sweetPanel {
+                position: relative;
+                background-color: #fff;
+                margin: 10% 0 11%;
+                padding: 2% 0 2% 6%;
+                border: 2px solid #000;
+                border-radius: 8px;
+                z-index: 1;
+                @include mq(mobile) {
+                  display: none;
+                }
+
+                svg {
+                  vertical-align: middle;
+                  margin-right: 3%;
+                }
+                .sweetCopy {
+                  display: inline-block;
+                  vertical-align: middle;
+
+                  h2 {
+                    line-height: 1.25;
+                    margin: 0 auto 1%;
+                  }
+                }
+              }
+
+              &::after {
+                content: '';
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                top: 15px;
+                right: -15px;
+                background-color: #FACEF6;
+                border: 2px solid #000;
+                border-radius: 8px;
+                z-index: 0;
+              }
+            }
+            
+          }
+
+          .settingsPanel {
+            h2 {
+              font-size: 24px;
+              margin-bottom: 5%;
+              @include mq(mobile) {
+                font-size: 5.25vw;
+                margin-bottom: 12%;
+              }
+            }
+            
+            .formContainer {
+              max-width: 1035px;
+
+              .profileImage {
+                margin-bottom: 3%;
+              }
+
+              input {
+                line-height: 32px;
+                width: 100%;
+                border-color: #ccc;
+                border-radius: 5px;
+                margin-bottom: 8%;
+                padding-left: 3%;
+              }
+
+              h2 {
+                margin-top: 8%;
+                @include mq(mobile) {
+                  margin: 9% 0 9%;
+                  font-size: 5.25vw;
+                }
+              }
+
+              .halfBlock {
+                display: inline-block;
+                
+                width: 50%;
+                padding-right: 5%;
+                vertical-align: top;
+                @include mq(mobile) {
+                  width: 100%;
+                  padding: 0;
+                  margin-bottom: 30px;
+                }
+
+                .label {
+                  font-size: 16px;
+                  font-family: $macysbold;
+                  margin-bottom: 4%;
+                  @include mq(mobile) {
+                    margin-bottom: 10px;
+                    font-size: 14px;
+                  }
+
+                  p {
+                    font-family: $macysbold;
+                  }
+                }
+
+                > p {
+                  display: inline-block;
+                  font-size: 24px;
+                  margin-right: 2%;
+                  @include mq(mobile) {
+                    font-size: 20px;
+                  }
+                }
+
+                > p.small {
+                  max-width: 340px;
+                  font-size: 12px;
+                  color: $black;
+                  margin-top: 10%;
+                  @include mq(mobile) {
+                    margin-top: 6%;
+                  }
+                }
+              }
+
+              .halfBlock:nth-child(2) {
+                width: 30%;
+                padding-right: 0;
+                @include mq(mobile) {
+                  width: 100%;
+                  margin-bottom: 5%;
+
+                  .label p {
+                    font-size: 14px;
+                  }
+                }
+                
+                p {
+                  @include mq(mobile) {
+                    font-size: 5vw;
+                  }
+                }
+              }
+
+              button {
+                display: inline-block;
+                background: transparent;
+                border: none;
+                cursor: pointer;
+              }
+
+              .editButton {
+                max-width: 342px;
+                display: block;
+                cursor: pointer;
+                font-size: 14px;
+                text-align: center;
+                line-height: 3;
+                font-family: $macysmedium;
+
+                @include mq(mobile) {
+                  margin: 0 0 5%;
+                }
+              }
+
+              #link {
+                max-width: 77px;
+                display: inline-block;
+              }
+
+              #discord {
+                width: 90%;
+                display: inline-block;
+              }
+            }
+          }
+
+          .notificationsPanel {
+            @include mq(mobile) {
+              margin-top: -5%;
+            }
+            h2 {
+              font-size: 24px;
+              line-height: 2.5;
+              margin-top: -2%;
+              margin-bottom: 3%;
+              border-bottom: 1px solid #ccc;
+              @include mq(mobile) {
+                line-height: 1.5;
+                margin-top: 0;
+                margin-bottom: 6%;
+              }
+            }
+
+            > p {
+              margin-bottom: 5%;
+            }
+
+            label {
+              display: block;
+              line-height: 2;
+              @include mq(mobile) {
+                margin: 2% 0;
+              }
+              input {
+                display: inline-block;
+                accent-color: #000;
+                width: 2%;
+                @include mq(mobile) {
+                  transform: scale(3);
+                  vertical-align: top;
+                }
+              }
+              p {
+                display: inline-block;
+                width: 95%;
+                margin-left: 1%;
+                @include mq(mobile) {
+                  width: 90%;
+                  vertical-align: top;
+                  line-height: 1.2;
+                  margin-left: 5%;
+                }
+              }
+            }
+            input {
+              line-height: 1;
+              display: inline-block;
+            }
+            input[type="submit"] {
+              max-width: 458px;
+              font-family: $macysmedium;
+              width: 30%;
+              margin-top: 4%;
+              margin-right: 2%;
+              cursor: pointer;
+              @include mq(mobile) {
+                  width: 100%;
+                  margin-top: 12%;
+                  margin-bottom: 4%;
+                }
+            }
+
+            input[value="Cancel"] {
+              background: #fff;
               border: 2px solid #000;
+              @include mq(mobile) {
+                width: 100%;
+                margin-top: 0%;
+              }
             }
           }
         }
-        .iconHolder {
-          position: absolute;
-          max-width: 104px;
-          width: 50%;
-          right: -40px;
-          bottom: -20px;
-        }
       }
     }
-  }
-  .filterbuttons {
-    display: flex;
-    float: left;
-    &_wrap {
-      &_button {
-
-      }
-    }
-  }
-  .viewbuttons {
-    float: right;
-    display: flex;
-    align-self: flex-end;
-    margin-left: auto;
-    background: #fff;
-    border-radius: 15px;
-    padding: 2px;
-    &_button {
-      background: transparent;
-      border: 1px solid transparent;
-      border-radius: 15px;
-      padding: 7px 15px;
-      text-transform: capitalize;
-      &.selected {
-        background: #000 !important;
-        color: #fff;
-        font-weight: bold;
-      }
-    }
-  }
-  .nft-controls {
-    display: flex;
-    align-content: space-between;
-    width: 100%;
   }
 
-  .allwraprow {
-    width: 100%;
-  }
-
-  .notifyBarContainer {
-    display: block;
-    position: relative;
-    width: 98%;
-    max-width: 1344px;
-    margin: 0;
-    @include mq(mobile) {
-      width: 97%;
-    }
-  
-    &::after {
-      content: '';
-      display: block;
-      width: 100%;
-      height: 64px;
-      background-color: #FACEF6;
-      position: absolute;
-      bottom: -8px;
-      left: 8px;
-      border: 2px solid #000000;
-      border-radius: 4px;
-      z-index: 0; 
-      @include mq(mobile) {
-        height: 100%;
-        padding-top: 5%;
-        padding-bottom: 5%;
-      }
-    }
-  
-    .notifyBar {
+  .nonslider {
       display: flex;
-      align-items: center;
-      position: relative;
-      height: 64px;
-      border: 2px solid $black;
-      border-radius: 4px;
-      z-index: 1;
-      background-color: #ffffff;
-      padding: 0 25px;
-      @include mq(mobile) {
-        padding-top: 5%;
-        padding-bottom: 5%;
-        padding: 0 10px;
-        height: auto;
-        flex-direction: column;
-        align-items: flex-start;
-      }
-      img {
-        display: inline-block;
-        position: relative;
-        max-width: 47px;
-        width: 100%;
-        margin-right: 26px;
-        @include mq(mobile) {
-          margin-top: 12px;
-          margin-right: 0;
-        }
-      }
-  
-      .openNotifyBar {
-        margin-right: 15px;
-        @include mq(mobile) {
-          left: 10px;
-        }
-      }
-  
-      .closeNotifyBar {
-        margin-right: 25px;
-        left: 30px;
-      }
-      .openNotifyBar,
-      .closeNotifyBar {
-        @include mq(mobile) {
-          position: absolute;
-          top: 5%;
-        }
-      }
-    }
-    img {
-      display: inline-block;
-      vertical-align: middle;
-    }
-    .copy,
-    .copy p {
-      color: $black;
-      display: inline-block;
-      font-size: 28px;
-      font-family: $macysbold;
-      vertical-align: middle;
-      margin-top: -5px;
-      @include xd-spacing(24, -20);
-      @include mq(mobile) {
-        font-size: 6.5vw;
-        padding: 5% 0;
-      }
-    }
-  
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      align-content: center;
   }
 }
+
+
+
+
+
+
+
+

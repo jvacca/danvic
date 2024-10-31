@@ -512,9 +512,8 @@ export default function NFTPdp({NFTData, owner, share}) {
                   nft.contractAddress === NFTData.contract.address
                 ) {
                   return nft.utility.map((obj, objIndex) => (
-                    <div className={styles.utilityContent}>
+                    <div key={`${index}-${objIndex}`} className={styles.utilityContent}>
                       <p
-                        key={`${index}-${objIndex}`}
                         className={styles.utilityType}
                       >
                         {obj.type}

@@ -2,7 +2,7 @@ import Head from '@/components/Head'
 import Image from 'next/image'
 import Link from "next/link";
 import { useSelector, useDispatch } from "react-redux";
-import styles from './Home.module.scss'
+import styles from '@/components/Home/Home.module.scss'
 
 export default function Home() {
   const isLoggedIn = useSelector((state) => state.application.isLoggedIn)

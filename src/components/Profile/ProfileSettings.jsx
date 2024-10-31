@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { useSelector } from 'react-redux';
 import Image from 'next/image';
 // Assets imports
-import styles from '../../pages/profile/profile.module.scss';
+import styles from '../../components/Profile/profile.module.scss';
 import Button from '../UICommon/Button'
 import {copyToClipBoard, textEllipsisMid} from '../../services/GlobalUtilities';
 import DataProvider from "../../services/DataProvider";

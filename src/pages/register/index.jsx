@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 
-import RegistrationForm from './RegistrationForm'
-import styles from './RegistrationForm.module.scss';
+import RegistrationForm from '@/components/Registration/RegistrationForm'
+import styles from '@/components/Registration/RegistrationForm.module.scss';
 
 export default function Register() {
   const [isRegistered, setIsRegistered] = useState(false)

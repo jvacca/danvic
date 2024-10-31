@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import React, {useEffect, useState} from "react";
 import Head from '../components/Head';
-import styles from './static.module.scss';
+import styles from '@/styles/static.module.scss';
 
 export default function Terms() {
     return (

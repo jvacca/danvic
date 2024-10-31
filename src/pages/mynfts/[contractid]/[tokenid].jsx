@@ -3,9 +3,8 @@ import React, { useEffect, useState, useRef } from "react"
 import { useSelector } from 'react-redux'
 import { useSearchParams } from 'next/navigation'
 import Head from '@/components/Head'
-import PDP from "./PDP"
+import PDP from "@/components/PDPs/PDP"
 import {Network} from "alchemy-sdk";
-import styles from './nftDetail.module.scss';
 
 export default function NFTDetail({ contractid, tokenid }) {
     const querystrings = useSearchParams()

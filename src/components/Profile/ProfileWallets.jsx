@@ -6,7 +6,7 @@ import {updateWallets} from '../../reducers/AccountSlice'
 
 import Modal from '../UICommon/Modal'
 import WalletManager from '../WalletComponents/WalletManager'
-import styles from '../../pages/profile/profile.module.scss'
+import styles from '../../components/Profile/profile.module.scss'
 //import data from '@/mockdata/wallets.json'
 
 export default function ProfileWallets ({profileData}) { 

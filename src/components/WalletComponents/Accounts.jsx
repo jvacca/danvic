@@ -3,7 +3,7 @@ import { ethers } from "ethers";
 import {copyToClipBoard, textEllipsisMid} from '../../services/GlobalUtilities';
 import Button from '../UICommon/Button'
 import IConCopy from '../../assets/icon-copy.svg';
-import styles from '../../pages/profile/profile.module.scss';
+import styles from '../../components/Profile/profile.module.scss';
 
 // eslint-disable-next-line react/display-name
 export default function Account({walletType, accounts, status, provider}) {
