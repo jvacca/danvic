@@ -4,9 +4,15 @@ import styles from "./Video.module.scss";
 import IconPause from "../../assets/svg/icon-pause-wh.svg";
 import IconPlay from "../../assets/svg/icon-play-wh.svg";
 
-export default function Video({ videoName, controls, poster }) {
-    const [isPlaying, setIsPlaying] = useState(true);
-    const [userInteracted, setUserInteracted] = useState(false);
+type VideoProps = {
+    videoName: string;
+    controls?: boolean;
+    poster?: string;
+};
+
+export default function Video({ videoName, controls, poster }: VideoProps): React.ReactNode {
+    const [isPlaying, setIsPlaying] = useState<boolean>(true);
+    const [userInteracted, setUserInteracted] = useState<boolean>(false);
     const videoRef = useRef(null);
 
     const togglePlayPause = () => {
@@ -29,7 +35,7 @@ export default function Video({ videoName, controls, poster }) {
         // updateViewport(); // Initial check
         // window.addEventListener("resize", updateViewport);
 
-        const handlePlayVideo = (entries) => {
+        const handlePlayVideo = (entries: any) => {
             const [entry] = entries;
             if (userInteracted) return;
 
@@ -62,7 +68,7 @@ export default function Video({ videoName, controls, poster }) {
             videoObserver.disconnect();
         }
 
-    }, []);
+    }, [userInteracted]);
 
     return (
         <>
@@ -70,7 +76,7 @@ export default function Video({ videoName, controls, poster }) {
                 key={`${videoName}-${poster}`}
                 poster={poster ? Config.CAMPAIGNROOT + "images/" + poster : undefined}
                 ref={videoRef}
-                loop="loop"
+                loop={true}
                 playsInline
                 muted
                 preload={"auto"}

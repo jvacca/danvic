@@ -1,10 +1,15 @@
 import React, { useEffect, useRef } from "react";
 
-export default function VideoPlay({ videopath, poster }) {
+type VideoPlayProps = {
+  videopath: string;
+  poster?: string;
+};
+
+export default function VideoPlay({ videopath, poster }: VideoPlayProps): React.ReactNode {
   const videoRef = useRef();
 
   useEffect(() => {
-    videoRef.current?.load();
+    if (videoRef && videoRef.current) videoRef?.current?.load();
   }, [videopath]);
 
   return (

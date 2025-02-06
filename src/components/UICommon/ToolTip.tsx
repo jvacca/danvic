@@ -1,7 +1,12 @@
 import React, { useState } from "react";
 import styles from './ToolTip.module.scss';
 
-export default function ToolTip({show, children}) {
+type ToolTipProps = {
+  show: boolean
+  children: React.ReactNode
+}
+
+export default function ToolTip({show, children}: ToolTipProps): React.ReactNode {
   
   return (
     <>

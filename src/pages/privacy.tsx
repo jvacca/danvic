@@ -3,7 +3,7 @@ import React, {useEffect, useState} from "react";
 import Head from '../components/Head';
 import styles from '@/styles/static.module.scss';
 
-export default function Privacy() {
+export default function Privacy(): React.ReactNode {
     return (
         <>
         <Head title="Privacy Policy" />

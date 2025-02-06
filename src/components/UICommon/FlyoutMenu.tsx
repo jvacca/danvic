@@ -2,27 +2,13 @@ import React, { useState, forwardRef, useImperativeHandle, useContext } from "re
 import styles from './FlyoutMenu.module.scss';
 import {FlyoutContext} from '../WalletComponents/WalletManager'
 
-export interface FlyoutMenuHandlers {
+export type FlyoutMenuHandlers = {
   closeMenu: () => void
 }
 
-interface FlyoutMenuProps {
+type FlyoutMenuProps = {
   classname: string,
   children: React.ReactNode
-}
-
-interface ToggleProps {
-  id: string,
-  children: React.ReactNode,
-  open?: boolean,
-  setOpen?: React.Dispatch<React.SetStateAction<boolean>>,
-  classname: string
-} 
-
-interface ListProps {
-  children: React.ReactNode,
-  open?: boolean,
-  classname: string
 }
 
 type FlyoutMenuComponent = React.ForwardRefExoticComponent<FlyoutMenuProps & React.RefAttributes<FlyoutMenuHandlers>> & {
@@ -51,7 +37,15 @@ const FlyoutMenu = forwardRef<FlyoutMenuHandlers, FlyoutMenuProps>(({classname, 
     )
 }) as FlyoutMenuComponent
 
-function Toggle({id, children, open, setOpen, classname}: ToggleProps) {
+type ToggleProps = {
+  id: string,
+  children: React.ReactNode,
+  open?: boolean,
+  setOpen?: React.Dispatch<React.SetStateAction<boolean>>,
+  classname: string
+} 
+
+function Toggle({id, children, open, setOpen, classname}: ToggleProps): React.ReactNode {
   const flyoutListner = useContext(FlyoutContext);
 
   const toggleMenu = (e:React.MouseEvent<HTMLButtonElement>) => {
@@ -70,7 +64,13 @@ function Toggle({id, children, open, setOpen, classname}: ToggleProps) {
   )
 }
 
-function List({children, open, classname}: ListProps) {
+type ListProps = {
+  children: React.ReactNode,
+  open?: boolean,
+  classname: string
+}
+
+function List({children, open, classname}: ListProps): React.ReactNode {
   return (
     open && 
     <div className={`${styles["FlyoutMenuList"]} ${classname}`}>

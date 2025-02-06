@@ -1,6 +1,8 @@
-import styles from './Loading2.module.scss';
+import styles from './Loading.module.scss';
 
-export default function Loading2({isShowing}) {
+type LoadingProps = { isShowing: boolean }
+
+export default function Loading({isShowing}: LoadingProps): React.ReactNode {
   if (isShowing) {
     return (
       <div className={styles.loader} id='icon-loading'>

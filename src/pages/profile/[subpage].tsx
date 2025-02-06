@@ -2,24 +2,26 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from 'react-redux';
 import { useRouter } from 'next/router';
-import {updateProfileData, updateWallets} from '../../reducers/AccountSlice';
+import {updateProfileData} from '../../reducers/AccountSlice';
 import Link from 'next/link';
 import Head from '../../components/Head';
 import ProfileSettings from '../../components/Profile/ProfileSettings';
 import ProfileWallets from '../../components/Profile/ProfileWallets';
 import Dashboard from '../../components/Profile/Dashboard';
+import { RootState } from '@/store'
 
 //import profileData from '../../../data/profile.json'
 
 //library imports
 import useAsyncLoad from "../../hooks/useAsyncLoad";
-
 import styles from '../../components/Profile/profile.module.scss';
 
-export default function Profile({subpage}) {
+type ProfileProps = {  subpage: string | undefined; };
+
+export default function Profile({subpage}: ProfileProps): React.ReactNode {
   //const params = useParams();
-  const profileData = useSelector((state) => state.account.profileData);
-  const [routename, setRoutename] = useState(null);
+  const profileData = useSelector((state: RootState) => state.account.profileData);
+  const [routename, setRoutename] = useState<string>(null);
   const dispatch = useDispatch();
   const router = useRouter();
   const loadUserProfileData = useAsyncLoad();
@@ -38,7 +40,7 @@ export default function Profile({subpage}) {
     if (profileData) console.log("Profile: updating page");
   }, [profileData])
 
-  const getPanelByName = (panelname) => {
+  const getPanelByName = (panelname: string) => {
     //console.log('Profile name check: ************', panelname)
     switch(panelname) {
       case "settings":
@@ -53,10 +55,10 @@ export default function Profile({subpage}) {
 
   }
 
-  const saveUserData = (obj) => {
+  const saveUserData = (obj:any) => {
     console.log("Profile: actually writing to db ", obj);
     obj.userid = sessionStorage.getItem('m3ids');
-    loadUserProfileData('/users/setusersettings', obj).then((res) => {
+    loadUserProfileData('/users/setusersettings', obj).then((res:any) => {
       console.log("Profile: Saved: ", res);
       dispatch(updateProfileData(res))
     })

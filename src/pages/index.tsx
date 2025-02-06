@@ -1,12 +1,13 @@
 import Head from '@/components/Head'
 import Image from 'next/image'
 import Link from "next/link";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import styles from '@/components/Home/Home.module.scss'
+import { RootState } from '@/store'
 
-export default function Home() {
-  const isLoggedIn = useSelector((state) => state.application.isLoggedIn)
-  const profileName = useSelector((state) => state.account.profileName)
+export default function Home(): React.ReactNode {
+  const isLoggedIn = useSelector((state: RootState) => state.application.isLoggedIn)
+  const profileName = useSelector((state: RootState) => state.account.profileName)
 
   return (
     <>

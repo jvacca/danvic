@@ -3,12 +3,12 @@ import Button from "./Button";
 import IconClose from "@/assets/icon-close-black.svg";
 import styles from "./Modal.module.scss";
 
-export interface ModalHandlers {
+export type ModalHandlers = {
   openModal: () => void;
   closeModal: () => void;
 }
 
-interface ModalProps {
+type ModalProps = {
   children: React.ReactNode;
 }
 

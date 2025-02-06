@@ -2,12 +2,12 @@ import React, { useEffect, useState } from "react";
 import styles from './Faq.module.scss'
 import parse from 'html-react-parser';
 
-export default function FAQList(Accordion, faqsData) {
-  function NewFAQList() {
-    const [changeOpened, setChangedOpen] = useState(null)
+export default function FAQList(Accordion: any, faqsData: any) {
+  function NewFAQList(): React.ReactNode {
+    const [changeOpened, setChangedOpen] = useState<string>(null)
     
-    function forceOpen(id) {
-      console.log("Dude, WTF? ", id)
+    function forceOpen(id: string) {
+      //console.log("Dude, WTF? ", id)
       setChangedOpen(id)
       if (document.getElementById(id)) {
         document.getElementById(id).scrollIntoView({
@@ -29,7 +29,7 @@ export default function FAQList(Accordion, faqsData) {
     return (
       <>
       <Accordion classname={styles.faqList} initItemOpen={changeOpened}>
-        {faqsData.questions.map((faq, index) => (
+        {faqsData.questions.map((faq: any) => (
           <Accordion.Item key={faq.id} id={faq.id} classname={styles.faqElement}>
             <Accordion.Head classname={styles.faqHead}>
                 <h3>{parse(faq.q)}</h3>

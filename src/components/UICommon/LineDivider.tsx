@@ -1,10 +1,19 @@
 import React, { useEffect } from "react";
 import styles from "./LineDivider.module.scss";
 
+type LineDividerProps = {
+  className?: string;
+  height: number;
+  width: number;
+  borderSide: "top" | "bottom" | "left" | "right";
+  borderStyle: string;
+  borderColor: string;
+};
+
 export default function LineDivider({ className, height, width, borderSide, borderStyle, borderColor }) {
 
-  function capitalizeFirstLetter(string) {
-    return string.charAt(0).toUpperCase() + string.slice(1);
+  function capitalizeFirstLetter(stringParam: string) {
+    return stringParam.charAt(0).toUpperCase() + stringParam.slice(1);
   }
 
   borderSide = capitalizeFirstLetter(borderSide);

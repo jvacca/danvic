@@ -5,7 +5,7 @@ import faqsData from '../../../data/FAQ.json'
 import FAQList from '@/components/FAQs/FAQList'
 import styles from '@/components/FAQs/Faq.module.scss'
 
-export default function Faqs() {
+export default function Faqs(): React.ReactNode {
   // example of HOC
   const FaqList = FAQList(Accordion, faqsData)
   

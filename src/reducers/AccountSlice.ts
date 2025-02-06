@@ -11,6 +11,7 @@ export interface CurrentAccount {
 export interface AccountState {
   userId: string | null,
   profileName: string | null,
+  profileData: any,
   defaultWallet: string,
   wallets: Array<any>,
   currentAccount: CurrentAccount | null
@@ -19,6 +20,7 @@ export interface AccountState {
 const initialState: AccountState = {
   userId: null,
   profileName: null,
+  profileData: null,
   defaultWallet: 'macys',
   wallets: [],
   currentAccount: {

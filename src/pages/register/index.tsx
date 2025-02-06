@@ -3,9 +3,9 @@ import React, {useState} from 'react'
 import RegistrationForm from '@/components/Registration/RegistrationForm'
 import styles from '@/components/Registration/RegistrationForm.module.scss';
 
-export default function Register() {
-  const [isRegistered, setIsRegistered] = useState(false)
-  const submitData = (e) => {
+export default function Register(): React.ReactNode {
+  const [isRegistered, setIsRegistered] = useState<boolean>(false)
+  const submitData = () => {
     setIsRegistered(true)
   }
 
